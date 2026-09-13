@@ -1,0 +1,55 @@
+TRADERVIKINGBR · LIVE DESK — instalacao do PWA
+===============================================
+
+OPCAO 1 — automatica (recomendada)
+-----------------------------------
+1. Descompacte esta pasta em qualquer lugar
+2. Clique com o botao direito em "instalar_pwa.ps1"
+3. Escolha "Executar com o PowerShell"
+
+O script copia os arquivos para o repositorio, commita e publica.
+
+Se o Windows bloquear, abra o PowerShell na pasta e rode:
+   powershell -ExecutionPolicy Bypass -File instalar_pwa.ps1
+
+
+OPCAO 2 — manual
+-----------------
+Copie para a RAIZ do repositorio, mantendo a estrutura:
+
+   index.html
+   manifest.webmanifest
+   sw.js
+   icons/  (todos os .png)
+
+Depois:
+
+   cd "C:\tradervikingbr-site\tradervikingbr-site"
+   git add index.html manifest.webmanifest sw.js icons
+   git commit -m "PWA: app instalavel"
+   git push origin main
+
+
+ORDEM IMPORTANTE
+-----------------
+O publicar_radar.py faz "git reset --hard origin/main" antes de publicar.
+Commite estes arquivos ANTES de rodar o script de coleta, senao eles
+serao apagados.
+
+
+COMO INSTALAR O APP
+--------------------
+Android (Chrome)  : menu ⋮ → Instalar aplicativo
+iPhone (Safari)   : Compartilhar ⬆️ → Adicionar a Tela de Inicio
+Computador        : icone ⊕ na barra de endereco → Instalar
+
+O botao "Instalar app" no cabecalho do site tambem abre um passo a
+passo com diagnostico, mostrando exatamente o que falta caso o
+navegador nao ofereca a instalacao.
+
+
+OBSERVACAO
+-----------
+O PWA so funciona pelo endereco do GitHub Pages (HTTPS).
+Abrindo o index.html direto do disco o navegador bloqueia o
+service worker e a instalacao nao aparece.
