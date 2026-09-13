@@ -11,8 +11,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Live Desk">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="apple-touch-startup-image" href="icons/splash-1170x2532.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -411,6 +413,10 @@ details[open] summary:before{content:"▾ "}
       <button id="osDesk" onclick="setOS('desk')">Computador</button>
     </div>
     <div id="osSteps"></div>
+    <details style="margin-top:14px;border-top:1px solid var(--stroke);padding-top:12px">
+      <summary>🔎 Diagnóstico da instalação</summary>
+      <div id="diag" style="margin-top:10px;font:12px ui-monospace,Consolas,monospace;line-height:1.9"></div>
+    </details>
     <div class="bar"><button class="gold" onclick="closeHowto()" style="margin-left:auto">Entendi</button></div>
   </div>
 </div>
@@ -1564,7 +1570,38 @@ function setOS(os){
   '<div class="step"><div class="n">'+(i+1)+'</div><div class="t">'+s[0]+
   (s[1]?'<br><span style="color:var(--mut);font-size:12px">'+s[1]+'</span>':'')+'</div></div>').join('');
 }
-function openHowto(){setOS(isIOS()?'ios':(/android/i.test(navigator.userAgent)?'android':'desk'));$('#howto').classList.add('show')}
+/* Diagnóstico: mostra exatamente o que falta para o navegador oferecer a instalação */
+async function runDiag(){
+ const el=$('#diag');if(!el)return;
+ const L=[];
+ const add=(ok,txt,extra)=>L.push('<div style="color:'+(ok?'#8bffc4':'#ffb3b9')+'">'+(ok?'✓':'✕')+' '+txt+
+  (extra?' <span style="color:var(--mut)">'+extra+'</span>':'')+'</div>');
+ add(location.protocol==='https:'||location.hostname==='localhost','Servido por HTTPS',location.protocol);
+ add('serviceWorker' in navigator,'Navegador suporta service worker');
+ try{
+  const r=await fetch('manifest.webmanifest',{cache:'no-store'});
+  add(r.ok,'manifest.webmanifest acessível','HTTP '+r.status);
+  if(r.ok){const j=await r.json();
+   add(!!j.icons&&j.icons.length>0,'Manifest com ícones',(j.icons||[]).length+' declarados');
+   for(const ic of (j.icons||[]).slice(0,3)){
+    try{const ir=await fetch(ic.src,{method:'HEAD',cache:'no-store'});add(ir.ok,'Ícone '+ic.sizes,'HTTP '+ir.status)}
+    catch(e){add(false,'Ícone '+ic.sizes,'inacessível')}
+   }
+  }
+ }catch(e){add(false,'manifest.webmanifest acessível',e.message)}
+ try{const sr=await fetch('sw.js',{cache:'no-store'});add(sr.ok,'sw.js acessível','HTTP '+sr.status)}
+ catch(e){add(false,'sw.js acessível',e.message)}
+ if('serviceWorker' in navigator){
+  const regs=await navigator.serviceWorker.getRegistrations();
+  add(regs.length>0,'Service worker registrado',regs.length+' registro(s)');
+ }
+ add(!!deferredPrompt,'Navegador liberou a instalação automática',
+  deferredPrompt?'':'use o passo a passo acima');
+ add(!standalone(),'Ainda não instalado',standalone()?'já rodando como app':'');
+ L.push('<div style="color:var(--mut);margin-top:8px">'+navigator.userAgent.slice(0,90)+'</div>');
+ el.innerHTML=L.join('');
+}
+function openHowto(){setOS(isIOS()?'ios':(/android/i.test(navigator.userAgent)?'android':'desk'));$('#howto').classList.add('show');runDiag()}
 function closeHowto(){$('#howto').classList.remove('show')}
 $('#howto').addEventListener('click',e=>{if(e.target.id==='howto')closeHowto()});
 
