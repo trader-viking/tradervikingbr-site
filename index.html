@@ -86,6 +86,54 @@ body{background:
 .osrow{display:flex;gap:8px;margin-bottom:4px}
 .osrow button{flex:1;padding:9px;font-size:12.5px;border-radius:11px}
 .osrow button.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;border-color:transparent}
+/* ===== MODO FOCO ===== */
+body.zen .hero,
+body.zen #srcPanel,
+body.zen .kpis,
+body.zen #logPanel,
+body.zen #mesaPanel{display:none!important}
+body.zen .wrap{padding-top:14px}
+body.zen .nav{margin-bottom:12px}
+body.zen .period{margin:18px 0 10px}
+body.zen .period-head{padding:11px 16px}
+body.zen .period-head h2{font-size:18px}
+body.zen .period-head .ic{font-size:20px}
+body.zen .period-head .rg{display:none}
+body.zen .wave-head{top:56px}
+body.zen .grid,body.zen .mesa-grid{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
+/* barra flutuante do modo foco */
+.zenbar{display:none;position:sticky;top:0;z-index:60;align-items:center;gap:9px;flex-wrap:wrap;
+ margin-bottom:14px;padding:10px 14px;border-radius:16px;border:1px solid var(--stroke2);
+ background:rgba(8,18,32,.96);backdrop-filter:blur(16px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
+body.zen .zenbar{display:flex}
+.zenbar .tt{font-weight:900;font-size:13px;color:#ffdf9a;letter-spacing:.04em;margin-right:2px}
+.zenbar select,.zenbar input[type=text]{padding:7px 10px;font-size:12.5px;border-radius:10px}
+.zenbar .mini{padding:7px 11px;font-size:12px}
+.zenbar .sp{margin-left:auto;display:flex;gap:8px;align-items:center}
+.zenbar .kv{font-size:12px;color:var(--mut);white-space:nowrap}
+.zenbar .kv b{color:#fff}
+/* botão de alternância no topo */
+.zenbtn{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:800;
+ border:1px solid var(--stroke2);background:rgba(255,255,255,.06);color:var(--txt);cursor:pointer;transition:.18s}
+.zenbtn:hover{background:rgba(255,255,255,.12)}
+.zenbtn.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;border-color:transparent}
+.navspacer{margin-left:auto;display:flex;gap:8px;align-items:center}
+.nav{width:100%;justify-content:flex-start}
+/* densidade compacta */
+body.dense .match-card .why,
+body.dense .match-card .tl,
+body.dense .match-card details,
+body.dense .match-card .mc-foot,
+body.dense .match-card .chips{display:none}
+body.dense .match-card .mc-body{padding:16px 16px 16px}
+body.dense .crest{width:52px;height:52px;border-radius:15px}
+body.dense .grid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+body.dense .versus{margin:4px 0 6px}
+body.dense .stats{margin-top:10px}
+@media(max-width:700px){
+ .zenbar{gap:7px;padding:9px 11px}
+ .zenbar .tt{display:none}
+}
 .nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;padding:7px;border-radius:18px;
  border:1px solid var(--stroke);background:rgba(0,0,0,.25);backdrop-filter:blur(10px);width:fit-content}
 .nav button{border:0;background:transparent;color:var(--mut);padding:11px 20px;border-radius:13px;font-weight:700;font-size:14px;transition:.2s;cursor:pointer}
@@ -430,10 +478,30 @@ details[open] summary:before{content:"▾ "}
 <nav class="nav">
   <button id="tabAnalise" class="on" onclick="setTab('analise')">📊 Grade de análise</button>
   <button id="tabMesa" onclick="setTab('mesa')">🎮 Mesa ao vivo <span class="badge" id="mesaBadge">0</span></button>
+  <div class="navspacer">
+    <button class="zenbtn" id="denseBtn" onclick="toggleDense()" title="Cards compactos (tecla C)">▦ Compacto</button>
+    <button class="zenbtn" id="zenBtn" onclick="toggleZen()" title="Ocultar menus (tecla Z ou F)">🎯 Modo foco</button>
+  </div>
 </nav>
 
+<div class="zenbar" id="zenbar">
+  <span class="tt">🎯 FOCO</span>
+  <select id="zPeriod" onchange="syncZen('period')"><option value="all">Todos</option>
+    <option value="manha">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite</option></select>
+  <select id="zMethod" onchange="syncZen('method')"><option value="all">Todos</option></select>
+  <select id="zFin" onchange="syncZen('fin')">
+    <option value="aberta">Em aberto</option><option value="all">Todas</option>
+    <option value="done">Finalizadas</option><option value="green">Só green</option><option value="red">Só red</option></select>
+  <input type="text" id="zSearch" placeholder="🔎 Buscar" oninput="syncZen('search')" style="max-width:150px">
+  <div class="sp">
+    <span class="kv" id="zTally">—</span>
+    <button class="mini" onclick="toggleDense()">▦</button>
+    <button class="mini" onclick="toggleZen()">✕ Sair</button>
+  </div>
+</div>
+
 <div id="viewAnalise">
-<section class="card-panel">
+<section class="card-panel" id="srcPanel">
   <h3 class="sec">Fonte de dados</h3>
   <div class="srcgrid">
     <div class="srcbox live">
@@ -520,7 +588,7 @@ details[open] summary:before{content:"▾ "}
 </div>
 
 <div id="viewMesa" class="hidden">
-  <section class="card-panel">
+  <section class="card-panel" id="mesaPanel">
     <h3 class="sec">Mesa de operação ao vivo</h3>
     <p style="margin:0 0 14px;color:var(--mut);font-size:13px;line-height:1.65">
       Marque os requisitos conforme confirmar em campo e informe placar e minuto. Ao encerrar, registre o resultado no rodapé do card.
@@ -1183,6 +1251,7 @@ function render(){
  $('#pdfBtn').textContent=picked?'🖨️ Caderno de live ('+picked+')':'🖨️ Caderno de live (PDF)';
  $('#mesaBadge').textContent=picked;
  updateTally();
+ if(zenOn())mirrorFilters();
 }
 ['periodFilter','methodFilter','decisionFilter','finFilter','pickFilter'].forEach(id=>$('#'+id).onchange=render);
 $('#search').oninput=render;
@@ -1540,6 +1609,70 @@ $('#pdfBtn').onclick=()=>{
 };
 
 /* ============================================================
+   MODO FOCO · oculta menus e destaca os cards
+   ============================================================ */
+function zenOn(){return document.body.classList.contains('zen')}
+function denseOn(){return document.body.classList.contains('dense')}
+function toggleZen(force){
+ const on=force!==undefined?force:!zenOn();
+ document.body.classList.toggle('zen',on);
+ $('#zenBtn').classList.toggle('on',on);
+ $('#zenBtn').innerHTML=on?'🎯 Sair do foco':'🎯 Modo foco';
+ if(on)mirrorFilters();
+ try{localStorage.setItem('tvbr_zen',on?'1':'0')}catch(e){}
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleDense(force){
+ const on=force!==undefined?force:!denseOn();
+ document.body.classList.toggle('dense',on);
+ $('#denseBtn').classList.toggle('on',on);
+ $('#denseBtn').innerHTML=on?'▦ Completo':'▦ Compacto';
+ try{localStorage.setItem('tvbr_dense',on?'1':'0')}catch(e){}
+}
+/* espelha os filtros principais na barra do modo foco */
+function mirrorFilters(){
+ $('#zPeriod').value=$('#periodFilter').value;
+ $('#zFin').value=$('#finFilter').value;
+ $('#zSearch').value=$('#search').value;
+ $('#zMethod').innerHTML=$('#methodFilter').innerHTML;
+ $('#zMethod').value=$('#methodFilter').value;
+ updateZenTally();
+}
+function syncZen(campo){
+ const map={period:['#zPeriod','#periodFilter'],method:['#zMethod','#methodFilter'],
+  fin:['#zFin','#finFilter'],search:['#zSearch','#search']};
+ const [z,o]=map[campo];
+ $(o).value=$(z).value;
+ render();
+ if(tab==='mesa')renderMesa();
+}
+function updateZenTally(){
+ const el=$('#zTally');if(!el)return;
+ const vis=visibleGames().length,fin=games.filter(g=>g.fin.done).length;
+ el.innerHTML='<b>'+vis+'</b> na tela · <b>'+fin+'</b> encerrada(s)';
+}
+/* atalhos de teclado */
+document.addEventListener('keydown',e=>{
+ const t=e.target.tagName;
+ if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||e.ctrlKey||e.altKey||e.metaKey)return;
+ const k=e.key.toLowerCase();
+ if(k==='z'||k==='f'){e.preventDefault();toggleZen()}
+ else if(k==='c'){e.preventDefault();toggleDense()}
+ else if(k==='1'){e.preventDefault();setTab('analise')}
+ else if(k==='2'){e.preventDefault();setTab('mesa')}
+ else if(e.key==='Escape'){
+  if($('#howto').classList.contains('show'))closeHowto();
+  else if(zenOn())toggleZen(false);
+ }
+});
+function initZen(){
+ try{
+  if(localStorage.getItem('tvbr_zen')==='1')toggleZen(true);
+  if(localStorage.getItem('tvbr_dense')==='1')toggleDense(true);
+ }catch(e){}
+}
+
+/* ============================================================
    PWA · instalação, service worker e estado offline
    ============================================================ */
 let deferredPrompt=null,swReg=null;
@@ -1651,6 +1784,7 @@ async function initPWA(){
 
 window.addEventListener('load',async()=>{
  libsOK();
+ initZen();
  initPWA();
  const p=new URLSearchParams(location.search);
  if(p.get('tab')==='mesa')setTab('mesa');
