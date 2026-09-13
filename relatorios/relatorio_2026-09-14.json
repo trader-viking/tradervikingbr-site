@@ -1,0 +1,223 @@
+{
+  "data": "2026-09-14",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-09-13T16:00:03.822472",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 20,
+  "entradas": [
+    {
+      "horario": "13:30",
+      "liga": "Italy Serie A",
+      "jogo": "Torino Roma",
+      "metodos_aplicados": [
+        "back_favorito"
+      ],
+      "mercado_principal": "Vitória Roma",
+      "probabilidade_estimada": "75%",
+      "fair_odd": "1.33",
+      "odd_minima_entrada": "1.46",
+      "media_gols_casa": "1.00",
+      "media_gols_fora": "4.00",
+      "media_sofridos_casa": "2.00",
+      "media_sofridos_fora": "0.00",
+      "odds_mercado": {
+        "casa": "6.00",
+        "empate": "4.20",
+        "fora": "1.55",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "O H2H recente mostra Roma com mais vitórias (6V 2E 2D em 10 jogos), mas o Torino conseguiu pontuar em alguns confrontos, o que exige cautela.",
+        "jogos_relevantes": [
+          {
+            "data": "18/01/2026",
+            "confronto": "Torino x Roma",
+            "time_analisado": "Roma",
+            "papel": null,
+            "odd": null,
+            "placar": "2-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": true,
+            "nao_sofreu": true
+          },
+          {
+            "data": "13/01/2026",
+            "confronto": "Roma x Torino",
+            "time_analisado": "Roma",
+            "papel": null,
+            "odd": null,
+            "placar": "2-3",
+            "resultado": "D",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": true,
+            "nao_sofreu": false
+          },
+          {
+            "data": "14/09/2025",
+            "confronto": "Roma x Torino",
+            "time_analisado": "Roma",
+            "papel": null,
+            "odd": null,
+            "placar": "0-1",
+            "resultado": "D",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": true,
+            "nao_sofreu": false
+          },
+          {
+            "data": "25/05/2025",
+            "confronto": "Torino x Roma",
+            "time_analisado": "Roma",
+            "papel": null,
+            "odd": null,
+            "placar": "0-2",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": true,
+            "nao_sofreu": true
+          },
+          {
+            "data": "31/10/2024",
+            "confronto": "Roma x Torino",
+            "time_analisado": "Roma",
+            "papel": null,
+            "odd": null,
+            "placar": "1-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": true,
+            "gol_2t": false,
+            "nao_sofreu": true
+          },
+          {
+            "data": "26/02/2024",
+            "confronto": "Roma x Torino",
+            "time_analisado": "Roma",
+            "papel": null,
+            "odd": null,
+            "placar": "3-2",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": true,
+            "nao_sofreu": false
+          }
+        ]
+      },
+      "alerta_odds": {
+        "tipo": "neutro",
+        "time": "Roma",
+        "texto": "Não há dados de H2H com odds para a Roma no papel de favorito para avaliar seu desempenho histórico nesta faixa de odd."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      }
+    },
+    {
+      "horario": "13:00",
+      "liga": "Germany Bundesliga Women",
+      "jogo": "Bayer Leverkusen (W) Bayern Munich (W)",
+      "metodos_aplicados": [
+        "back_favorito",
+        "back_goleada"
+      ],
+      "mercado_principal": "Vitória Bayern Munich (W)",
+      "probabilidade_estimada": "78%",
+      "fair_odd": "1.28",
+      "odd_minima_entrada": "1.41",
+      "media_gols_casa": "2.20",
+      "media_gols_fora": "3.50",
+      "media_sofridos_casa": "1.10",
+      "media_sofridos_fora": "0.40",
+      "odds_mercado": {
+        "casa": "5.50",
+        "empate": "4.10",
+        "fora": "1.44",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": "positivo",
+        "time": "Bayern Munich (W)",
+        "texto": "Bayern Munich (W) tem um histórico dominante contra o Leverkusen, com 9 vitórias e 1 empate nos últimos 10 confrontos diretos, incluindo goleadas. A odd de 1.44 reflete bem esse favoritismo."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Bayern Munich (W) é um favorito extremo com 100% de vitórias fora de casa, ataque forte (3.50 gols/jogo) e defesa sólida (0.40 sofridos/jogo).",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 78% → fair 1.28; com margem de segurança, só entrar acima de 1.41",
+      "mercado_secundario": "Bayern Munich (W) marca 4+ e vence",
+      "odd_minima_secundaria": "3.50",
+      "desempenho_1t": "Casa marca 1.20 no 1ºT, Fora marca 1.40 no 1ºT",
+      "desempenho_2t": "Casa marca 1.70 no 2ºT, Fora marca 2.10 no 2ºT",
+      "contexto_times": {
+        "casa": {
+          "posicao": "2º",
+          "posicao_geral": "7º",
+          "objetivo": "champions_league_qualification"
+        },
+        "fora": {
+          "posicao": "4º",
+          "posicao_geral": "3º",
+          "objetivo": "champions_league"
+        }
+      },
+      "motivacao_tecnica": "Bayern Munich (W) briga pelo título e tem um desempenho impecável fora de casa (100% de vitórias, 3.50 gols marcados/jogo). Bayer Leverkusen (W) está em boa posição em casa, mas a diferença técnica é grande.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Bayern Munich (W) faz 100% dos pontos fora de casa nos últimos 10 jogos.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Bayern Munich (W) tem ataque muito potente, marcando 3.50 gols/jogo fora. Leverkusen marca 2.20 em casa.",
+      "momento_gols": "Bayern Munich (W) marca 60% dos gols após os 75min e não sofre gols nesse período.",
+      "jogadores_chave": null,
+      "placares_provaveis": "0x3, 1x4",
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out se o Bayern abrir boa vantagem e o jogo desacelerar.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "Favoritismo extremo e odd de valor pré-jogo.",
+        "gatilho_saida_parcial": "Bayern Munich (W) abre 2 gols de vantagem.",
+        "hard_stop": "Empate ou gol do adversário antes dos 30 minutos."
+      }
+    }
+  ],
+  "evitar": []
+}
