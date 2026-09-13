@@ -117,8 +117,6 @@ body.zen .zenbar{display:flex}
  border:1px solid var(--stroke2);background:rgba(255,255,255,.06);color:var(--txt);cursor:pointer;transition:.18s}
 .zenbtn:hover{background:rgba(255,255,255,.12)}
 .zenbtn.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;border-color:transparent}
-.navspacer{margin-left:auto;display:flex;gap:8px;align-items:center}
-.nav{width:100%;justify-content:flex-start}
 /* densidade compacta */
 body.dense .match-card .why,
 body.dense .match-card .tl,
@@ -130,12 +128,26 @@ body.dense .crest{width:52px;height:52px;border-radius:15px}
 body.dense .grid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
 body.dense .versus{margin:4px 0 6px}
 body.dense .stats{margin-top:10px}
-@media(max-width:700px){
+/* botao flutuante sempre acessivel */
+.fab{position:fixed;right:16px;bottom:16px;z-index:90;width:54px;height:54px;border-radius:50%;
+ display:grid;place-items:center;font-size:21px;border:0;cursor:pointer;
+ background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;
+ box-shadow:0 12px 30px rgba(255,157,0,.42);transition:.2s}
+.fab:hover{transform:translateY(-2px) scale(1.05)}
+.fab:active{transform:scale(.95)}
+body.zen .fab{background:rgba(8,18,32,.95);color:var(--gold);border:1px solid var(--stroke2)}
+@media(max-width:760px){
  .zenbar{gap:7px;padding:9px 11px}
  .zenbar .tt{display:none}
+ .zenbar select,.zenbar input[type=text]{font-size:12px;padding:6px 8px}
+ .nav{padding:6px}
+ .nav button{padding:9px 13px;font-size:13px}
+ .navspacer{width:100%;margin-left:0;margin-top:6px;justify-content:stretch}
+ .navspacer .zenbtn{flex:1;justify-content:center;padding:9px 10px;font-size:12.5px}
 }
-.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;padding:7px;border-radius:18px;
- border:1px solid var(--stroke);background:rgba(0,0,0,.25);backdrop-filter:blur(10px);width:fit-content}
+.nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:7px;border-radius:18px;
+ border:1px solid var(--stroke);background:rgba(0,0,0,.25);backdrop-filter:blur(10px);width:100%}
+.navspacer{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .nav button{border:0;background:transparent;color:var(--mut);padding:11px 20px;border-radius:13px;font-weight:700;font-size:14px;transition:.2s;cursor:pointer}
 .nav button:hover{color:var(--txt);background:rgba(255,255,255,.06);transform:none}
 .nav button.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;box-shadow:0 8px 20px #ff9d0033}
@@ -468,6 +480,8 @@ details[open] summary:before{content:"▾ "}
     <div class="bar"><button class="gold" onclick="closeHowto()" style="margin-left:auto">Entendi</button></div>
   </div>
 </div>
+
+<button class="fab" id="fabZen" onclick="toggleZen()" title="Modo foco · tecla Z">🎯</button>
 
 <div class="swtoast" id="swToast">
   <div class="tx"><b>Nova versão disponível</b>Recarregue para aplicar a atualização.</div>
@@ -1618,6 +1632,7 @@ function toggleZen(force){
  document.body.classList.toggle('zen',on);
  $('#zenBtn').classList.toggle('on',on);
  $('#zenBtn').innerHTML=on?'🎯 Sair do foco':'🎯 Modo foco';
+ const fb=$('#fabZen');if(fb){fb.innerHTML=on?'✕':'🎯';fb.title=on?'Sair do modo foco · tecla Z':'Modo foco · tecla Z'}
  if(on)mirrorFilters();
  try{localStorage.setItem('tvbr_zen',on?'1':'0')}catch(e){}
  window.scrollTo({top:0,behavior:'smooth'});
