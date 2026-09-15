@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TraderVikingBR · Live Desk</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#060d18">
@@ -48,20 +48,15 @@ body{background:
 .logo p{margin:3px 0 0;color:var(--mut);font-size:13px}
 .pill{padding:9px 15px;border-radius:999px;font-size:12.5px;font-weight:700;
  border:1px solid rgba(255,201,74,.35);background:rgba(255,201,74,.10);color:#ffdf9a}
-/* ===== PWA ===== */
 .heroside{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 #installBtn{display:none;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:999px;
  background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;font-weight:800;font-size:13px;
- box-shadow:0 10px 24px #ff9d0044;cursor:pointer;animation:pulseIn .5s ease}
+ box-shadow:0 10px 24px #ff9d0044;cursor:pointer}
 #installBtn.show{display:inline-flex}
-#installBtn:hover{transform:translateY(-1px);filter:brightness(1.06)}
-@keyframes pulseIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-.appchip{display:none;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;
- border:1px solid rgba(46,232,138,.35);background:rgba(46,232,138,.10);color:#8bffc4}
-.appchip.show{display:inline-flex}
-.netchip{display:none;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;
- border:1px solid rgba(255,176,32,.4);background:rgba(255,176,32,.12);color:#ffd98a}
-.netchip.show{display:inline-flex}
+.appchip,.netchip{display:none;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700}
+.appchip{border:1px solid rgba(46,232,138,.35);background:rgba(46,232,138,.10);color:#8bffc4}
+.netchip{border:1px solid rgba(255,176,32,.4);background:rgba(255,176,32,.12);color:#ffd98a}
+.appchip.show,.netchip.show{display:inline-flex}
 .swtoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140%);z-index:999;
  display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;max-width:92vw;
  border:1px solid rgba(255,201,74,.4);background:rgba(10,22,38,.97);backdrop-filter:blur(14px);
@@ -69,8 +64,6 @@ body{background:
 .swtoast.show{transform:translateX(-50%) translateY(0)}
 .swtoast .tx{font-size:13px;line-height:1.5}
 .swtoast .tx b{color:#ffdf9a;display:block;margin-bottom:2px}
-.swtoast button{padding:8px 14px;font-size:12.5px;border-radius:10px}
-/* modal de instruções */
 .ovl{position:fixed;inset:0;z-index:998;display:none;place-items:center;padding:20px;
  background:rgba(3,9,18,.82);backdrop-filter:blur(6px)}
 .ovl.show{display:grid}
@@ -82,16 +75,11 @@ body{background:
 .step .n{width:26px;height:26px;flex:none;border-radius:9px;display:grid;place-items:center;font-weight:900;font-size:13px;
  background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200}
 .step .t{font-size:13px;line-height:1.6;color:#dbeaf9}
-.step .t b{color:#fff}
 .osrow{display:flex;gap:8px;margin-bottom:4px}
 .osrow button{flex:1;padding:9px;font-size:12.5px;border-radius:11px}
 .osrow button.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;border-color:transparent}
-/* ===== MODO FOCO ===== */
-body.zen .hero,
-body.zen #srcPanel,
-body.zen .kpis,
-body.zen #logPanel,
-body.zen #mesaPanel{display:none!important}
+/* MODO FOCO */
+body.zen .hero,body.zen #srcPanel,body.zen .kpis,body.zen #logPanel,body.zen #mesaPanel{display:none!important}
 body.zen .wrap{padding-top:14px}
 body.zen .nav{margin-bottom:12px}
 body.zen .period{margin:18px 0 10px}
@@ -101,58 +89,33 @@ body.zen .period-head .ic{font-size:20px}
 body.zen .period-head .rg{display:none}
 body.zen .wave-head{top:56px}
 body.zen .grid,body.zen .mesa-grid{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
-/* barra flutuante do modo foco */
 .zenbar{display:none;position:sticky;top:0;z-index:60;align-items:center;gap:9px;flex-wrap:wrap;
  margin-bottom:14px;padding:10px 14px;border-radius:16px;border:1px solid var(--stroke2);
  background:rgba(8,18,32,.96);backdrop-filter:blur(16px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
 body.zen .zenbar{display:flex}
-.zenbar .tt{font-weight:900;font-size:13px;color:#ffdf9a;letter-spacing:.04em;margin-right:2px}
+.zenbar .tt{font-weight:900;font-size:13px;color:#ffdf9a;letter-spacing:.04em}
 .zenbar select,.zenbar input[type=text]{padding:7px 10px;font-size:12.5px;border-radius:10px}
 .zenbar .mini{padding:7px 11px;font-size:12px}
 .zenbar .sp{margin-left:auto;display:flex;gap:8px;align-items:center}
 .zenbar .kv{font-size:12px;color:var(--mut);white-space:nowrap}
 .zenbar .kv b{color:#fff}
-/* botão de alternância no topo */
 .zenbtn{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:800;
  border:1px solid var(--stroke2);background:rgba(255,255,255,.06);color:var(--txt);cursor:pointer;transition:.18s}
 .zenbtn:hover{background:rgba(255,255,255,.12)}
 .zenbtn.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;border-color:transparent}
-/* densidade compacta */
-body.dense .match-card .why,
-body.dense .match-card .tl,
-body.dense .match-card details,
-body.dense .match-card .mc-foot,
-body.dense .match-card .chips{display:none}
+body.dense .match-card .why,body.dense .match-card .tl,body.dense .match-card details,
+body.dense .match-card .mc-foot,body.dense .match-card .chips{display:none}
 body.dense .match-card .mc-body{padding:16px 16px 16px}
 body.dense .crest{width:52px;height:52px;border-radius:15px}
 body.dense .grid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
 body.dense .versus{margin:4px 0 6px}
 body.dense .stats{margin-top:10px}
-/* botao flutuante sempre acessivel */
 .fab{position:fixed;right:16px;bottom:16px;z-index:90;width:54px;height:54px;border-radius:50%;
  display:grid;place-items:center;font-size:21px;border:0;cursor:pointer;
  background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;
  box-shadow:0 12px 30px rgba(255,157,0,.42);transition:.2s}
 .fab:hover{transform:translateY(-2px) scale(1.05)}
-.fab:active{transform:scale(.95)}
 body.zen .fab{background:rgba(8,18,32,.95);color:var(--gold);border:1px solid var(--stroke2)}
-@media(max-width:760px){
- .zenbar{gap:7px;padding:9px 11px}
- .zenbar .tt{display:none}
- .zenbar select,.zenbar input[type=text]{font-size:12px;padding:6px 8px}
- .nav{padding:6px}
- .nav button{padding:9px 13px;font-size:13px}
- .navspacer{width:100%;margin-left:0;margin-top:6px;justify-content:stretch}
- .navspacer .zenbtn{flex:1;justify-content:center;padding:9px 10px;font-size:12.5px}
-}
-.nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:7px;border-radius:18px;
- border:1px solid var(--stroke);background:rgba(0,0,0,.25);backdrop-filter:blur(10px);width:100%}
-.navspacer{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.nav button{border:0;background:transparent;color:var(--mut);padding:11px 20px;border-radius:13px;font-weight:700;font-size:14px;transition:.2s;cursor:pointer}
-.nav button:hover{color:var(--txt);background:rgba(255,255,255,.06);transform:none}
-.nav button.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;box-shadow:0 8px 20px #ff9d0033}
-.nav button .badge{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:99px;font-size:11px;background:rgba(0,0,0,.25)}
-.nav button.on .badge{background:rgba(0,0,0,.18)}
 .card-panel{border:1px solid var(--stroke);border-radius:var(--r);background:var(--glass);
  backdrop-filter:blur(12px);box-shadow:var(--shadow);padding:20px;margin-bottom:20px}
 h3.sec{margin:0 0 14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
@@ -198,6 +161,16 @@ select option{background:#0b1a2c}
 .kpi .n{font-size:28px;font-weight:800;line-height:1;background:linear-gradient(90deg,#fff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .kpi.fin .n{background:linear-gradient(90deg,#fff,var(--ok));-webkit-background-clip:text;background-clip:text}
 .kpi .l{color:var(--mut);font-size:11.5px;margin-top:7px;text-transform:uppercase;letter-spacing:.07em}
+.tally{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;padding:13px 15px;border-radius:14px;
+ border:1px solid var(--stroke);background:rgba(0,0,0,.24)}
+.tally .tl-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);font-weight:700}
+.tbox{display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:10px;font-weight:800;font-size:13px;border:1px solid var(--stroke2)}
+.tbox.g{background:rgba(46,232,138,.12);color:#8bffc4;border-color:#2ee88a44}
+.tbox.r{background:rgba(255,95,109,.12);color:#ffb3b9;border-color:#ff5f6d44}
+.tbox.v{background:rgba(94,200,255,.10);color:#bfe6ff;border-color:#5ec8ff44}
+.tbox.p{background:rgba(255,201,74,.10);color:#ffdf9a;border-color:#ffc94a44}
+.tacc{margin-left:auto;font-size:13px;color:var(--mut)}
+.tacc b{color:#fff;font-size:17px}
 .period{margin:34px 0 12px}
 .period-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 20px;border-radius:18px;
  border:1px solid var(--stroke);background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(0,0,0,.25))}
@@ -235,7 +208,6 @@ select option{background:#0b1a2c}
 .match-card.over:before{background:linear-gradient(180deg,var(--warn),#8a5a00)}
 .match-card.avoid:before{background:linear-gradient(180deg,var(--bad),#7a1220)}
 .match-card.picked{border-color:rgba(255,201,74,.55);box-shadow:0 0 0 1px rgba(255,201,74,.35),var(--shadow)}
-/* FINALIZADA */
 .match-card.done{opacity:.62;filter:saturate(.5)}
 .match-card.done:hover{opacity:1;filter:none}
 .match-card.done:before{background:linear-gradient(180deg,#7a8aa0,#3d4b5e)}
@@ -257,18 +229,16 @@ select option{background:#0b1a2c}
 .tag.dn{background:rgba(120,138,160,.18);color:#c3d0e0;border:1px solid #7a8aa055}
 .league{font-size:11.5px;color:var(--mut);letter-spacing:.06em;text-transform:uppercase}
 .clock{font-size:12.5px;color:#ffdf9a;font-weight:700;margin-top:2px}
-/* barra de encerramento */
 .finbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:9px 11px;border-radius:12px;
  border:1px dashed var(--stroke2);background:rgba(0,0,0,.24);transition:.18s}
 .finbar.on{border-style:solid;border-color:rgba(120,138,160,.5);background:rgba(120,138,160,.12)}
-.finbar .fl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700;margin-right:2px}
+.finbar .fl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700}
 .fbtn{padding:6px 11px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer;user-select:none;
  border:1px solid var(--stroke2);background:rgba(255,255,255,.05);color:var(--mut);transition:.16s}
 .fbtn:hover{color:var(--txt);background:rgba(255,255,255,.1)}
-.fbtn.on{color:#0a1626}
-.fbtn.green.on{background:var(--ok);border-color:var(--ok)}
+.fbtn.green.on{background:var(--ok);border-color:var(--ok);color:#0a1626}
 .fbtn.red.on{background:var(--bad);border-color:var(--bad);color:#fff}
-.fbtn.void.on{background:var(--info);border-color:var(--info)}
+.fbtn.void.on{background:var(--info);border-color:var(--info);color:#0a1626}
 .fbtn.undo{margin-left:auto;background:transparent;border-style:dashed}
 .finscore{display:flex;align-items:center;gap:5px;margin-left:auto}
 .finscore input{width:44px;text-align:center;padding:6px 4px;font-size:14px;font-weight:800;border-radius:9px}
@@ -350,18 +320,11 @@ details[open] summary:before{content:"▾ "}
 .log{max-height:190px;overflow:auto;font:12px ui-monospace,Consolas,monospace;color:#a9c2de;
  background:rgba(0,0,0,.34);border:1px solid var(--stroke);border-radius:13px;padding:12px}
 .hidden{display:none!important}
-/* placar do dia */
-.tally{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;padding:13px 15px;border-radius:14px;
- border:1px solid var(--stroke);background:rgba(0,0,0,.24)}
-.tally .tl-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);font-weight:700}
-.tbox{display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:10px;font-weight:800;font-size:13px;border:1px solid var(--stroke2)}
-.tbox.g{background:rgba(46,232,138,.12);color:#8bffc4;border-color:#2ee88a44}
-.tbox.r{background:rgba(255,95,109,.12);color:#ffb3b9;border-color:#ff5f6d44}
-.tbox.v{background:rgba(94,200,255,.10);color:#bfe6ff;border-color:#5ec8ff44}
-.tbox.p{background:rgba(255,201,74,.10);color:#ffdf9a;border-color:#ffc94a44}
-.tacc{margin-left:auto;font-size:13px;color:var(--mut)}
-.tacc b{color:#fff;font-size:17px}
-/* MESA */
+/* aviso de partidas ocultas */
+.hiddennote{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:22px;padding:13px 17px;border-radius:14px;
+ border:1px dashed var(--stroke2);background:rgba(0,0,0,.2);font-size:12.5px;color:var(--mut)}
+.hiddennote b{color:#c3d0e0}
+.hiddennote button{margin-left:auto}
 .mesa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(470px,1fr));gap:18px;margin-top:15px}
 .live-card{border-radius:22px;border:1px solid var(--stroke);overflow:hidden;
  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:var(--shadow);display:flex;flex-direction:column}
@@ -391,7 +354,6 @@ details[open] summary:before{content:"▾ "}
 .flags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
 .flag{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:11px;cursor:pointer;user-select:none;
  border:1px dashed var(--stroke2);background:rgba(0,0,0,.2);font-size:12px;font-weight:600;color:var(--mut);transition:.18s}
-.flag:hover{color:var(--txt)}
 .flag.on{border-style:solid;border-color:rgba(255,95,109,.5);background:rgba(255,95,109,.12);color:#ffb3b9}
 .flag .bx{width:15px;height:15px;border-radius:4px;border:1.6px solid var(--stroke2);display:grid;place-items:center;font-size:10px;color:#1a1200}
 .flag.on .bx{background:var(--bad);border-color:var(--bad);color:#fff}
@@ -437,11 +399,38 @@ details[open] summary:before{content:"▾ "}
 .msum.go b{color:#8bffc4}.msum.wait b{color:#ffd98a}
 .msum.stop b{color:#ffb3b9}.msum.done b{color:#c3d0e0}
 .msum small{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:7px;border-radius:18px;
+ border:1px solid var(--stroke);background:rgba(0,0,0,.25);backdrop-filter:blur(10px);width:100%}
+.navspacer{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav button{border:0;background:transparent;color:var(--mut);padding:11px 20px;border-radius:13px;font-weight:700;font-size:14px;transition:.2s;cursor:pointer}
+.nav button:hover{color:var(--txt);background:rgba(255,255,255,.06);transform:none}
+.nav button.on{background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;box-shadow:0 8px 20px #ff9d0033}
+.nav button .badge{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:99px;font-size:11px;background:rgba(0,0,0,.25)}
+.nav button.on .badge{background:rgba(0,0,0,.18)}
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#2f4a6b;border-radius:9px}
 @media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid,.mesa-grid{grid-template-columns:1fr}.srcgrid{grid-template-columns:1fr}.mesa-sum{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid,.mesa-grid{grid-template-columns:1fr}
+ .srcgrid{grid-template-columns:1fr}.mesa-sum{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){
+ .wrap{padding:16px 12px 90px}
+ .zenbar{gap:7px;padding:9px 11px}
+ .zenbar .tt{display:none}
+ .zenbar select,.zenbar input[type=text]{font-size:12px;padding:6px 8px}
+ .zenbar .sp{width:100%;margin-left:0;justify-content:space-between;margin-top:2px}
+ .nav{padding:6px;gap:6px}
+ .nav>button:not(.zenbtn){flex:1;padding:10px 8px;font-size:13px;text-align:center}
+ .navspacer{width:100%;margin-left:0;margin-top:6px;justify-content:stretch;gap:6px}
+ .navspacer .zenbtn{flex:1;justify-content:center;padding:11px 8px;font-size:13px}
+ .fab{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:58px;height:58px;font-size:23px}
+ .hero{padding:16px 18px;gap:14px}
+ .logo h1{font-size:19px}
+ .heroside{width:100%;justify-content:flex-start}
+ .grid,.mesa-grid{grid-template-columns:1fr!important}
+ body.zen .wave-head{top:0}
+}
+@media(display-mode:standalone){.wrap{padding-top:calc(20px + env(safe-area-inset-top,0px))}}
 </style>
 </head>
 <body>
@@ -459,7 +448,7 @@ details[open] summary:before{content:"▾ "}
     <span class="netchip" id="netChip">📴 Offline</span>
     <span class="appchip" id="appChip">📱 Modo app</span>
     <button id="installBtn">⬇️ Instalar app</button>
-    <div class="pill">PROTOCOLO ARKEIRO · 4 JOGOS / ONDA · 45 MIN</div>
+    <div class="pill">PROTOCOLO ARKEIRO · 4 JOGOS / ONDA</div>
   </div>
 </header>
 
@@ -476,6 +465,10 @@ details[open] summary:before{content:"▾ "}
     <details style="margin-top:14px;border-top:1px solid var(--stroke);padding-top:12px">
       <summary>🔎 Diagnóstico da instalação</summary>
       <div id="diag" style="margin-top:10px;font:12px ui-monospace,Consolas,monospace;line-height:1.9"></div>
+      <div class="bar" style="margin-top:10px">
+        <button class="mini" onclick="limparCache()">🧹 Limpar cache e recarregar</button>
+        <span style="font-size:11px;color:var(--mut)">use se o site não atualizar no celular</span>
+      </div>
     </details>
     <div class="bar"><button class="gold" onclick="closeHowto()" style="margin-left:auto">Entendi</button></div>
   </div>
@@ -484,7 +477,7 @@ details[open] summary:before{content:"▾ "}
 <button class="fab" id="fabZen" onclick="toggleZen()" title="Modo foco · tecla Z">🎯</button>
 
 <div class="swtoast" id="swToast">
-  <div class="tx"><b>Nova versão disponível</b>Recarregue para aplicar a atualização.</div>
+  <div class="tx"><b>Nova versão disponível</b>Recarregue para aplicar.</div>
   <button class="gold" onclick="applyUpdate()">Atualizar</button>
   <button onclick="document.getElementById('swToast').classList.remove('show')">Depois</button>
 </div>
@@ -560,8 +553,6 @@ details[open] summary:before{content:"▾ "}
     <button class="mini" id="selActive">Somente em janela</button>
     <button class="mini" id="selVisible">Marcar visíveis</button>
     <button class="mini" id="selNone">Desmarcar tudo</button>
-    <span class="sep"></span>
-    <span style="font-size:12px;color:var(--mut)">A seleção alimenta o caderno PDF e a Mesa ao vivo</span>
   </div>
   <div class="filters">
     <label>🌓 Período <select id="periodFilter">
@@ -570,20 +561,22 @@ details[open] summary:before{content:"▾ "}
     <label>🎯 Método principal <select id="methodFilter"><option value="all">Todos</option></select></label>
     <label>✅ Janela <select id="decisionFilter">
       <option value="all">Todas</option><option value="ativo">Em janela</option>
-      <option value="excedente">Fora de janela</option><option value="evitar">Evitar</option></select></label>
+      <option value="excedente">Fora de janela</option></select></label>
     <label>🏁 Situação <select id="finFilter">
       <option value="aberta">Em aberto</option><option value="all">Todas</option>
       <option value="done">Finalizadas</option><option value="green">Só green</option>
       <option value="red">Só red</option></select></label>
     <label>📌 Seleção <select id="pickFilter">
       <option value="all">Todas</option><option value="on">Selecionadas</option><option value="off">Não selecionadas</option></select></label>
+    <label title="Mostra também as partidas em que nenhum dos 7 métodos se aplica">
+      <input type="checkbox" id="showNoMethod" style="width:16px;height:16px;padding:0"> Mostrar jogos sem método</label>
     <input type="text" id="search" placeholder="🔎 Buscar time ou liga">
   </div>
   <div class="alert" id="libAlert"></div>
 </section>
 
 <section class="kpis">
-  <div class="kpi"><div class="n" id="kGames">0</div><div class="l">Partidas</div></div>
+  <div class="kpi"><div class="n" id="kGames">0</div><div class="l">Com método</div></div>
   <div class="kpi"><div class="n" id="kManha">0</div><div class="l">Manhã</div></div>
   <div class="kpi"><div class="n" id="kTarde">0</div><div class="l">Tarde</div></div>
   <div class="kpi"><div class="n" id="kNoite">0</div><div class="l">Noite</div></div>
@@ -667,7 +660,13 @@ const PERIODS={
 };
 const RES={green:{ic:'🟢',lbl:'Green',cls:'green'},red:{ic:'🔴',lbl:'Red',cls:'red'},void:{ic:'⚪',lbl:'Anulado',cls:'void'},none:{ic:'🏁',lbl:'Finalizada',cls:''}};
 const RISK='JOGO RESPONSÁVEL · Apostar envolve risco de perdas financeiras e pode causar dependência. Aposta não é investimento. Proibido para menores de 18 anos.';
-/* Restricao de ligas removida: todos os metodos valem para qualquer campeonato */
+const LIGAS=['UEFA Champions League','UEFA Europa League','UEFA Conference League','UEFA Nations League',
+ 'Brazil Serie A','Brazil Serie B','Brazil Serie C','Brazil Copa do Brasil','Copa Libertadores','Copa Sudamericana',
+ 'Italy Serie A','Italy Serie B','Coppa Italia','England Premier League','Premier League','England Championship',
+ 'Championship','Spain La Liga','La Liga','Copa del Rey','Germany Bundesliga','Bundesliga','2. Bundesliga',
+ 'France Ligue 1','Ligue 1','Ligue 2','Portugal Primeira Liga','Primeira Liga','Netherlands Eredivisie','Eredivisie',
+ 'Belgium Pro League','Turkey Super Lig','Scotland Premiership','Switzerland Super League','Austria Bundesliga',
+ 'Greece Super League','Argentina Liga Profesional','Mexico Liga MX','USA MLS','Japan J1 League','Saudi Pro League'];
 let selected=[],games=[],curText='',indice=null,tab='analise',dataAtual='';
 const $=s=>document.querySelector(s);
 const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -683,9 +682,7 @@ function libsOK(){const m=[];if(typeof pdfjsLib==='undefined')m.push('PDF.js');i
 function storeKey(){return 'tvbr_fin_'+(dataAtual||'manual')}
 function saveState(){
  try{
-  const o={};games.forEach(g=>{
-   if(g.fin.done||g.fin.nota||g.pick===false)o[g.file]={f:g.fin,p:g.pick};
-  });
+  const o={};games.forEach(g=>{if(g.fin.done||g.live.nota||g.pick===false)o[g.file]={f:g.fin,p:g.pick,n:g.live.nota}});
   localStorage.setItem(storeKey(),JSON.stringify(o));
  }catch(e){}
 }
@@ -693,12 +690,11 @@ function loadState(){
  try{
   const raw=localStorage.getItem(storeKey());if(!raw)return;
   const o=JSON.parse(raw);
-  games.forEach(g=>{const s=o[g.file];if(s){if(s.f)g.fin=Object.assign(g.fin,s.f);if(s.p===false)g.pick=false}});
+  games.forEach(g=>{const s=o[g.file];if(s){if(s.f)g.fin=Object.assign(g.fin,s.f);if(s.p===false)g.pick=false;if(s.n)g.live.nota=s.n}});
   const n=games.filter(g=>g.fin.done).length;
-  if(n)log('Restauradas '+n+' partida(s) finalizada(s) da sessão anterior');
+  if(n)log('Restauradas '+n+' partida(s) finalizada(s)');
  }catch(e){}
 }
-
 function toMin(t){const m=/^(\d{1,2}):(\d{2})$/.exec((t||'').trim());return m?(+m[1])*60+(+m[2]):null}
 function fromMin(v){const h=Math.floor(v/60)%24,m=v%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')}
 function periodOf(t){const mm=toMin(t);if(mm==null)return PERIODS.sem;
@@ -818,45 +814,25 @@ async function grabCrests(doc){
 
 /* ===== PARSE ===== */
 function pair(re,t){const m=t.match(re);return m?[num(m[1]),num(m[2])]:[null,null]}
-/* Ligas conhecidas — usadas só como atalho; a dedução funciona sem elas */
-const LIGAS=['UEFA Champions League','UEFA Europa League','UEFA Conference League','UEFA Nations League',
- 'Brazil Serie A','Brazil Serie B','Brazil Serie C','Brazil Copa do Brasil','Copa Libertadores','Copa Sudamericana',
- 'Italy Serie A','Italy Serie B','Coppa Italia','England Premier League','Premier League','England Championship',
- 'Championship','Spain La Liga','La Liga','Copa del Rey','Germany Bundesliga','Bundesliga','2. Bundesliga',
- 'France Ligue 1','Ligue 1','Ligue 2','Portugal Primeira Liga','Primeira Liga','Netherlands Eredivisie','Eredivisie',
- 'Belgium Pro League','Turkey Super Lig','Scotland Premiership','Switzerland Super League','Austria Bundesliga',
- 'Greece Super League','Argentina Liga Profesional','Mexico Liga MX','USA MLS','Japan J1 League','Saudi Pro League'];
-
-/* Tokens do nome do arquivo: 028_Flamengo_Corinthians.pdf -> ['Flamengo','Corinthians'] */
-function fileTokens(file){
- return (file.name||'').replace(/\.pdf$/i,'').replace(/^\d+[_-]/,'').split(/[_-]+/).filter(Boolean);
-}
-/* Deduz o visitante a partir do fim de `mid`, usando o nome do arquivo */
+function fileTokens(file){return (file.name||'').replace(/\.pdf$/i,'').replace(/^\d+[_-]/,'').split(/[_-]+/).filter(Boolean)}
 function deduzVisitante(mid,home,file){
- const toks=fileTokens(file);
- if(!toks.length)return '';
+ const toks=fileTokens(file);if(!toks.length)return '';
  const nh=norm(home).replace(/\s+/g,'');
- /* remove do início os tokens que formam o mandante */
  let i=0,acc='';
  while(i<toks.length&&acc.length<nh.length){acc+=norm(toks[i]).replace(/\s+/g,'');i++}
  let cand=toks.slice(i).join(' ');
  if(!cand)cand=toks[toks.length-1]||'';
- /* confere se `mid` realmente termina com esse nome */
  const nm=norm(mid),nc=norm(cand);
  if(nc&&nm.endsWith(nc))return mid.slice(mid.length-cand.length).trim();
- /* tenta casar ignorando espaços */
  const nm2=nm.replace(/\s+/g,''),nc2=nc.replace(/\s+/g,'');
  if(nc2&&nm2.endsWith(nc2)){
   const w=mid.split(/\s+/);
-  for(let k=w.length-1;k>=0;k--){
-   if(norm(w.slice(k).join('')).replace(/\s+/g,'')===nc2)return w.slice(k).join(' ');
-  }
+  for(let k=w.length-1;k>=0;k--){if(norm(w.slice(k).join('')).replace(/\s+/g,'')===nc2)return w.slice(k).join(' ')}
  }
  return '';
 }
 function parseMeta(text,file){
  const head=text.slice(0,2600);
- /* Contador aceita: 04:02:13 · "1 dia" · "2 dias" · "45 min" · ou ausente */
  const CD='(?:\\d{1,2}:\\d{2}:\\d{2}|\\d{1,3}\\s*(?:dias?|horas?|h|min(?:utos?)?|m)|ao vivo|hoje|amanh[ãa])?';
  const re=new RegExp(
   '([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ0-9&/.\'\\-]*(?:\\s+[A-Za-zÀ-ÿ0-9&/.\'\\-]+){0,3}?)\\s+'+CD+'\\s*'+
@@ -868,28 +844,19 @@ function parseMeta(text,file){
   const mid=m[4].trim();
   const pathLeague=file.webkitRelativePath?file.webkitRelativePath.split('/').slice(-2,-1)[0]:'';
   let league='',away='';
-  /* 1) pasta da liga */
   if(pathLeague&&norm(mid).startsWith(norm(pathLeague))){league=pathLeague;away=mid.slice(pathLeague.length).trim()}
-  /* 2) liga conhecida no início */
   if(!away){
    const k=LIGAS.filter(x=>norm(mid).startsWith(norm(x))).sort((a,b)=>b.length-a.length)[0];
    if(k){league=k;away=mid.slice(k.length).trim()}
   }
-  /* 3) deduz o visitante pelo nome do arquivo e o resto vira a liga */
   if(!away){
    const v=deduzVisitante(mid,home,file);
    if(v){away=v;league=mid.slice(0,mid.length-v.length).trim()}
   }
-  /* 4) último recurso: liga = tudo menos a última palavra */
-  if(!away){
-   const w=mid.split(/\s+/);
-   away=w.slice(-1).join(' ');league=w.slice(0,-1).join(' ');
-  }
-  return{home:home||'Mandante',away:away||'Visitante',date:m[2],
-   time:m[3].padStart(5,'0'),league:league||pathLeague||'Liga não identificada',
-   odds:[num(m[5]),num(m[6]),num(m[7])]};
+  if(!away){const w=mid.split(/\s+/);away=w.slice(-1).join(' ');league=w.slice(0,-1).join(' ')}
+  return{home:home||'Mandante',away:away||'Visitante',date:m[2],time:m[3].padStart(5,'0'),
+   league:league||pathLeague||'Liga não identificada',odds:[num(m[5]),num(m[6]),num(m[7])]};
  }
- /* fallback total: só o nome do arquivo */
  const n=fileTokens(file);
  return{home:n.shift()||'Mandante',away:n.join(' ')||'Visitante',date:'',time:'',
   league:(file.webkitRelativePath||'').split('/').slice(-2,-1)[0]||'Liga não identificada',odds:[null,null,null]};
@@ -915,8 +882,6 @@ function parseBlock(b){
 }
 const qual=s=>[s.win,s.btts,s.fts,s.over,s.scored,s.conceded,s.total].flat().filter(Number.isFinite).length;
 function parseStats(text){
- /* Cada captura do Radar repete "Mercado Resultado final" — separador confiável,
-    independente do formato do contador (04:02:13, "1 dia", etc). */
  let idx=[...text.matchAll(/Mercado\s+Resultado final/gi)].map(m=>m.index);
  if(idx.length<2)idx=[...text.matchAll(/\d{1,2}:\d{2}:\d{2}\s+/g)].map(m=>m.index);
  const blocks=[];
@@ -932,8 +897,7 @@ function lateMetrics(dist){
  const f=(arr,i,tot)=>tot?Math.round(100*arr[i]/tot):null;
  const tHs=sum(dist.H.s),tHc=sum(dist.H.c),tAs=sum(dist.A.s),tAc=sum(dist.A.c);
  const share=t=>{const S=t==='H'?dist.H.s:dist.A.s,C=t==='H'?dist.H.c:dist.A.c,tot=sum(S)+sum(C);
-  if(!tot)return{apos60:null,b4660:null};
-  return{apos60:Math.round(100*(S[4]+S[5]+C[4]+C[5])/tot),b4660:Math.round(100*(S[3]+C[3])/tot)}};
+  if(!tot)return{apos60:null};return{apos60:Math.round(100*(S[4]+S[5]+C[4]+C[5])/tot)}};
  const sH=share('H'),sA=share('A');
  return{H:{pS:BANDS.map((_,i)=>f(dist.H.s,i,tHs)),pC:BANDS.map((_,i)=>f(dist.H.c,i,tHc))},
   A:{pS:BANDS.map((_,i)=>f(dist.A.s,i,tAs)),pC:BANDS.map((_,i)=>f(dist.A.c,i,tAc))},
@@ -1012,7 +976,7 @@ function reason(g){
  const R={
   back_favorito:{txt:favName+' concentra '+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—')+' de probabilidade real depois de retirada a margem das odds, enquanto '+zebName+' aparece com aproveitamento de '+pct(x.win[a.zeb])+'.',
    pts:['Probabilidade normalizada do favorito: '+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—'),'Aproveitamento do adversário: '+pct(x.win[a.zeb]),'Liga: '+m.league]},
-  over_limite_70:{txt:'A partida concentra gols na reta final: '+favName+' marca '+pct(x.favS61)+' entre 61 e 75 e '+pct(x.favS76)+' entre 76 e 90; '+zebName+' sofre '+pct(x.advC61)+' e '+pct(x.advC76)+' nessas faixas. Somando os dois times, '+pct(x.apos60)+' dos gols acontecem após os 60 minutos, com média de '+n2(x.totalAvg)+' gols por jogo.',
+  over_limite_70:{txt:'A partida concentra gols na reta final: '+favName+' marca '+pct(x.favS61)+' entre 61 e 75 e '+pct(x.favS76)+' entre 76 e 90; '+zebName+' sofre '+pct(x.advC61)+' e '+pct(x.advC76)+' nessas faixas. Somando os dois times, '+pct(x.apos60)+' dos gols acontecem após os 60 minutos.',
    pts:['Favorito marca 61-75: '+pct(x.favS61)+' · 76-90: '+pct(x.favS76),'Adversário sofre 61-75: '+pct(x.advC61)+' · 76-90: '+pct(x.advC76),'Gols após 60 min: '+pct(x.apos60),'Média total de gols: '+n2(x.totalAvg),'Entrada somente ao vivo, após 65min']},
   back_2x2:{txt:'Os dois times entregam volume de gols nos dois lados: Over 2.5 médio de '+pct(x.overAvg?Math.round(x.overAvg):null)+', ambas marcam em '+pct(x.bttsAvg?Math.round(x.bttsAvg):null)+' e as defesas sofrem acima de 1,2 gol por jogo.',
    pts:['Over 2.5 médio: '+pct(x.overAvg?Math.round(x.overAvg):null),'Ambas marcam: '+pct(x.bttsAvg?Math.round(x.bttsAvg):null),'Gols sofridos: '+x.conceded.join(' / '),'Cash-out em 1x1, 2x1 ou 1x2']},
@@ -1039,7 +1003,7 @@ function addGame(id,text,crests,fileLike){
   live:{gh:0,ga:0,min:0,red:false,travado:false,checks:{},nota:''}};
  gm.reason=reason(gm);
  games.push(gm);
- log(fileLike.name+': '+meta.home+' × '+meta.away+' ['+gm.period.label+'] → '+(a.principal?LABEL[a.principal]:'EVITAR'));
+ log(fileLike.name+': '+meta.home+' × '+meta.away+' ['+gm.period.label+'] → '+(a.principal?LABEL[a.principal]:'SEM MÉTODO'));
  return gm;
 }
 function allocate(){
@@ -1064,10 +1028,12 @@ function allocate(){
 }
 function finalizar(msg){
  allocate();
- games.forEach(g=>g.pick=statusOf(g)==='ativo');
+ games.forEach(g=>g.pick=(g.analysis.decision==='entrada'&&statusOf(g)==='ativo'));
  loadState();
  $('#selbar').classList.toggle('show',games.length>0);
- $('#status').textContent=msg+' · '+games.length+' partida(s)';
+ const comMetodo=games.filter(g=>g.analysis.decision==='entrada').length;
+ const sem=games.length-comMetodo;
+ $('#status').textContent=msg+' · '+comMetodo+' com método'+(sem?' · '+sem+' sem método':'');
  fillFilters();render();
 }
 async function run(){
@@ -1088,9 +1054,10 @@ function fillFilters(){
   princ.map(k=>'<option value="'+k+'">'+LABEL[k]+' ('+cont(k)+')</option>').join('');
 }
 const statusOf=g=>g.analysis.decision==='evitar'?'evitar':(g.overflow?'excedente':'ativo');
+const temMetodo=g=>g.analysis.decision==='entrada';
 function togglePick(id){const g=games.find(x=>x.id===id);if(g){g.pick=!g.pick;saveState();render();if(tab==='mesa')renderMesa()}}
 
-/* ===== FINALIZAR PARTIDA ===== */
+/* ===== FINALIZAR ===== */
 function setFin(id,res){
  const g=games.find(x=>x.id===id);if(!g)return;
  if(g.fin.done&&g.fin.res===res){g.fin.done=false;g.fin.res='none';g.fin.at=null}
@@ -1118,10 +1085,13 @@ $('#reopenAll').onclick=()=>{
  saveState();render();if(tab==='mesa')renderMesa();
 };
 
+/* ===== FILTRO (oculta jogos sem método por padrão) ===== */
 function visibleGames(){
  const pf=$('#periodFilter').value,mf=$('#methodFilter').value,df=$('#decisionFilter').value,
        ff=$('#finFilter').value,kf=$('#pickFilter').value,q=norm($('#search').value);
+ const mostrarSem=$('#showNoMethod').checked;
  return games.filter(g=>
+  (mostrarSem||temMetodo(g))&&
   (pf==='all'||g.period.key===pf)&&
   (mf==='all'||g.analysis.principal===mf)&&
   (df==='all'||statusOf(g)===df)&&
@@ -1129,9 +1099,9 @@ function visibleGames(){
   (kf==='all'||(kf==='on'?g.pick:!g.pick))&&
   (!q||norm(g.meta.home+' '+g.meta.away+' '+g.meta.league).includes(q)));
 }
-$('#selAll').onclick=()=>{games.forEach(g=>g.pick=true);saveState();render()};
+$('#selAll').onclick=()=>{games.forEach(g=>{if(temMetodo(g))g.pick=true});saveState();render()};
 $('#selNone').onclick=()=>{games.forEach(g=>g.pick=false);saveState();render()};
-$('#selActive').onclick=()=>{games.forEach(g=>g.pick=statusOf(g)==='ativo'&&!g.fin.done);saveState();render()};
+$('#selActive').onclick=()=>{games.forEach(g=>g.pick=temMetodo(g)&&statusOf(g)==='ativo'&&!g.fin.done);saveState();render()};
 $('#selVisible').onclick=()=>{const v=new Set(visibleGames().map(g=>g.id));games.forEach(g=>{if(v.has(g.id))g.pick=true});saveState();render()};
 
 function crestHTML(src,name,cls){
@@ -1158,24 +1128,21 @@ function timelineHTML(g){
 }
 function finbarHTML(g){
  const f=g.fin,b=(r,lbl,ic)=>'<span class="fbtn '+r+(f.done&&f.res===r?' on':'')+'" onclick="setFin(\''+g.id+'\',\''+r+'\')">'+ic+' '+lbl+'</span>';
- if(!f.done){
-  return '<div class="finbar" data-nopdf="1"><span class="fl">Encerrar</span>'+
+ if(!f.done)return '<div class="finbar" data-nopdf="1"><span class="fl">Encerrar</span>'+
    b('green','Green','🟢')+b('red','Red','🔴')+b('void','Anulado','⚪')+
    '<span class="fbtn" onclick="setFin(\''+g.id+'\',\'none\')">🏁 Só finalizar</span></div>';
- }
  return '<div class="finbar on" data-nopdf="1"><span class="fl">Encerrada</span>'+
   b('green','Green','🟢')+b('red','Red','🔴')+b('void','Anulado','⚪')+
   '<span class="finscore">Placar '+
    '<input type="number" min="0" max="20" value="'+(f.gh??'')+'" placeholder="–" onchange="setFinScore(\''+g.id+'\',\'h\',this.value)">'+
    '<span>×</span>'+
    '<input type="number" min="0" max="20" value="'+(f.ga??'')+'" placeholder="–" onchange="setFinScore(\''+g.id+'\',\'a\',this.value)">'+
-  '</span>'+
-  '<span class="fbtn undo" onclick="reopen(\''+g.id+'\')">↺ Reabrir</span></div>';
+  '</span><span class="fbtn undo" onclick="reopen(\''+g.id+'\')">↺ Reabrir</span></div>';
 }
 function cardHTML(g){
  const a=g.analysis,m=g.meta,x=a.m,st=statusOf(g),r=g.reason,f=g.fin;
  const tag=f.done?'<span class="tag dn">'+RES[f.res].ic+' '+RES[f.res].lbl+'</span>'
-  :st==='ativo'?'<span class="tag in">Em janela</span>':st==='excedente'?'<span class="tag ov">Fora de janela</span>':'<span class="tag av">Evitar</span>';
+  :st==='ativo'?'<span class="tag in">Em janela</span>':st==='excedente'?'<span class="tag ov">Fora de janela</span>':'<span class="tag av">Sem método</span>';
  const odds=m.odds.every(Number.isFinite)?'<div class="odds"><span class="odd">1 <b>'+m.odds[0]+'</b></span><span class="odd">X <b>'+m.odds[1]+'</b></span><span class="odd">2 <b>'+m.odds[2]+'</b></span></div>':'';
  const placar=(f.done&&f.gh!=null&&f.ga!=null)?'<div class="vs final">'+f.gh+' × '+f.ga+'</div>':'<div class="vs">VS</div>';
  const ribbon=f.done?'<div class="done-ribbon '+RES[f.res].cls+'">'+(f.res==='none'?'Finalizada':RES[f.res].lbl)+'</div>':'';
@@ -1183,10 +1150,10 @@ function cardHTML(g){
   (g.pick?' picked':'')+(f.done?' done res-'+(f.res==='none'?'x':f.res):'')+'" id="'+g.id+'">'+ribbon+
   '<div class="mc-body">'+
   '<div class="mc-top"><div><div class="league">'+m.league+'</div><div class="clock">'+g.period.icon+' '+m.date+' · '+(m.time||'sem horário')+(g.wave?' · onda '+g.wave.n:'')+'</div></div>'+tag+'</div>'+
-  finbarHTML(g)+
-  '<div class="pickwrap'+(g.pick?' on':'')+'" onclick="togglePick(\''+g.id+'\')" data-nopdf="1">'+
+  (temMetodo(g)?finbarHTML(g):'')+
+  (temMetodo(g)?'<div class="pickwrap'+(g.pick?' on':'')+'" onclick="togglePick(\''+g.id+'\')" data-nopdf="1">'+
    '<span class="pickbox">'+(g.pick?'✓':'')+'</span>'+
-   '<span class="picklbl">'+(g.pick?'Selecionada · caderno e mesa':'Selecionar para caderno e mesa')+'</span></div>'+
+   '<span class="picklbl">'+(g.pick?'Selecionada · caderno e mesa':'Selecionar para caderno e mesa')+'</span></div>':'')+
   '<div class="versus">'+
    '<div class="team">'+crestHTML(g.crests[0],m.home)+'<div><div class="tname">'+m.home+'</div><div class="side">Mandante</div></div></div>'+
    placar+
@@ -1212,11 +1179,12 @@ function cardHTML(g){
    '<button onclick="shot(\''+g.id+'\')">🖼️ Baixar imagem</button></div>'+
    '<div class="risk">'+RISK+'</div></div></article>';
 }
-function waveKey(g){return g.overflow?'x':(g.wave?g.wave.n:'e')}
+function waveKey(g){return !temMetodo(g)?'e':(g.overflow?'x':(g.wave?g.wave.n:'x'))}
 function updateTally(){
- const fin=games.filter(g=>g.fin.done);
+ const comM=games.filter(temMetodo);
+ const fin=comM.filter(g=>g.fin.done);
  const G=fin.filter(g=>g.fin.res==='green').length,R=fin.filter(g=>g.fin.res==='red').length,
-       V=fin.filter(g=>g.fin.res==='void').length,P=games.length-fin.length;
+       V=fin.filter(g=>g.fin.res==='void').length,P=comM.length-fin.length;
  $('#tG').textContent=G;$('#tR').textContent=R;$('#tV').textContent=V;$('#tP').textContent=P;
  const base=G+R;
  $('#tAcc').textContent=base?Math.round(100*G/base)+'%':'—';
@@ -1229,7 +1197,7 @@ function render(){
  let html='';
  ordem.forEach(pk=>{
   const P=PERIODS[pk],arr=byP[pk];
-  const ativos=arr.filter(g=>statusOf(g)==='ativo'&&!g.fin.done).length;
+  const ativos=arr.filter(g=>temMetodo(g)&&statusOf(g)==='ativo'&&!g.fin.done).length;
   const fins=arr.filter(g=>g.fin.done).length;
   const byW={};arr.forEach(g=>(byW[waveKey(g)]??=[]).push(g));
   const waves=Object.keys(byW).filter(k=>k!=='x'&&k!=='e').sort((a,b)=>a-b);
@@ -1238,9 +1206,7 @@ function render(){
    '<div class="ct"><b>'+arr.length+'</b> partida(s) · '+ativos+' em aberto'+(fins?' · '+fins+' finalizada(s)':'')+'<br>'+waves.length+' onda(s) de até '+MAX_ONDA+' jogos</div></div>';
   waves.forEach(w=>{
    const gs=byW[w],ref=gs.find(g=>g.wave),todas=gs.every(g=>g.fin.done);
-   let slots='';for(let i=0;i<MAX_ONDA;i++){
-    const g=gs[i];slots+='<span class="slot'+(g?(g.fin.done?' fin':' on'):'')+'"></span>';
-   }
+   let slots='';for(let i=0;i<MAX_ONDA;i++){const g=gs[i];slots+='<span class="slot'+(g?(g.fin.done?' fin':' on'):'')+'"></span>'}
    const janela=ref&&ref.wave.start!=null?fromMin(ref.wave.start)+' → '+fromMin(ref.wave.end):'sem horário';
    html+='<div class="wave'+(todas?' done':'')+'"><div class="wave-head"><span class="n">ONDA '+w+(todas?' · ENCERRADA':'')+'</span>'+
     '<span class="win">🕐 '+janela+'</span><div class="slots">'+slots+'</div>'+
@@ -1251,14 +1217,22 @@ function render(){
    '<span class="cap">'+byW.x.length+' jogo(s) sem espaço nas ondas — use como reserva</span></div>'+
    '<div class="grid">'+byW.x.map(cardHTML).join('')+'</div></div>';
   if(byW.e)html+='<div class="wave over"><div class="wave-head"><span class="n">SEM MÉTODO</span>'+
-   '<span class="cap">'+byW.e.length+' jogo(s) classificados como evitar</span></div>'+
+   '<span class="cap">'+byW.e.length+' jogo(s) que não atingiram nenhum dos 7 métodos</span></div>'+
    '<div class="grid">'+byW.e.map(cardHTML).join('')+'</div></div>';
   html+='</section>';
  });
+ /* aviso das partidas ocultas */
+ const semMetodo=games.filter(g=>!temMetodo(g)).length;
+ if(semMetodo&&!$('#showNoMethod').checked){
+  html+='<div class="hiddennote">🚫 <b>'+semMetodo+'</b> partida(s) ocultada(s) por não atingirem nenhum dos 7 métodos.'+
+   '<button class="mini" onclick="document.getElementById(\'showNoMethod\').checked=true;render()">Mostrar mesmo assim</button></div>';
+ }
  $('#content').innerHTML=html||'<div class="card-panel empty"><div class="ic">🔍</div><p>Nenhuma partida corresponde aos filtros.</p></div>';
  const picked=games.filter(g=>g.pick).length;
- $('#kGames').textContent=games.length;
- ['manha','tarde','noite'].forEach(k=>{$('#k'+k.charAt(0).toUpperCase()+k.slice(1)).textContent=games.filter(g=>g.period.key===k).length});
+ const comM=games.filter(temMetodo);
+ $('#kGames').textContent=comM.length;
+ ['manha','tarde','noite'].forEach(k=>{
+  $('#k'+k.charAt(0).toUpperCase()+k.slice(1)).textContent=comM.filter(g=>g.period.key===k).length});
  $('#kPick').textContent=picked;
  $('#selCount').textContent=picked+(picked===1?' partida selecionada':' partidas selecionadas');
  $('#pdfBtn').disabled=picked===0;
@@ -1267,7 +1241,7 @@ function render(){
  updateTally();
  if(zenOn())mirrorFilters();
 }
-['periodFilter','methodFilter','decisionFilter','finFilter','pickFilter'].forEach(id=>$('#'+id).onchange=render);
+['periodFilter','methodFilter','decisionFilter','finFilter','pickFilter','showNoMethod'].forEach(id=>$('#'+id).onchange=render);
 $('#search').oninput=render;
 
 /* ===== MESA ===== */
@@ -1293,11 +1267,11 @@ function verdict(g){
   auto.push({ok:c3,txt:'Diferença menor que 3 gols (atual: '+dif+')'});
   auto.push({ok:c4,txt:'Nenhuma expulsão registrada'});
   market='Mais '+tot+'.5 gols';
-  if(!c2&&min>=65){v='stop';t='Não entrar';d='O jogo chegou aos '+min+"' sem nenhum gol. A regra de ouro proíbe entrada em 0x0."}
+  if(!c2&&min>=65){v='stop';t='Não entrar';d='O jogo chegou aos '+min+"' sem nenhum gol."}
   else if(!c3){v='stop';t='Não entrar';d='Diferença de '+dif+' gols configura goleada consolidada.'}
-  else if(!c4){v='stop';t='Não entrar';d='Houve expulsão. O jogo trava e o método perde validade.'}
-  else if(!c1){v='wait';t='Aguardar os 65 minutos';d='Faltam '+(65-min)+' minutos. Placar atual '+gh+'x'+ga+'.'}
-  else if(faltam>0){v='wait';t='Travas liberadas · confirme a leitura';d='Faltam '+faltam+' confirmação(ões) manual(is).'}
+  else if(!c4){v='stop';t='Não entrar';d='Houve expulsão. O jogo trava.'}
+  else if(!c1){v='wait';t='Aguardar os 65 minutos';d='Faltam '+(65-min)+' minutos. Placar '+gh+'x'+ga+'.'}
+  else if(faltam>0){v='wait';t='Travas liberadas · confirme a leitura';d='Faltam '+faltam+' confirmação(ões).'}
   else{v='go';t='Entrada liberada';d='Todas as travas atendidas aos '+min+"'. Placar "+gh+'x'+ga+'.'}
  }
  else if(k==='back_favorito'){
@@ -1308,7 +1282,7 @@ function verdict(g){
   market='Back '+favName+' (1x2)';
   if(zebGols>favGols+1){v='stop';t='Não entrar';d=zebName+' abriu '+(zebGols-favGols)+' gols.'}
   else if(!c2){v='wait';t='Favorito atrás do placar';d=favName+' perde por '+gh+'x'+ga+'.'}
-  else if(!c1){v='wait';t='Aguardar leitura tática';d='Antes dos 15 minutos não há amostra de domínio.'}
+  else if(!c1){v='wait';t='Aguardar leitura tática';d='Antes dos 15 minutos não há amostra.'}
   else if(faltam>0){v='wait';t='Confirme o domínio em campo';d='Faltam '+faltam+' confirmação(ões).'}
   else{v='go';t='Entrada liberada';d=favName+' com domínio confirmado aos '+min+"'."}
  }
@@ -1330,7 +1304,7 @@ function verdict(g){
   market='Correct Score 2x2';
   if(gh===2&&ga===2){v='go';t='Alvo atingido · 2x2';d='Avalie encerrar ou proteger.'}
   else if((gh===2&&ga===1)||(gh===1&&ga===2)){v='stop';t='Cash-out imediato';d='Placar '+gh+'x'+ga+' está a um gol do alvo.'}
-  else if(gh===1&&ga===1){v='stop';t='Cash-out parcial';d='1x1 é gatilho obrigatório de proteção.'}
+  else if(gh===1&&ga===1){v='stop';t='Cash-out parcial';d='1x1 é gatilho obrigatório.'}
   else if(gh>2||ga>2||dif>=2){v='stop';t='Cenário perdido';d='Placar '+gh+'x'+ga+' saiu da rota.'}
   else if(faltam>0){v='wait';t='Confirme o perfil ofensivo';d='Faltam '+faltam+' confirmação(ões).'}
   else{v='go';t='Operação válida';d='Placar '+gh+'x'+ga+' dentro da rota.'}
@@ -1344,7 +1318,7 @@ function verdict(g){
   market='Lay '+alvo[0]+'×'+alvo[1]+' (Correct Score)';
   if(perdendo&&min>=75){v='stop';t='Cash-out urgente';d='O placar está em '+alvo[0]+'x'+alvo[1]+' aos '+min+"'."}
   else if(perdendo){v='wait';t='Placar no cenário perdedor';d='Restam '+(90-min)+' minutos.'}
-  else if(min>=60&&tot===0){v='stop';t='Cash-out por jogo travado';d='Aos '+min+"' sem gols, o risco cresce."}
+  else if(min>=60&&tot===0){v='stop';t='Cash-out por jogo travado';d='Aos '+min+"' sem gols."}
   else if(tot>=2){v='go';t='Operação em zona segura';d='Placar '+gh+'x'+ga+' já superou o cenário perdedor.'}
   else if(faltam>0){v='wait';t='Confirme o ritmo ofensivo';d='Faltam '+faltam+' confirmação(ões).'}
   else{v='go';t='Operação válida';d='Placar '+gh+'x'+ga+' fora do cenário perdedor.'}
@@ -1357,7 +1331,7 @@ function verdict(g){
   auto.push({ok:c4,txt:'Sem expulsão no favorito'});
   market=favName+' marca 4+ e vence';
   if(favGols>=4){v='go';t='Alvo atingido';d=favName+' chegou a '+favGols+' gols.'}
-  else if(!c1){v='wait';t='Aguardar o cenário';d=favName+' tem '+favGols+' gol(s) aos '+min+"'."}
+  else if(!c1){v='wait';t='Aguardar o cenário';d=favName+' tem '+favGols+' gol(s).'}
   else if(!c2){v='stop';t='Janela fechada';d='Aos '+min+"' resta pouco tempo."}
   else if(faltam>0){v='wait';t='Confirme a pressão';d='Faltam '+faltam+' confirmação(ões).'}
   else{v='go';t='Entrada liberada';d=favName+' em '+favGols+'x'+zebGols+' aos '+min+"'."}
@@ -1374,12 +1348,8 @@ function toggleFlag(id,f){const g=games.find(x=>x.id===id);if(g){g.live[f]=!g.li
 function toggleChk(id,i){const g=games.find(x=>x.id===id);if(g){g.live.checks[i]=!g.live.checks[i];renderMesa()}}
 function setNota(id,v){const g=games.find(x=>x.id===id);if(g){g.live.nota=v;saveState()}}
 function resetGame(id){const g=games.find(x=>x.id===id);if(g){g.live={gh:0,ga:0,min:0,red:false,travado:false,checks:{},nota:''};renderMesa()}}
-/* encerrar direto da mesa, herdando o placar ao vivo */
-function finFromMesa(id,res){
- const g=games.find(x=>x.id===id);if(!g)return;
- g.fin.gh=g.live.gh;g.fin.ga=g.live.ga;
- setFin(id,res);
-}
+function finFromMesa(id,res){const g=games.find(x=>x.id===id);if(!g)return;
+ g.fin.gh=g.live.gh;g.fin.ga=g.live.ga;setFin(id,res)}
 $('#mesaReset').onclick=()=>{if(!confirm('Zerar placar, minuto e marcações da mesa?'))return;
  games.forEach(g=>g.live={gh:0,ga:0,min:0,red:false,travado:false,checks:{},nota:''});renderMesa()};
 ['mesaFilter','mesaPeriod'].forEach(id=>$('#'+id).onchange=renderMesa);
@@ -1426,18 +1396,17 @@ function liveCardHTML(g){
    '<textarea class="notes" placeholder="Odd de entrada, stake, leitura do jogo, motivo da saída…" '+
    'onchange="setNota(\''+g.id+'\',this.value)">'+(L.nota||'')+'</textarea></div>'+
   '<div class="lc-foot">'+
-   (done
-    ? '<span class="fbtn undo" style="margin:0" onclick="reopen(\''+g.id+'\')">↺ Reabrir partida</span>'
-    : '<span class="fl" style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700">Encerrar</span>'+
-      '<span class="fbtn green" onclick="finFromMesa(\''+g.id+'\',\'green\')">🟢 Green</span>'+
-      '<span class="fbtn red" onclick="finFromMesa(\''+g.id+'\',\'red\')">🔴 Red</span>'+
-      '<span class="fbtn void" onclick="finFromMesa(\''+g.id+'\',\'void\')">⚪ Anulado</span>'+
-      '<button class="mini" onclick="resetGame(\''+g.id+'\')">↺ Zerar</button>')+
+   (done?'<span class="fbtn undo" style="margin:0" onclick="reopen(\''+g.id+'\')">↺ Reabrir partida</span>'
+    :'<span style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700">Encerrar</span>'+
+     '<span class="fbtn green" onclick="finFromMesa(\''+g.id+'\',\'green\')">🟢 Green</span>'+
+     '<span class="fbtn red" onclick="finFromMesa(\''+g.id+'\',\'red\')">🔴 Red</span>'+
+     '<span class="fbtn void" onclick="finFromMesa(\''+g.id+'\',\'void\')">⚪ Anulado</span>'+
+     '<button class="mini" onclick="resetGame(\''+g.id+'\')">↺ Zerar</button>')+
    '<button class="mini" onclick="shotLive(\''+g.id+'\')">🖼️</button>'+
    '<span class="wm">tradervikingbr</span></div></article>';
 }
 function renderMesa(){
- const picked=games.filter(g=>g.pick);
+ const picked=games.filter(g=>g.pick&&temMetodo(g));
  const vf=$('#mesaFilter').value,pf=$('#mesaPeriod').value,hd=$('#hideDone').checked;
  const list=picked.filter(g=>(pf==='all'||g.period.key===pf)&&(vf==='all'||verdict(g).v===vf)&&!(hd&&g.fin.done&&vf!=='done'));
  let go=0,wait=0,stop=0,done=0;
@@ -1461,7 +1430,7 @@ function renderMesa(){
    const gs=byW[w],ref=gs.find(g=>g.wave);
    const janela=ref&&ref.wave.start!=null?fromMin(ref.wave.start)+' → '+fromMin(ref.wave.end):'sem janela';
    html+='<div class="wave'+(w==='x'?' over':'')+'"><div class="wave-head">'+
-    '<span class="n">'+(w==='x'?'FORA DE JANELA':w==='e'?'SEM MÉTODO':'ONDA '+w)+'</span>'+
+    '<span class="n">'+(w==='x'?'FORA DE JANELA':'ONDA '+w)+'</span>'+
     '<span class="win">🕐 '+janela+'</span><span class="cap">'+gs.length+' jogo(s)</span></div>'+
     '<div class="mesa-grid">'+gs.map(liveCardHTML).join('')+'</div></div>';
   });
@@ -1507,8 +1476,8 @@ function box(d,x,y,w,h,title){
 function lines(d,x,y,w,n,gap){d.setDrawColor(222,228,236);for(let i=0;i<n;i++)d.line(x,y+i*gap,x+w,y+i*gap)}
 $('#pdfBtn').onclick=()=>{
  if(!window.jspdf){alert('Biblioteca de PDF indisponível.');return}
- const list=games.filter(g=>g.pick);
- if(!list.length){alert('Selecione ao menos uma partida.');return}
+ const list=games.filter(g=>g.pick&&temMetodo(g));
+ if(!list.length){alert('Selecione ao menos uma partida com método.');return}
  const {jsPDF}=window.jspdf,d=new jsPDF({unit:'mm',format:'a4'});
  const byP={};list.forEach(g=>(byP[g.period.key]??=[]).push(g));
  let page=1;
@@ -1518,7 +1487,7 @@ $('#pdfBtn').onclick=()=>{
  d.setDrawColor(...GOLD);d.setLineWidth(.8);d.line(14,y,48,y);d.setLineWidth(.2);y+=8;
  d.setFontSize(8.5);d.setFont('helvetica','normal');d.setTextColor(...GREY);
  const fin=list.filter(g=>g.fin.done).length;
- d.text(list.length+' partidas · maximo '+MAX_ONDA+' por onda · '+GAP_ONDA+' min entre ondas'+(fin?'  ·  '+fin+' ja finalizada(s)':''),14,y);y+=9;
+ d.text(list.length+' partidas com metodo · maximo '+MAX_ONDA+' por onda · '+GAP_ONDA+' min entre ondas'+(fin?'  ·  '+fin+' finalizada(s)':''),14,y);y+=9;
  Object.keys(byP).sort((a,b)=>PERIODS[a].order-PERIODS[b].order).forEach(pk=>{
   const P=PERIODS[pk],arr=byP[pk],byW={};
   arr.forEach(g=>(byW[waveKey(g)]??=[]).push(g));
@@ -1533,7 +1502,7 @@ $('#pdfBtn').onclick=()=>{
    if(y>255){pdfFooter(d,page++);d.addPage();pdfHeader(d,'CADERNO DE ACOMPANHAMENTO LIVE','');y=38}
    const janela=ref&&ref.wave.start!=null?fromMin(ref.wave.start)+' as '+fromMin(ref.wave.end):'sem janela';
    d.setFont('helvetica','bold');d.setFontSize(9);d.setTextColor(...DARK);
-   d.text((w==='x'?'FORA DE JANELA':w==='e'?'SEM METODO':'ONDA '+w+'  ·  '+janela)+'   ('+gs.length+'/'+MAX_ONDA+')',18,y);
+   d.text((w==='x'?'FORA DE JANELA':'ONDA '+w+'  ·  '+janela)+'   ('+gs.length+'/'+MAX_ONDA+')',18,y);
    y+=2;d.setDrawColor(...GOLD);d.line(18,y,80,y);y+=5;
    d.setFont('helvetica','normal');d.setFontSize(8.5);
    gs.forEach(g=>{
@@ -1587,7 +1556,7 @@ $('#pdfBtn').onclick=()=>{
   let yy=y+11+txt.length*4.2+2;d.setFontSize(8);d.setTextColor(60,80,105);
   r.pts.forEach(p=>{d.text('•  '+p,18,yy);yy+=4.2});
   y+=hWhy+4;
-  const plan=a.principal?PLAN[a.principal]:['Sem metodo elegivel'],hPlan=11+plan.length*5.2;
+  const plan=a.principal?PLAN[a.principal]:['Sem metodo'],hPlan=11+plan.length*5.2;
   box(d,14,y,182,hPlan,'gatilhos e regras de execucao');
   d.setFontSize(8.5);d.setTextColor(...DARK);let yp=y+11;
   plan.forEach(p=>{d.setDrawColor(...GREY);d.rect(18,yp-3,3.2,3.2);d.text(p,24,yp,{maxWidth:166});yp+=5.2});
@@ -1622,9 +1591,7 @@ $('#pdfBtn').onclick=()=>{
  d.save('tradervikingbr_caderno_live.pdf');
 };
 
-/* ============================================================
-   MODO FOCO · oculta menus e destaca os cards
-   ============================================================ */
+/* ===== MODO FOCO ===== */
 function zenOn(){return document.body.classList.contains('zen')}
 function denseOn(){return document.body.classList.contains('dense')}
 function toggleZen(force){
@@ -1644,7 +1611,6 @@ function toggleDense(force){
  $('#denseBtn').innerHTML=on?'▦ Completo':'▦ Compacto';
  try{localStorage.setItem('tvbr_dense',on?'1':'0')}catch(e){}
 }
-/* espelha os filtros principais na barra do modo foco */
 function mirrorFilters(){
  $('#zPeriod').value=$('#periodFilter').value;
  $('#zFin').value=$('#finFilter').value;
@@ -1657,16 +1623,13 @@ function syncZen(campo){
  const map={period:['#zPeriod','#periodFilter'],method:['#zMethod','#methodFilter'],
   fin:['#zFin','#finFilter'],search:['#zSearch','#search']};
  const [z,o]=map[campo];
- $(o).value=$(z).value;
- render();
- if(tab==='mesa')renderMesa();
+ $(o).value=$(z).value;render();if(tab==='mesa')renderMesa();
 }
 function updateZenTally(){
  const el=$('#zTally');if(!el)return;
  const vis=visibleGames().length,fin=games.filter(g=>g.fin.done).length;
  el.innerHTML='<b>'+vis+'</b> na tela · <b>'+fin+'</b> encerrada(s)';
 }
-/* atalhos de teclado */
 document.addEventListener('keydown',e=>{
  const t=e.target.tagName;
  if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||e.ctrlKey||e.altKey||e.metaKey)return;
@@ -1687,38 +1650,29 @@ function initZen(){
  }catch(e){}
 }
 
-/* ============================================================
-   PWA · instalação, service worker e estado offline
-   ============================================================ */
+/* ===== PWA ===== */
 let deferredPrompt=null,swReg=null;
-const standalone=()=>window.matchMedia('(display-mode: standalone)').matches
- ||window.matchMedia('(display-mode: window-controls-overlay)').matches
- ||window.navigator.standalone===true;
-const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)
- ||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-
+const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const OS_STEPS={
  android:[['Toque no menu <b>⋮</b> no canto do navegador','Chrome, Edge ou Samsung Internet'],
   ['Escolha <b>Instalar aplicativo</b>','em alguns aparelhos aparece como “Adicionar à tela inicial”'],
-  ['Confirme em <b>Instalar</b>','o ícone do Live Desk vai para a tela inicial']],
+  ['Confirme em <b>Instalar</b>','o ícone vai para a tela inicial']],
  ios:[['Abra o site no <b>Safari</b>','o Chrome no iPhone não instala aplicativos'],
-  ['Toque no botão <b>Compartilhar</b> ⬆️','na barra inferior da tela'],
+  ['Toque no botão <b>Compartilhar</b> ⬆️','na barra inferior'],
   ['Role e escolha <b>Adicionar à Tela de Início</b>',''],
-  ['Toque em <b>Adicionar</b>','o app abre em tela cheia, sem barra do navegador']],
- desk:[['Clique no ícone <b>⊕</b> na barra de endereço','Chrome ou Edge, à direita da URL'],
-  ['Escolha <b>Instalar</b>','ou use o menu ⋮ → Instalar Live Desk'],
-  ['O app abre em janela própria','fica disponível no menu Iniciar ou na Dock']]
+  ['Toque em <b>Adicionar</b>','o app abre em tela cheia']],
+ desk:[['Clique no ícone <b>⊕</b> na barra de endereço','Chrome ou Edge'],
+  ['Escolha <b>Instalar</b>','ou menu ⋮ → Instalar Live Desk'],
+  ['O app abre em janela própria','fica no menu Iniciar ou na Dock']]
 };
 function setOS(os){
  ['android','ios','desk'].forEach(k=>{
-  const b=$('#os'+(k==='android'?'Android':k==='ios'?'Ios':'Desk'));
-  if(b)b.classList.toggle('on',k===os);
- });
+  const b=$('#os'+(k==='android'?'Android':k==='ios'?'Ios':'Desk'));if(b)b.classList.toggle('on',k===os)});
  $('#osSteps').innerHTML=OS_STEPS[os].map((s,i)=>
   '<div class="step"><div class="n">'+(i+1)+'</div><div class="t">'+s[0]+
   (s[1]?'<br><span style="color:var(--mut);font-size:12px">'+s[1]+'</span>':'')+'</div></div>').join('');
 }
-/* Diagnóstico: mostra exatamente o que falta para o navegador oferecer a instalação */
 async function runDiag(){
  const el=$('#diag');if(!el)return;
  const L=[];
@@ -1733,30 +1687,32 @@ async function runDiag(){
    add(!!j.icons&&j.icons.length>0,'Manifest com ícones',(j.icons||[]).length+' declarados');
    for(const ic of (j.icons||[]).slice(0,3)){
     try{const ir=await fetch(ic.src,{method:'HEAD',cache:'no-store'});add(ir.ok,'Ícone '+ic.sizes,'HTTP '+ir.status)}
-    catch(e){add(false,'Ícone '+ic.sizes,'inacessível')}
-   }
-  }
+    catch(e){add(false,'Ícone '+ic.sizes,'inacessível')}}}
  }catch(e){add(false,'manifest.webmanifest acessível',e.message)}
  try{const sr=await fetch('sw.js',{cache:'no-store'});add(sr.ok,'sw.js acessível','HTTP '+sr.status)}
  catch(e){add(false,'sw.js acessível',e.message)}
  if('serviceWorker' in navigator){
   const regs=await navigator.serviceWorker.getRegistrations();
-  add(regs.length>0,'Service worker registrado',regs.length+' registro(s)');
- }
- add(!!deferredPrompt,'Navegador liberou a instalação automática',
-  deferredPrompt?'':'use o passo a passo acima');
+  add(regs.length>0,'Service worker registrado',regs.length+' registro(s)');}
+ add(!!deferredPrompt,'Navegador liberou a instalação automática',deferredPrompt?'':'use o passo a passo acima');
  add(!standalone(),'Ainda não instalado',standalone()?'já rodando como app':'');
- L.push('<div style="color:var(--mut);margin-top:8px">'+navigator.userAgent.slice(0,90)+'</div>');
  el.innerHTML=L.join('');
+}
+async function limparCache(){
+ try{
+  if('serviceWorker' in navigator){
+   const regs=await navigator.serviceWorker.getRegistrations();
+   for(const r of regs){if(r.active)r.active.postMessage('clearAll');await r.unregister()}}
+  if(window.caches){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}
+ }catch(e){}
+ location.href=location.pathname+'?nocache='+Date.now();
 }
 function openHowto(){setOS(isIOS()?'ios':(/android/i.test(navigator.userAgent)?'android':'desk'));$('#howto').classList.add('show');runDiag()}
 function closeHowto(){$('#howto').classList.remove('show')}
 $('#howto').addEventListener('click',e=>{if(e.target.id==='howto')closeHowto()});
-
 window.addEventListener('beforeinstallprompt',e=>{
  e.preventDefault();deferredPrompt=e;
- $('#installBtn').classList.add('show');
- $('#installBtn').textContent='⬇️ Instalar app';
+ $('#installBtn').classList.add('show');$('#installBtn').textContent='⬇️ Instalar app';
 });
 $('#installBtn').onclick=async()=>{
  if(deferredPrompt){
@@ -1772,35 +1728,28 @@ window.addEventListener('appinstalled',()=>{
 });
 function updateNet(){$('#netChip').classList.toggle('show',!navigator.onLine)}
 window.addEventListener('online',()=>{updateNet();log('Conexão restabelecida')});
-window.addEventListener('offline',()=>{updateNet();log('Sem conexão — usando dados em cache')});
-function applyUpdate(){
- if(swReg&&swReg.waiting)swReg.waiting.postMessage('skipWaiting');
- location.reload();
-}
+window.addEventListener('offline',()=>{updateNet();log('Sem conexão — usando cache')});
+function applyUpdate(){if(swReg&&swReg.waiting)swReg.waiting.postMessage('skipWaiting');location.reload()}
 async function initPWA(){
- if(standalone()){$('#appChip').classList.add('show')}
- else{$('#installBtn').classList.add('show');
-  if(isIOS())$('#installBtn').textContent='📱 Como instalar';}
+ if(standalone())$('#appChip').classList.add('show');
+ else{$('#installBtn').classList.add('show');if(isIOS())$('#installBtn').textContent='📱 Como instalar'}
  updateNet();
  if(!('serviceWorker' in navigator))return;
- if(location.protocol==='file:'){log('Modo app indisponível: abra pelo endereço do site, não pelo arquivo local');return}
+ if(location.protocol==='file:'){log('Modo app indisponível: abra pelo endereço do site');return}
  try{
   swReg=await navigator.serviceWorker.register('sw.js',{scope:'./'});
   log('Modo app pronto · conteúdo disponível offline');
   swReg.addEventListener('updatefound',()=>{
    const nw=swReg.installing;if(!nw)return;
    nw.addEventListener('statechange',()=>{
-    if(nw.state==='installed'&&navigator.serviceWorker.controller)$('#swToast').classList.add('show');
-   });
+    if(nw.state==='installed'&&navigator.serviceWorker.controller)$('#swToast').classList.add('show')});
   });
   setInterval(()=>swReg.update().catch(()=>{}),30*60*1000);
  }catch(e){log('Service worker não registrado: '+e.message)}
 }
 
 window.addEventListener('load',async()=>{
- libsOK();
- initZen();
- initPWA();
+ libsOK();initZen();initPWA();
  const p=new URLSearchParams(location.search);
  if(p.get('tab')==='mesa')setTab('mesa');
  const ok=await carregarIndice(true);
