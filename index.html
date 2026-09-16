@@ -434,10 +434,11 @@ details[open] summary:before{content:"▾ "}
 
 /* ===== configuracao de ligas ===== */
 .cfg{margin-top:16px;padding-top:16px;border-top:1px solid var(--stroke)}
-.cfg>summary{cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700;list-style:none}
+.cfg>summary{cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700;list-style:none;padding:4px 0}
 .cfg>summary::-webkit-details-marker{display:none}
 .cfg>summary:before{content:"\25B8  "}
 .cfg[open]>summary:before{content:"\25BE  "}
+.cfg>summary:hover{color:var(--txt)}
 .cfggrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
 .cfgbox{border:1px solid var(--stroke);border-radius:16px;padding:15px;background:rgba(0,0,0,.2)}
 .cfgbox.over{border-color:rgba(94,200,255,.28);background:rgba(94,200,255,.05)}
@@ -456,18 +457,15 @@ details[open] summary:before{content:"▾ "}
 .gate{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:9.5px;font-weight:800;
  letter-spacing:.06em;background:rgba(255,95,109,.14);color:#ffb3b9;border:1px solid #ff5f6d44;vertical-align:1px}
 .crit li.g{color:#ffd98a}
-@media(max-width:1000px){.cfggrid{grid-template-columns:1fr}}
-
 /* ===== validacao de ligas com dados reais ===== */
-.lgcheck{margin-top:14px}
 .lgtbl{width:100%;border-collapse:collapse;margin-top:12px;font-size:12.5px}
 .lgtbl th{text-align:left;padding:9px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
  color:var(--mut);border-bottom:1px solid var(--stroke2);font-weight:700;white-space:nowrap}
 .lgtbl td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
 .lgtbl tr:hover td{background:rgba(255,255,255,.03)}
-.lgtbl td.n{text-align:center;font-variant-numeric:tabular-nums;font-weight:700}
+.lgtbl td.n{text-align:center;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
 .lgtbl .lg{font-weight:700}
-.lgtbl .src{display:block;font-size:10px;color:var(--mut);font-weight:400;margin-top:2px}
+.lgtbl .src{display:block;font-size:10px;color:var(--mut);font-weight:400;margin-top:2px;line-height:1.5}
 .vd{display:inline-block;padding:3px 9px;border-radius:999px;font-size:9.5px;font-weight:800;letter-spacing:.06em;white-space:nowrap}
 .vd.keep{background:rgba(46,232,138,.14);color:#8bffc4;border:1px solid #2ee88a44}
 .vd.watch{background:rgba(255,176,32,.14);color:#ffd98a;border:1px solid #ffb02055}
@@ -478,10 +476,11 @@ details[open] summary:before{content:"▾ "}
 .lgk{border:1px solid var(--stroke);border-radius:14px;padding:12px 14px;background:rgba(0,0,0,.22)}
 .lgk b{display:block;font-size:22px;font-weight:800;line-height:1}
 .lgk small{color:var(--mut);font-size:10px;text-transform:uppercase;letter-spacing:.07em}
-.lgbar{display:inline-block;width:52px;height:6px;border-radius:99px;background:rgba(255,255,255,.1);
- overflow:hidden;vertical-align:middle;margin-left:7px}
+.lgbar{display:inline-block;width:48px;height:6px;border-radius:99px;background:rgba(255,255,255,.1);
+ overflow:hidden;vertical-align:middle;margin-left:6px}
 .lgbar i{display:block;height:100%;border-radius:99px}
 .lgempty{text-align:center;padding:30px 16px;color:var(--mut);font-size:13px;line-height:1.7}
+@media(max-width:1000px){.cfggrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -624,7 +623,7 @@ details[open] summary:before{content:"▾ "}
     <input type="text" id="search" placeholder="🔎 Buscar time ou liga">
   </div>
   <details class="cfg" id="cfgLigas">
-    <summary>Restrição de ligas por método</summary>
+    <summary>⚙️ Restrição de ligas por método</summary>
     <div class="cfggrid">
       <div class="cfgbox">
         <h5>Back Favorito e Lay Zebra</h5>
@@ -647,14 +646,15 @@ details[open] summary:before{content:"▾ "}
         </div>
       </div>
     </div>
-    <div class="cfgnote">Escreva o nome com o prefixo do país ou da confederação — <b>UEFA Champions League</b> em vez de <b>Champions League</b>, senão a comparação parcial também aprova AFC e CAF. Uma liga por linha. A comparação é parcial e ignora acentos e maiúsculas, então <b>Bundesliga</b> alcança <b>Germany Bundesliga I</b>. Deixar a caixa vazia remove a restrição daquele grupo. As listas ficam salvas neste navegador e valem para Back Favorito, Lay Zebra e Over Limite — <b>Back 2x2, Back Goleada, Lay 1×0 e Lay 0×1 continuam sem restrição de liga</b>.</div>
+    <div class="cfgnote">Escreva o nome com o prefixo do país ou da confederação — <b>UEFA Champions League</b> em vez de <b>Champions League</b>, senão a comparação parcial também aprova AFC e CAF. Uma liga por linha. A comparação ignora acentos e maiúsculas, então <b>Bundesliga</b> alcança <b>Germany Bundesliga I</b>. Caixa vazia remove a restrição daquele grupo. <b>Back 2x2, Back Goleada, Lay 1×0 e Lay 0×1 continuam sem restrição de liga.</b></div>
   </details>
-  <details class="cfg lgcheck" id="cfgValida">
-    <summary>Validação das ligas com os PDFs carregados</summary>
+  <details class="cfg" id="cfgValida">
+    <summary>📊 Validação das ligas com os PDFs carregados</summary>
     <p style="margin:12px 0 0;font-size:12px;color:var(--mut);line-height:1.7">
       Mede o comportamento real de cada liga nos PDFs já processados: a mediana das faixas 61-75 e 76-90,
       o percentual de gols após os 60 minutos e quantas partidas passariam nos critérios estatísticos do Over Limite.
       O veredito compara esse resultado com a lista configurada acima.
+      <b>Carregue a pasta <code>pdfs</code> inteira</b> — cada carregamento substitui o anterior, e o veredito exige pelo menos 6 partidas por liga.
     </p>
     <div class="bar" style="margin-top:12px">
       <button class="mini gold" onclick="validarLigas()">Medir com os PDFs carregados</button>
@@ -758,17 +758,15 @@ const LIGAS=['UEFA Champions League','UEFA Europa League','UEFA Conference Leagu
  'France Ligue 1','Ligue 1','Ligue 2','Portugal Primeira Liga','Primeira Liga','Netherlands Eredivisie','Eredivisie',
  'Belgium Pro League','Turkey Super Lig','Scotland Premiership','Switzerland Super League','Austria Bundesliga',
  'Greece Super League','Argentina Liga Profesional','Mexico Liga MX','USA MLS','Japan J1 League','Saudi Pro League'];
-/* ===== RESTRICAO DE LIGAS =====
-   Back Favorito e Lay Zebra: dependem da confiabilidade do favorito, entao exigem
-   ligas de mercado maduro. Over Limite: entrada ao vivo, exige liquidez para a linha
-   de gols abrir preco justo depois dos 65 minutos. */
+/* ===== RESTRICAO DE LIGAS POR METODO =====
+   Back Favorito e Lay Zebra dependem da confiabilidade do favorito: exigem mercado maduro.
+   Over Limite e entrada ao vivo apos 65 min: exige liquidez para a linha de gols abrir
+   preco justo na reta final, entao aceita 2a divisao forte e ligas fora do bloco Back/Lay.
+   Nomes com prefixo (UEFA, Germany, England, Saudi) evitam casar por engano com
+   AFC/CAF Champions League, 2a divisao saudita e afins. */
 const LIGAS_BACKLAY_PADRAO=['Brazil Serie A','Brazil Serie B','England Premier League','Spain La Liga',
  'Germany Bundesliga','Italy Serie A','France Ligue 1','Portugal Primeira Liga','Netherlands Eredivisie',
  'UEFA Champions League','Libertadores'];
-/* Over Limite: entrada ao vivo apos 65 min. Exige liquidez para a linha de gols abrir preco
-   justo na reta final, entao aceita segunda divisao forte e ligas fora do bloco Back/Lay.
-   Nomes com prefixo (UEFA, Germany, England, Saudi) evitam casar por engano com
-   AFC/CAF Champions League, 2a divisao saudita e afins. */
 const LIGAS_OVER_PADRAO=['Brazil Serie A','Brazil Serie B','England Premier League','England Championship',
  'Spain La Liga','Germany Bundesliga','Germany 2. Bundesliga','Italy Serie A','France Ligue 1',
  'Portugal Primeira Liga','Netherlands Eredivisie','Belgium Pro League','Turkey Super Lig',
@@ -1405,8 +1403,7 @@ function medirLigas(){
     (porLiga[nome]=porLiga[nome]||{jogos:[],nome}).jogos.push({
       favS61:LM[F].pS[4], favS76:LM[F].pS[5],
       advC61:LM[Z].pC[4], advC76:LM[Z].pC[5],
-      apos60:x.apos60, total:x.totalAvg,
-      passa:est.filter(c=>c.ok).length>=3, atende:est.filter(c=>c.ok).length
+      apos60:x.apos60, passa:est.filter(c=>c.ok).length>=3
     });
   });
   return Object.values(porLiga).map(L=>{
@@ -1414,12 +1411,11 @@ function medirLigas(){
     const r={nome:L.nome,n,
       favS61:mediana(J.map(j=>j.favS61)), favS76:mediana(J.map(j=>j.favS76)),
       advC61:mediana(J.map(j=>j.advC61)), advC76:mediana(J.map(j=>j.advC76)),
-      apos60:mediana(J.map(j=>j.apos60)), total:mediana(J.map(j=>j.total*100)),
+      apos60:mediana(J.map(j=>j.apos60)),
       passa:J.filter(j=>j.passa).length};
     r.taxa=n?Math.round(100*r.passa/n):0;
-    r.naLista=ligaOk(L.nome,LIGAS_OVER).ok;
-    r.entrada=r.naLista?ligaOk(L.nome,LIGAS_OVER).why:null;
-    /* veredito */
+    const chk=ligaOk(L.nome,LIGAS_OVER);
+    r.naLista=chk.ok; r.entrada=chk.ok?chk.why:null;
     const forte=(r.apos60!=null&&r.apos60>=CORTE_APOS60)||r.taxa>=50;
     const fraco=(r.apos60!=null&&r.apos60<35)&&r.taxa<25;
     if(n<MIN_AMOSTRA){r.v='thin';r.lbl='AMOSTRA CURTA';
@@ -1440,7 +1436,7 @@ function medirLigas(){
     return (ord[a.v]-ord[b.v])||b.n-a.n;
   });
 }
-function barra(v,corte){
+function lgBarra(v,corte){
   if(v==null)return '—';
   const cor=v>=corte?'var(--ok)':(v>=corte*0.7?'var(--warn)':'var(--bad)');
   return '<span style="color:'+cor+'">'+v+'%</span><span class="lgbar"><i style="width:'+Math.min(100,v)+'%;background:'+cor+'"></i></span>';
@@ -1449,7 +1445,7 @@ function validarLigas(){
   const out=$('#vlOut');
   const comLM=games.filter(g=>g.analysis&&g.analysis.LM).length;
   if(!games.length){
-    out.innerHTML='<div class="lgempty">Nenhuma partida carregada.<br>Carregue os PDFs de uma data e volte aqui.</div>';
+    out.innerHTML='<div class="lgempty">Nenhuma partida carregada.<br>Carregue a pasta <b>pdfs</b> pelo bloco de upload e volte aqui.</div>';
     $('#vlStatus').textContent='';return;
   }
   if(!comLM){
@@ -1475,11 +1471,11 @@ function validarLigas(){
     h+='<tr><td><span class="lg">'+r.nome+'</span>'+
       '<span class="src">'+(r.naLista?'na lista · entrada "'+r.entrada+'"':'fora da lista')+' · '+r.why+'</span></td>'+
       '<td class="n">'+r.n+'</td>'+
-      '<td class="n">'+barra(r.favS61,CORTE_BANDA)+'</td>'+
-      '<td class="n">'+barra(r.favS76,CORTE_BANDA)+'</td>'+
-      '<td class="n">'+barra(r.advC61,CORTE_BANDA)+'</td>'+
-      '<td class="n">'+barra(r.advC76,CORTE_BANDA)+'</td>'+
-      '<td class="n">'+barra(r.apos60,CORTE_APOS60)+'</td>'+
+      '<td class="n">'+lgBarra(r.favS61,CORTE_BANDA)+'</td>'+
+      '<td class="n">'+lgBarra(r.favS76,CORTE_BANDA)+'</td>'+
+      '<td class="n">'+lgBarra(r.advC61,CORTE_BANDA)+'</td>'+
+      '<td class="n">'+lgBarra(r.advC76,CORTE_BANDA)+'</td>'+
+      '<td class="n">'+lgBarra(r.apos60,CORTE_APOS60)+'</td>'+
       '<td class="n">'+r.passa+'/'+r.n+'<span class="src">'+r.taxa+'%</span></td>'+
       '<td>'+(r.lbl?'<span class="vd '+r.v+'">'+r.lbl+'</span>':'')+'</td></tr>';
   });
@@ -1504,7 +1500,7 @@ function copiarSugestao(){
   const incluir=VL_SUG.filter(r=>r.v==='add').map(r=>r.nome);
   const nova=[...new Set(manter.concat(incluir))];
   const txt=nova.join('\n');
-  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt);
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).catch(()=>{});
   $('#ligasOV').value=txt;
   const rem=LIGAS_OVER.filter(l=>!nova.includes(l));
   alert('Lista sugerida colocada na caixa do Over Limite.\n\n'+
@@ -1535,9 +1531,7 @@ function reavaliar(){
     g.analysis=assess(g.meta,g.stats);
     g.reason=reason(g);
   });
-  allocate();
-  fillFilters();
-  render();
+  allocate();fillFilters();render();
   if(tab==='mesa')renderMesa();
 }
 function salvarLigas(){
@@ -1552,6 +1546,7 @@ function salvarLigas(){
     reavaliar();
     const c=games.filter(temMetodo).length;
     log('Ligas atualizadas · '+c+' partida(s) com método após a reanálise');
+    if(VL_SUG)validarLigas();
   }else log('Ligas atualizadas');
 }
 function restaurarLigas(qual){
