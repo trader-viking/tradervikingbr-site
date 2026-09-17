@@ -11,7 +11,6 @@
 <meta name="apple-mobile-web-app-title" content="Live Desk">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -30,17 +29,15 @@ body{background:radial-gradient(1200px 600px at 12% -8%,#1d4a7a55,transparent 60
  font:15px/1.5 "Segoe UI",Inter,system-ui,Arial,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1560px;margin:0 auto;padding:28px 22px 60px}
 .hero{display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap;
- padding:22px 26px;border-radius:26px;border:1px solid var(--stroke);
+ padding:20px 24px;border-radius:26px;border:1px solid var(--stroke);
  background:linear-gradient(135deg,rgba(255,201,74,.10),rgba(255,255,255,.02));
- backdrop-filter:blur(14px);box-shadow:var(--shadow);margin-bottom:18px}
+ backdrop-filter:blur(14px);box-shadow:var(--shadow);margin-bottom:16px}
 .logo{display:flex;align-items:center;gap:16px}
-.rune{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-weight:900;font-size:23px;color:#160f00;
+.rune{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-weight:900;font-size:21px;color:#160f00;
  background:linear-gradient(140deg,var(--gold),var(--gold2))}
-.logo h1{margin:0;font-size:24px}
+.logo h1{margin:0;font-size:22px}
 .logo h1 b{background:linear-gradient(90deg,var(--gold),#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo p{margin:3px 0 0;color:var(--mut);font-size:13px}
-.pill{padding:9px 15px;border-radius:999px;font-size:12.5px;font-weight:700;
- border:1px solid rgba(255,201,74,.35);background:rgba(255,201,74,.10);color:#ffdf9a}
+.logo p{margin:3px 0 0;color:var(--mut);font-size:12.5px}
 .heroside{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 #installBtn{display:none;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:999px;
  background:linear-gradient(140deg,var(--gold),var(--gold2));color:#1a1200;font-weight:800;font-size:13px;cursor:pointer}
@@ -54,6 +51,10 @@ body{background:radial-gradient(1200px 600px at 12% -8%,#1d4a7a55,transparent 60
  border:1px solid rgba(255,201,74,.4);background:rgba(10,22,38,.97);transition:transform .35s}
 .swtoast.show{transform:translateX(-50%) translateY(0)}
 .swtoast .tx{font-size:13px}.swtoast .tx b{color:#ffdf9a;display:block}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);z-index:997;
+ padding:11px 20px;border-radius:999px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;
+ background:rgba(46,232,138,.95);color:#04220f;transition:.3s}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .ovl{position:fixed;inset:0;z-index:998;display:none;place-items:center;padding:20px;background:rgba(3,9,18,.82)}
 .ovl.show{display:grid}
 .modal{max-width:520px;width:100%;max-height:86vh;overflow:auto;border-radius:24px;padding:26px;
@@ -98,7 +99,7 @@ body.dense .grid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
  box-shadow:0 12px 30px rgba(255,157,0,.42)}
 body.zen .fab{background:rgba(8,18,32,.95);color:var(--gold);border:1px solid var(--stroke2)}
 .card-panel{border:1px solid var(--stroke);border-radius:var(--r);background:var(--glass);
- backdrop-filter:blur(12px);box-shadow:var(--shadow);padding:20px;margin-bottom:20px}
+ backdrop-filter:blur(12px);box-shadow:var(--shadow);padding:20px;margin-bottom:18px}
 h3.sec{margin:0 0 14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
 .srcgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px}
 .srcbox{border:1px solid var(--stroke);border-radius:16px;padding:17px;background:rgba(0,0,0,.18)}
@@ -134,11 +135,29 @@ select option{background:#0b1a2c}
 .selbar.show{display:flex}
 .selbar .cnt{font-weight:800;color:#ffdf9a;font-size:13.5px}
 .selbar .sep{width:1px;height:20px;background:var(--stroke2)}
-.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
-.kpi{border:1px solid var(--stroke);border-radius:18px;padding:16px 18px;background:var(--glass)}
-.kpi .n{font-size:28px;font-weight:800;line-height:1;background:linear-gradient(90deg,#fff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.kpi.fin .n{background:linear-gradient(90deg,#fff,var(--ok));-webkit-background-clip:text;background-clip:text}
-.kpi .l{color:var(--mut);font-size:11.5px;margin-top:7px;text-transform:uppercase;letter-spacing:.07em}
+/* KPIs enxutos */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.kpi{border:1px solid var(--stroke);border-radius:18px;padding:15px 18px;background:var(--glass)}
+.kpi .n{font-size:27px;font-weight:800;line-height:1;background:linear-gradient(90deg,#fff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi.alta .n{background:linear-gradient(90deg,#fff,var(--ok));-webkit-background-clip:text;background-clip:text}
+.kpi .l{color:var(--mut);font-size:11.5px;margin-top:6px;text-transform:uppercase;letter-spacing:.07em}
+/* resumo por método */
+.metsum{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:18px;padding:14px 16px;
+ border-radius:18px;border:1px solid var(--stroke);background:var(--glass);backdrop-filter:blur(12px)}
+.metsum .lb{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:700;margin-right:3px}
+.mchip{display:flex;align-items:center;gap:8px;padding:8px 13px;border-radius:12px;cursor:pointer;user-select:none;
+ border:1px solid var(--stroke2);background:rgba(0,0,0,.24);transition:.18s;font-size:12.5px}
+.mchip:hover{background:rgba(255,255,255,.08);border-color:var(--stroke2)}
+.mchip.on{background:rgba(255,201,74,.16);border-color:rgba(255,201,74,.5)}
+.mchip .q{font-weight:900;font-size:15px;color:#fff}
+.mchip .nm{font-weight:700;color:#dbeaf9}
+.mchip .fr{display:flex;gap:3px;align-items:center}
+.mchip .fr i{width:6px;height:6px;border-radius:50%;display:block}
+.mchip .fr i.a{background:var(--ok)}
+.mchip .fr i.m{background:var(--gold)}
+.mchip .fr i.b{background:var(--warn)}
+.mchip .hist{font-size:11px;font-weight:800;padding:2px 7px;border-radius:7px;background:rgba(0,0,0,.3)}
+.mchip .hist.pos{color:#8bffc4}.mchip .hist.neg{color:#ffb3b9}.mchip .hist.neu{color:var(--mut)}
 .tally{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;padding:13px 15px;border-radius:14px;
  border:1px solid var(--stroke);background:rgba(0,0,0,.24)}
 .tally .tl-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);font-weight:700}
@@ -148,10 +167,10 @@ select option{background:#0b1a2c}
 .tbox.v{background:rgba(94,200,255,.10);color:#bfe6ff}
 .tbox.p{background:rgba(255,201,74,.10);color:#ffdf9a}
 .tacc{margin-left:auto;font-size:13px;color:var(--mut)}.tacc b{color:#fff;font-size:17px}
-.period{margin:34px 0 12px}
-.period-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 20px;border-radius:18px;
+.period{margin:30px 0 12px}
+.period-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:15px 20px;border-radius:18px;
  border:1px solid var(--stroke);background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(0,0,0,.25))}
-.period-head .ic{font-size:26px}.period-head h2{margin:0;font-size:22px}
+.period-head .ic{font-size:24px}.period-head h2{margin:0;font-size:21px}
 .period-head .rg{font-size:11.5px;color:var(--mut);text-transform:uppercase;margin-top:2px}
 .period-head .ct{margin-left:auto;font-size:12.5px;color:var(--mut);text-align:right}
 .period.manha .period-head{border-left:4px solid var(--manha)}
@@ -159,12 +178,17 @@ select option{background:#0b1a2c}
 .period.noite .period-head{border-left:4px solid var(--noite)}
 .period.sem .period-head{border-left:4px solid var(--mut)}
 .wave{margin-top:18px}
-.wave-head{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:13px;flex-wrap:wrap;
+.wave-head{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
  padding:11px 17px;border-radius:14px;border:1px solid var(--stroke);
  background:linear-gradient(90deg,rgba(255,201,74,.15),rgba(8,18,32,.95));backdrop-filter:blur(14px)}
 .wave-head .n{font-weight:900;font-size:15px;color:#ffdf9a}
 .wave-head .win{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:9px;
  background:rgba(0,0,0,.3);border:1px solid var(--stroke)}
+.wave-head .cnt{font-size:12px;font-weight:700;padding:4px 10px;border-radius:9px;
+ background:rgba(46,232,138,.14);color:#8bffc4;border:1px solid #2ee88a33}
+.wave-head .cnt.agora{background:rgba(255,95,109,.16);color:#ffb3b9;border-color:#ff5f6d44;
+ animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
 .wave-head .cap{margin-left:auto;font-size:12px;color:var(--mut)}
 .slots{display:flex;gap:5px}
 .slot{width:24px;height:7px;border-radius:99px;background:rgba(255,255,255,.14)}
@@ -181,25 +205,24 @@ select option{background:#0b1a2c}
 .match-card:hover{transform:translateY(-3px);border-color:var(--stroke2)}
 .match-card:before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;z-index:3;
  background:linear-gradient(180deg,var(--ok),#0f7a45)}
-.match-card.over:before{background:linear-gradient(180deg,var(--warn),#8a5a00)}
+.match-card.f-media:before{background:linear-gradient(180deg,var(--gold),var(--gold2))}
+.match-card.f-baixa:before{background:linear-gradient(180deg,var(--warn),#8a5a00)}
+.match-card.over:before{background:linear-gradient(180deg,#7a8aa0,#3d4b5e)}
 .match-card.avoid:before{background:linear-gradient(180deg,var(--bad),#7a1220)}
 .match-card.picked{border-color:rgba(255,201,74,.55)}
-.match-card.done{opacity:.62;filter:saturate(.5)}
+.match-card.done{opacity:.6;filter:saturate(.5)}
 .match-card.done:hover{opacity:1;filter:none}
-.match-card.done:before{background:linear-gradient(180deg,#7a8aa0,#3d4b5e)}
-.match-card.done.res-green:before{background:linear-gradient(180deg,var(--ok),#0f7a45)}
-.match-card.done.res-red:before{background:linear-gradient(180deg,var(--bad),#7a1220)}
 .done-ribbon{position:absolute;top:16px;right:-38px;z-index:5;transform:rotate(38deg);
  padding:5px 44px;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
  background:rgba(120,138,160,.92);color:#0a1626}
 .done-ribbon.green{background:rgba(46,232,138,.95)}
 .done-ribbon.red{background:rgba(255,95,109,.95);color:#fff}
 .done-ribbon.void{background:rgba(94,200,255,.95)}
-.mc-body{padding:20px 20px 0;position:relative;z-index:2}
+.mc-body{padding:19px 19px 0;position:relative;z-index:2}
 .mc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .tag{font-size:10.5px;font-weight:800;letter-spacing:.1em;padding:6px 11px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
 .tag.in{background:rgba(46,232,138,.14);color:#8bffc4;border:1px solid #2ee88a55}
-.tag.ov{background:rgba(255,176,32,.14);color:#ffd98a;border:1px solid #ffb02055}
+.tag.ov{background:rgba(120,138,160,.18);color:#c3d0e0;border:1px solid #7a8aa055}
 .tag.av{background:rgba(255,95,109,.14);color:#ffb3b9;border:1px solid #ff5f6d55}
 .tag.dn{background:rgba(120,138,160,.18);color:#c3d0e0;border:1px solid #7a8aa055}
 .league{font-size:11.5px;color:var(--mut);text-transform:uppercase}
@@ -228,10 +251,10 @@ select option{background:#0b1a2c}
 .pickwrap.on .picklbl{color:#ffdf9a}
 .versus{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:6px 0 8px}
 .team{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center}
-.crest{width:64px;height:64px;border-radius:18px;object-fit:contain;padding:6px;
+.crest{width:62px;height:62px;border-radius:18px;object-fit:contain;padding:6px;
  background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.16),rgba(255,255,255,.04));
  border:1px solid var(--stroke2)}
-.crest.mono{display:grid;place-items:center;font-weight:900;font-size:21px;color:#ffdf9a}
+.crest.mono{display:grid;place-items:center;font-weight:900;font-size:20px;color:#ffdf9a}
 .crest.sm{width:44px;height:44px;border-radius:14px;font-size:15px}
 .tname{font-weight:700;font-size:14px;line-height:1.25;max-width:160px}
 .side{font-size:10px;color:var(--mut);text-transform:uppercase;margin-top:2px}
@@ -261,10 +284,19 @@ select option{background:#0b1a2c}
 .main-m .lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#ffdf9a99}
 .main-m .val{display:block;font-size:19px;font-weight:800;color:#fff;margin:4px 0 2px}
 .main-m .hint{font-size:12px;color:#d8e6f8bb;display:block}
-.conf{margin-top:11px}
-.conf .track{height:7px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
-.conf .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.conf .txt{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin-top:5px}
+/* mercado e odd de referência */
+.mercado{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:11px;padding:10px 12px;border-radius:12px;
+ background:rgba(0,0,0,.32);border:1px solid var(--stroke2)}
+.mercado .mk{font-size:13.5px;font-weight:800;color:#fff}
+.mercado .od{margin-left:auto;font-size:12px;color:var(--mut)}
+.mercado .od b{color:var(--gold);font-size:14px}
+.conf{margin-top:10px}
+.conf .track{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.conf .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.forca{display:inline-block;margin-left:7px;padding:2px 9px;border-radius:99px;font-size:10px;font-weight:800;letter-spacing:.06em}
+.forca.alta{background:rgba(46,232,138,.16);color:#8bffc4}
+.forca.media{background:rgba(255,201,74,.16);color:#ffdf9a}
+.forca.baixa{background:rgba(255,176,32,.14);color:#ffd98a}
 .why{margin-top:14px;padding:14px 15px;border-radius:16px;border:1px solid rgba(94,200,255,.28);background:rgba(94,200,255,.07)}
 .why .lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#9fd8ff;display:block;margin-bottom:6px}
 .why p{margin:0;font-size:12.8px;line-height:1.65;color:#dbeaf9}
@@ -290,23 +322,25 @@ select option{background:#0b1a2c}
 .st{background:rgba(0,0,0,.26);border:1px solid var(--stroke);border-radius:13px;padding:10px 8px;text-align:center}
 .st b{display:block;font-size:15px;color:#fff}
 .st small{font-size:9.5px;color:var(--mut);text-transform:uppercase}
-details{margin-top:14px;border-top:1px solid var(--stroke);padding-top:12px}
-summary{cursor:pointer;font-size:13px;color:#9fd0ff;font-weight:600;list-style:none;padding:2px 0}
+details{margin-top:14px;border-top:1px solid var(--stroke);padding-top:11px}
+summary{cursor:pointer;font-size:12.5px;color:#9fd0ff;font-weight:600;list-style:none;padding:2px 0}
 summary::-webkit-details-marker{display:none}
 summary:before{content:"▸ "}
 details[open] summary:before{content:"▾ "}
-.mrow{margin-top:10px;padding:11px 13px;border-radius:12px;background:rgba(3,10,20,.55);border:1px solid var(--stroke)}
+.mrow{margin-top:9px;padding:10px 12px;border-radius:12px;background:rgba(3,10,20,.55);border:1px solid var(--stroke)}
 .mrow .h{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;font-weight:700}
 .pass{color:var(--ok)}.fail{color:var(--bad)}
-.score{color:var(--mut);font-size:11.5px;font-weight:600;white-space:nowrap}
-.crit{margin:7px 0 0;padding:0;list-style:none;font-size:11.5px;line-height:1.6}
+.score{color:var(--mut);font-size:11px;font-weight:600;white-space:nowrap}
+.grupo{margin:7px 0 3px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.grupo.trava{color:#ffb3b9}
+.crit{margin:4px 0 0;padding:0;list-style:none;font-size:11.5px;line-height:1.55}
 .crit li{margin:2px 0;padding-left:15px;text-indent:-15px}
-.crit .y{color:#9fe8c2}.crit .n{color:#ffb3b9}
-.mc-foot{margin-top:16px;border-top:1px solid var(--stroke);background:rgba(3,9,18,.55);padding:14px 20px 16px;position:relative;z-index:2}
-.foot-line{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.wm-tag{font-size:12px;font-weight:800;color:rgba(255,201,74,.55)}
-.risk{margin-top:11px;font-size:10.5px;line-height:1.6;color:#cfdcec;
- border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:8px 11px;background:rgba(0,0,0,.3)}
+.crit .y{color:#9fe8c2}.crit .n{color:#ffb3b9}.crit .t{color:#ffd0d4}
+.mc-foot{margin-top:15px;border-top:1px solid var(--stroke);background:rgba(3,9,18,.55);padding:12px 19px 14px;position:relative;z-index:2}
+.foot-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.foot-line .wm-tag{margin-left:auto;font-size:11.5px;font-weight:800;color:rgba(255,201,74,.5)}
+.risk{margin-top:10px;font-size:10px;line-height:1.55;color:#cfdcec;
+ border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:7px 10px;background:rgba(0,0,0,.3)}
 .empty{text-align:center;color:var(--mut);padding:64px 20px}
 .empty .ic{font-size:44px;opacity:.5}
 .log{max-height:190px;overflow:auto;font:12px ui-monospace,Consolas,monospace;color:#a9c2de;
@@ -320,13 +354,13 @@ details[open] summary:before{content:"▾ "}
  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));display:flex;flex-direction:column}
 .live-card.done{opacity:.6;filter:saturate(.5)}
 .live-card.done:hover{opacity:1;filter:none}
-.lc-head{padding:16px 18px;display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--stroke);background:rgba(0,0,0,.22)}
+.lc-head{padding:15px 18px;display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--stroke);background:rgba(0,0,0,.22)}
 .lc-head .info{min-width:0;flex:1}
 .lc-head .nm{font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lc-head .mt{font-size:11px;color:var(--mut);text-transform:uppercase;margin-top:2px}
 .lc-method{padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:800;white-space:nowrap;
  background:rgba(255,201,74,.13);color:#ffdf9a;border:1px solid rgba(255,201,74,.35)}
-.scoreboard{padding:18px;background:rgba(0,0,0,.28);border-bottom:1px solid var(--stroke)}
+.scoreboard{padding:17px;background:rgba(0,0,0,.28);border-bottom:1px solid var(--stroke)}
 .sb-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
 .sb-side{display:flex;flex-direction:column;align-items:center;gap:8px}
 .sb-side .nm{font-size:12px;font-weight:700;text-align:center;max-width:130px}
@@ -347,25 +381,26 @@ details[open] summary:before{content:"▾ "}
 .flag.on{border-style:solid;border-color:rgba(255,95,109,.5);background:rgba(255,95,109,.12);color:#ffb3b9}
 .flag .bx{width:15px;height:15px;border-radius:4px;border:1.6px solid var(--stroke2);display:grid;place-items:center;font-size:10px}
 .flag.on .bx{background:var(--bad);border-color:var(--bad);color:#fff}
-.verdict{padding:17px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--stroke)}
+.verdict{padding:16px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--stroke)}
 .verdict.go{background:linear-gradient(120deg,rgba(46,232,138,.16),rgba(46,232,138,.03))}
 .verdict.wait{background:linear-gradient(120deg,rgba(255,176,32,.16),rgba(255,176,32,.03))}
 .verdict.stop{background:linear-gradient(120deg,rgba(255,95,109,.16),rgba(255,95,109,.03))}
 .verdict.done{background:linear-gradient(120deg,rgba(120,138,160,.18),rgba(0,0,0,.1))}
-.verdict .ic{font-size:30px;flex:none}
+.verdict .ic{font-size:29px;flex:none}
 .verdict .tx{flex:1;min-width:0}
-.verdict .t1{font-size:16px;font-weight:900}
+.verdict .t1{font-size:15.5px;font-weight:900}
 .verdict.go .t1{color:#8bffc4}.verdict.wait .t1{color:#ffd98a}
 .verdict.stop .t1{color:#ffb3b9}.verdict.done .t1{color:#c3d0e0}
 .verdict .t2{font-size:12.5px;color:#dceaf8;margin-top:3px;line-height:1.5}
-.market{margin-top:8px;display:inline-block;padding:6px 12px;border-radius:10px;font-size:13px;font-weight:800;
- background:rgba(0,0,0,.32);border:1px solid var(--stroke2);color:#fff}
+.market{margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 12px;border-radius:10px;
+ background:rgba(0,0,0,.32);border:1px solid var(--stroke2)}
 .market b{color:var(--gold)}
-.lc-sec{padding:16px 18px;border-bottom:1px solid var(--stroke)}
-.lc-sec h4{margin:0 0 11px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+.market .cp{margin-left:auto;padding:4px 9px;font-size:11px;border-radius:8px}
+.lc-sec{padding:15px 18px;border-bottom:1px solid var(--stroke)}
+.lc-sec h4{margin:0 0 10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
  display:flex;justify-content:space-between;align-items:center}
 .lc-sec h4 .cnt{font-size:11px;color:#ffdf9a}
-.chk{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:12px;margin-bottom:7px;cursor:pointer;
+.chk{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:12px;margin-bottom:6px;cursor:pointer;
  user-select:none;border:1px solid var(--stroke);background:rgba(0,0,0,.2)}
 .chk:hover{border-color:var(--stroke2)}
 .chk.on{border-color:rgba(46,232,138,.45);background:rgba(46,232,138,.08)}
@@ -377,17 +412,17 @@ details[open] summary:before{content:"▾ "}
 .chk.auto .bx{background:rgba(255,255,255,.08);border-style:dashed;color:transparent}
 .chk.auto.on .bx{background:var(--info);border-color:var(--info);border-style:solid;color:#042033}
 .chk .aut{font-size:10px;text-transform:uppercase;color:var(--info);margin-left:6px}
-.notes{width:100%;min-height:70px;resize:vertical;border-radius:12px;padding:11px 13px;font:inherit;font-size:12.5px;
+.notes{width:100%;min-height:64px;resize:vertical;border-radius:12px;padding:10px 12px;font:inherit;font-size:12.5px;
  color:var(--txt);background:rgba(0,0,0,.26);border:1px solid var(--stroke);outline:none}
-.lc-foot{padding:13px 18px;display:flex;gap:9px;flex-wrap:wrap;align-items:center;background:rgba(3,9,18,.5)}
+.lc-foot{padding:12px 18px;display:flex;gap:9px;flex-wrap:wrap;align-items:center;background:rgba(3,9,18,.5)}
 .lc-foot .wm{margin-left:auto;font-size:11px;font-weight:800;color:rgba(255,201,74,.5)}
-.mesa-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.mesa-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
 .msum{border:1px solid var(--stroke);border-radius:16px;padding:14px 16px;background:rgba(0,0,0,.22)}
 .msum b{display:block;font-size:25px;font-weight:800;line-height:1}
 .msum.go b{color:#8bffc4}.msum.wait b{color:#ffd98a}
 .msum.stop b{color:#ffb3b9}.msum.done b{color:#c3d0e0}
 .msum small{color:var(--mut);font-size:11px;text-transform:uppercase}
-.nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:7px;border-radius:18px;
+.nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px;padding:7px;border-radius:18px;
  border:1px solid var(--stroke);background:rgba(0,0,0,.25);backdrop-filter:blur(10px);width:100%}
 .navspacer{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .nav button{border:0;background:transparent;color:var(--mut);padding:11px 20px;border-radius:13px;font-weight:700;font-size:14px;cursor:pointer}
@@ -396,7 +431,6 @@ details[open] summary:before{content:"▾ "}
 .nav button .badge{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:99px;font-size:11px;background:rgba(0,0,0,.25)}
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-thumb{background:#2f4a6b;border-radius:9px}
-@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid,.mesa-grid{grid-template-columns:1fr}
  .srcgrid{grid-template-columns:1fr}.mesa-sum{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){
@@ -408,6 +442,8 @@ details[open] summary:before{content:"▾ "}
  .fab{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:58px;height:58px}
  .heroside{width:100%;justify-content:flex-start}
  .grid,.mesa-grid{grid-template-columns:1fr!important}
+ .metsum{gap:7px;padding:12px}
+ .mchip{padding:7px 11px;font-size:12px}
 }
 @media(display-mode:standalone){.wrap{padding-top:calc(20px + env(safe-area-inset-top,0px))}}
 </style>
@@ -418,12 +454,11 @@ details[open] summary:before{content:"▾ "}
 <header class="hero">
   <div class="logo"><div class="rune">TV</div>
     <div><h1><b>TRADERVIKINGBR</b> · LIVE DESK</h1>
-    <p>Manhã · Tarde · Noite — ondas de 4 jogos a cada 45 minutos</p></div></div>
+    <p>Travas obrigatórias + pontuação de apoio · ondas de 45 minutos</p></div></div>
   <div class="heroside">
     <span class="netchip" id="netChip">📴 Offline</span>
     <span class="appchip" id="appChip">📱 Modo app</span>
     <button id="installBtn">⬇️ Instalar app</button>
-    <div class="pill">PROTOCOLO ARKEIRO</div>
   </div>
 </header>
 
@@ -447,6 +482,7 @@ details[open] summary:before{content:"▾ "}
 </div>
 
 <button class="fab" id="fabZen" onclick="toggleZen()" title="Modo foco · tecla Z">🎯</button>
+<div class="toast" id="toast">Copiado</div>
 
 <div class="swtoast" id="swToast">
   <div class="tx"><b>Nova versão disponível</b>Recarregue para aplicar.</div>
@@ -502,6 +538,7 @@ details[open] summary:before{content:"▾ "}
   </div>
   <div class="bar">
     <button id="pdfBtn" disabled>🖨️ Caderno de live (PDF)</button>
+    <button id="copyAll" class="mini">📋 Copiar grade</button>
     <button id="clear">↺ Limpar</button>
     <span class="status" id="status">Nenhuma partida carregada</span>
   </div>
@@ -525,29 +562,29 @@ details[open] summary:before{content:"▾ "}
     <label>🌓 Período <select id="periodFilter">
       <option value="all">Todos</option><option value="manha">Manhã</option>
       <option value="tarde">Tarde</option><option value="noite">Noite</option></select></label>
-    <label>🎯 Método <select id="methodFilter"><option value="all">Todos</option></select></label>
-    <label>✅ Janela <select id="decisionFilter">
-      <option value="all">Todas</option><option value="ativo">Em janela</option>
-      <option value="excedente">Fora de janela</option></select></label>
+    <label>💪 Força <select id="forcaFilter">
+      <option value="all">Todas</option><option value="alta">Alta</option>
+      <option value="media">Média</option><option value="baixa">Baixa</option></select></label>
     <label>🏁 Situação <select id="finFilter">
       <option value="aberta">Em aberto</option><option value="all">Todas</option>
       <option value="done">Finalizadas</option><option value="green">Só green</option>
       <option value="red">Só red</option></select></label>
-    <label>📌 Seleção <select id="pickFilter">
-      <option value="all">Todas</option><option value="on">Selecionadas</option><option value="off">Não selecionadas</option></select></label>
+    <select id="methodFilter" class="hidden"><option value="all">all</option></select>
+    <select id="decisionFilter" class="hidden"><option value="all">all</option></select>
+    <select id="pickFilter" class="hidden"><option value="all">all</option></select>
     <label><input type="checkbox" id="showNoMethod" style="width:16px;height:16px;padding:0"> Mostrar sem método</label>
-    <input type="text" id="search" placeholder="🔎 Buscar">
+    <input type="text" id="search" placeholder="🔎 Buscar time ou liga">
   </div>
   <div class="alert" id="libAlert"></div>
 </section>
 
+<div class="metsum hidden" id="metsum"></div>
+
 <section class="kpis">
   <div class="kpi"><div class="n" id="kGames">0</div><div class="l">Com método</div></div>
-  <div class="kpi"><div class="n" id="kManha">0</div><div class="l">Manhã</div></div>
-  <div class="kpi"><div class="n" id="kTarde">0</div><div class="l">Tarde</div></div>
-  <div class="kpi"><div class="n" id="kNoite">0</div><div class="l">Noite</div></div>
-  <div class="kpi fin"><div class="n" id="kFin">0</div><div class="l">Finalizadas</div></div>
-  <div class="kpi"><div class="n" id="kPick">0</div><div class="l">Selecionadas</div></div>
+  <div class="kpi alta"><div class="n" id="kAlta">0</div><div class="l">Força alta</div></div>
+  <div class="kpi"><div class="n" id="kOndas">0</div><div class="l">Ondas hoje</div></div>
+  <div class="kpi"><div class="n" id="kProx">—</div><div class="l">Próxima onda</div></div>
 </section>
 
 <section id="content">
@@ -595,7 +632,11 @@ const MAX_ONDA=4, GAP_ONDA=45, AMOSTRA_MIN=8;
 const BANDS=['0-15','16-30','31-45','46-60','61-75','76-90'];
 const METHODS=['back_favorito','over_limite_70','back_2x2','lay_zebra','lay_1x0','lay_0x1','back_goleada'];
 const LABEL={back_favorito:'Back Favorito',over_limite_70:'Over Limite (+1 gol)',back_2x2:'Back 2x2',lay_zebra:'Lay Zebra',lay_1x0:'Lay 1×0',lay_0x1:'Lay 0×1',back_goleada:'Back Goleada'};
+const CURTO={back_favorito:'Back Fav',over_limite_70:'Over Limite',back_2x2:'Back 2x2',lay_zebra:'Lay Zebra',lay_1x0:'Lay 1×0',lay_0x1:'Lay 0×1',back_goleada:'Goleada'};
 const HINT={back_favorito:'Confirmar escalação e domínio nos primeiros 15 minutos',over_limite_70:'Entrada ao vivo após 65min · nunca em 0x0, goleada ou expulsão',back_2x2:'Pré-jogo · cash-out em 1x1, 2x1 ou 1x2',lay_zebra:'Lay na zebra · melhor gatilho se a zebra abrir o placar',lay_1x0:'Correct Score · cash-out em 0-1, 1-1 ou 60min sem gol',lay_0x1:'Correct Score · cash-out em 1-0, 1-1 ou 60min sem gol',back_goleada:'Exige favorito devorador e defesa adversária frágil'};
+/* odd de referência por método */
+const ODD_REF={back_favorito:'1.45 a 1.80',over_limite_70:'1.70 a 2.20',back_2x2:'11.00 a 16.00',
+ lay_zebra:'5.00 ou mais',lay_1x0:'9.00 a 12.00',lay_0x1:'9.00 a 13.00',back_goleada:'6.00 a 12.00'};
 const PLAN={
  back_favorito:['Confirmar escalação titular','Observar os primeiros 15 minutos','Se sofrer gol cedo, reavaliar'],
  over_limite_70:['Não entrar antes dos 65 minutos','Nunca entrar em 0x0','Nunca com diferença de 3+ gols','Nunca após expulsão','Linha = total atual + 1'],
@@ -603,24 +644,22 @@ const PLAN={
  lay_zebra:['Lay sempre na zebra','Gatilho: zebra abre o placar','Entrada antes dos 60 minutos'],
  lay_1x0:['Stake 2% · odd ideal ~10.50','Cash-out se 0-1 ou 1-1','Cash-out após 60min sem gol'],
  lay_0x1:['Stake 2% · odd ideal ~11.00','Cash-out se 1-0 ou 1-1','Cash-out após 60min sem gol'],
- back_goleada:['Exige 2-0 ou 3-0 com pressão','Observar derrocada do adversário','Reavaliar se o favorito recuar']
-};
+ back_goleada:['Exige 2-0 ou 3-0 com pressão','Observar derrocada do adversário','Reavaliar se o favorito recuar']};
 const CHECKS={
  back_favorito:['Escalação titular confirmada','Favorito dominando','Criando chances claras','Sem baixa relevante'],
  over_limite_70:['Jogo aberto','Favorito pressionando','Substituições ofensivas feitas','Ritmo mantido'],
  back_2x2:['Defesas frágeis confirmadas','Ambos criando chances','Espaços entre linhas'],
  lay_zebra:['Favorito no controle','Zebra recuada','Odd ainda atrativa'],
- lay_1x0:['Visitante criando chances','Ritmo dos dois lados','Odd entre 9.00 e 12.00'],
- lay_0x1:['Mandante criando chances','Ritmo dos dois lados','Odd entre 9.00 e 13.00'],
- back_goleada:['Pressão alta mantida','Adversário em derrocada','Favorito sem poupar']
-};
+ lay_1x0:['Visitante criando chances','Ritmo dos dois lados','Odd dentro da faixa'],
+ lay_0x1:['Mandante criando chances','Ritmo dos dois lados','Odd dentro da faixa'],
+ back_goleada:['Pressão alta mantida','Adversário em derrocada','Favorito sem poupar']};
 const PERIODS={
  manha:{key:'manha',label:'Manhã',icon:'🌅',range:'00:00 às 11:59',order:0},
  tarde:{key:'tarde',label:'Tarde',icon:'☀️',range:'12:00 às 17:59',order:1},
  noite:{key:'noite',label:'Noite',icon:'🌙',range:'18:00 às 23:59',order:2},
  sem:{key:'sem',label:'Sem horário',icon:'🕘',range:'',order:3}};
 const RES={green:{ic:'🟢',lbl:'Green',cls:'green'},red:{ic:'🔴',lbl:'Red',cls:'red'},void:{ic:'⚪',lbl:'Anulado',cls:'void'},none:{ic:'🏁',lbl:'Finalizada',cls:''}};
-const RISK='JOGO RESPONSÁVEL · Apostar envolve risco de perdas financeiras e pode causar dependência. Aposta não é investimento. Proibido para menores de 18 anos.';
+const RISK='JOGO RESPONSÁVEL · Apostar envolve risco de perdas e pode causar dependência. Aposta não é investimento. +18';
 const LIGAS=['UEFA Champions League','UEFA Europa League','UEFA Conference League','UEFA Nations League',
  'Brazil Serie A','Brazil Serie B','Brazil Serie C','Brazil Copa do Brasil','Copa Libertadores','Copa Sudamericana',
  'Italy Serie A','Italy Serie B','Coppa Italia','England Premier League','Premier League','England Championship',
@@ -635,17 +674,35 @@ const num=s=>{const n=Number(String(s).replace(',','.'));return Number.isFinite(
 const avg=a=>{const v=a.filter(Number.isFinite);return v.length&&v.length===a.length?v.reduce((x,y)=>x+y,0)/v.length:null};
 const sum=a=>a.reduce((x,y)=>x+(y||0),0);
 function log(t){$('#logPanel').classList.remove('hidden');$('#log').innerHTML+=new Date().toLocaleTimeString('pt-BR')+' · '+t+'<br>'}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1600)}
 function libsOK(){const m=[];if(typeof pdfjsLib==='undefined')m.push('PDF.js');if(typeof html2canvas==='undefined')m.push('html2canvas');if(!window.jspdf)m.push('jsPDF');
  if(m.length){$('#libAlert').classList.add('show');$('#libAlert').textContent='Falha ao carregar: '+m.join(', ');return false}
  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';return true}
 function storeKey(){return 'tvbr_fin_'+(dataAtual||'manual')}
 function saveState(){try{const o={};games.forEach(g=>{if(g.fin.done||g.live.nota||g.pick===false)o[g.file]={f:g.fin,p:g.pick,n:g.live.nota}});
- localStorage.setItem(storeKey(),JSON.stringify(o))}catch(e){}}
+ localStorage.setItem(storeKey(),JSON.stringify(o));salvarHistorico()}catch(e){}}
 function loadState(){try{const raw=localStorage.getItem(storeKey());if(!raw)return;
  const o=JSON.parse(raw);games.forEach(g=>{const s=o[g.file];if(s){if(s.f)g.fin=Object.assign(g.fin,s.f);if(s.p===false)g.pick=false;if(s.n)g.live.nota=s.n}});
  const n=games.filter(g=>g.fin.done).length;if(n)log('Restauradas '+n+' finalizada(s)')}catch(e){}}
+/* histórico acumulado por método, entre dias */
+function lerHistorico(){try{return JSON.parse(localStorage.getItem('tvbr_hist')||'{}')}catch(e){return{}}}
+function salvarHistorico(){
+ try{
+  const h=lerHistorico();
+  h[dataAtual||'manual']={};
+  games.filter(g=>g.fin.done&&g.analysis.principal&&g.fin.res!=='none').forEach(g=>{
+   const k=g.analysis.principal;
+   h[dataAtual||'manual'][k]=h[dataAtual||'manual'][k]||{g:0,r:0,v:0};
+   h[dataAtual||'manual'][k][g.fin.res==='green'?'g':g.fin.res==='red'?'r':'v']++});
+  localStorage.setItem('tvbr_hist',JSON.stringify(h));
+ }catch(e){}}
+function histMetodo(k){
+ const h=lerHistorico();let g=0,r=0;
+ Object.values(h).forEach(dia=>{if(dia[k]){g+=dia[k].g||0;r+=dia[k].r||0}});
+ return{g,r,tot:g+r}}
 function toMin(t){const m=/^(\d{1,2}):(\d{2})$/.exec((t||'').trim());return m?(+m[1])*60+(+m[2]):null}
 function fromMin(v){const h=Math.floor(v/60)%24,m=v%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')}
+function agoraMin(){const d=new Date();return d.getHours()*60+d.getMinutes()}
 function periodOf(t){const mm=toMin(t);if(mm==null)return PERIODS.sem;
  if(mm<12*60)return PERIODS.manha;if(mm<18*60)return PERIODS.tarde;return PERIODS.noite}
 function setTab(t){tab=t;
@@ -775,24 +832,16 @@ function parseDist(b){
   H.s.push(+m[1]);H.c.push(+m[2]);A.s.push(+m[3]);A.c.push(+m[4])}
  if(sum(H.s)+sum(A.s)===0)return null;
  return{H,A}}
-/* ===== Marcou primeiro / Concedeu primeiro =====
-   Formato:  "Marcou primeiro 3 Venceu 3 1 Perdeu 2 2 Empatou 3"  */
 function parseVED(b,titulo){
  const re=new RegExp(titulo+'[\\s\\S]{0,160}?(\\d+)\\s+Venceu\\s+(\\d+)[\\s\\S]{0,40}?(\\d+)\\s+Perdeu\\s+(\\d+)[\\s\\S]{0,40}?(\\d+)\\s+Empatou\\s+(\\d+)','i');
- const m=b.match(re);
- if(!m)return null;
+ const m=b.match(re);if(!m)return null;
  const H={v:+m[1],d:+m[3],e:+m[5]},A={v:+m[2],d:+m[4],e:+m[6]};
  const tH=H.v+H.d+H.e,tA=A.v+A.d+A.e;
  if(!tH&&!tA)return null;
- return{H,A,totH:tH,totA:tA,
-  pvH:tH?Math.round(100*H.v/tH):null, pvA:tA?Math.round(100*A.v/tA):null,
-  ppH:tH?Math.round(100*H.d/tH):null, ppA:tA?Math.round(100*A.d/tA):null};
-}
+ return{H,A,pvH:tH?Math.round(100*H.v/tH):null,pvA:tA?Math.round(100*A.v/tA):null}}
 function parseBlock(b){
  const g=b.match(/Média de gols\s+([\d,]+) Marcados\s+([\d,]+)\s+([\d,]+) Sofridos\s+([\d,]+)\s+([\d,]+) Total\s+([\d,]+)/i);
- /* Após os 75min — % de JOGOS em que marcou / concedeu na reta final */
  const ap=b.match(/Ap[óo]s os 75min\s+(\d+)%\s+Marcou\s+(\d+)%\s+(\d+)%\s+Concedeu\s+(\d+)%/i);
- /* notas de rodapé: "Apenas 23 partidas foram usadas" */
  const notas=[...b.matchAll(/Apenas\s+(\d+)\s+partidas?\s+foram\s+usadas/gi)].map(x=>+x[1]);
  return{
   jogos:pair(/(\d+)\s+Jogos\s+(\d+)/i,b),
@@ -835,158 +884,158 @@ function lateMetrics(dist){
  return{H:{pS:BANDS.map((_,i)=>f(dist.H.s,i,tHs)),pC:BANDS.map((_,i)=>f(dist.H.c,i,tHc))},
   A:{pS:BANDS.map((_,i)=>f(dist.A.s,i,tAs)),pC:BANDS.map((_,i)=>f(dist.A.c,i,tAc))},
   apos60:(sH.apos60!=null&&sA.apos60!=null)?Math.round((sH.apos60+sA.apos60)/2):null}}
-const crit=(ok,label,why,has=true)=>({ok:has&&!!ok,label,why:has?String(why):'dado ausente no PDF'});
-
+const T=(ok,label,why,has=true)=>({tipo:'trava',ok:has&&!!ok,label,why:has?String(why):'dado ausente no PDF',has});
+const P=(ok,label,why,has=true)=>({tipo:'apoio',ok:has&&!!ok,label,why:has?String(why):'dado ausente no PDF',has});
+function avaliar(def){
+ const travas=def.itens.filter(i=>i.tipo==='trava');
+ const apoio=def.itens.filter(i=>i.tipo==='apoio');
+ const travasOK=travas.every(i=>i.ok);
+ const nApoio=apoio.filter(i=>i.ok).length;
+ let gruposOK=true,gruposDet=[];
+ if(def.grupos)def.grupos.forEach(gr=>{
+  const ok=gr.idx.some(i=>def.itens[i]&&def.itens[i].ok);
+  gruposDet.push({nome:gr.nome,ok});if(!ok)gruposOK=false});
+ const aprovado=travasOK&&gruposOK&&nApoio>=(def.min||0);
+ const pct=apoio.length?Math.round(100*nApoio/apoio.length):(aprovado?100:0);
+ const forca=!aprovado?null:(pct>=100?'alta':pct>=67?'media':'baixa');
+ return{itens:def.itens,travas,apoio,travasOK,gruposOK,gruposDet,nApoio,minApoio:def.min||0,
+  aprovado,pct,forca}}
 function assess(meta,S){
  const s=S.ha,g=S.global,[oh,od,oa]=meta.odds;
  let probs=[null,null,null];
  if([oh,od,oa].every(Number.isFinite)){const inv=[1/oh,1/od,1/oa],t=inv[0]+inv[1]+inv[2];probs=inv.map(x=>100*x/t)}
  const fav=(probs[0]??0)>=(probs[2]??0)?0:1,zeb=1-fav;
- const probFav=probs[fav],zebOdd=zeb===0?oh:oa;
+ const probFav=probs[fav],zebOdd=zeb===0?oh:oa,favOdd=fav===0?oh:oa;
  let btts=s.btts.every(Number.isFinite)?s.btts:(s.fts.every(Number.isFinite)?[100-s.fts[0],100-s.fts[1]]:null);
  const bttsAvg=btts?avg(btts):null,overAvg=avg(s.over),totalAvg=avg(s.total);
  const mkH=s.fts[0]!=null?100-s.fts[0]:null,mkA=s.fts[1]!=null?100-s.fts[1]:null;
  const ppj=s.ppj,cs=s.cs,jogos=s.jogos;
  const ppjFav=ppj[fav],ppjZeb=ppj[zeb];
  const ppjDif=(ppjFav!=null&&ppjZeb!=null)?+(ppjFav-ppjZeb).toFixed(2):null;
- const sgH=cs[0]!=null?100-cs[0]:null, sgA=cs[1]!=null?100-cs[1]:null;
- const sgFav=cs[fav]!=null?100-cs[fav]:null, sgZeb=cs[zeb]!=null?100-cs[zeb]:null;
+ const sgH=cs[0]!=null?100-cs[0]:null,sgA=cs[1]!=null?100-cs[1]:null;
+ const sgFav=cs[fav]!=null?100-cs[fav]:null,sgZeb=cs[zeb]!=null?100-cs[zeb]:null;
  const sgAvg=(sgH!=null&&sgA!=null)?Math.round((sgH+sgA)/2):null;
- /* ===== APÓS OS 75MIN — % de jogos ===== */
- const ap75MFav=s.ap75M[fav], ap75CZeb=s.ap75C[zeb];
- const ap75Any=(s.ap75M.every(Number.isFinite)&&s.ap75C.every(Number.isFinite))
-  ? Math.max(s.ap75M[0],s.ap75M[1],s.ap75C[0],s.ap75C[1]) : null;
- /* ===== REAÇÃO APÓS SOFRER O PRIMEIRO GOL ===== */
- const cp=s.concedeuPri;
- const reacFav=cp?(fav===0?cp.pvH:cp.pvA):null;   /* % de vitórias do favorito quando sofre primeiro */
- const reacZeb=cp?(zeb===0?cp.pvH:cp.pvA):null;
- const mp=s.marcouPri;
- const holdFav=mp?(fav===0?mp.pvH:mp.pvA):null;   /* % de vitórias do favorito quando marca primeiro */
- /* amostra real: menor valor entre Jogos e as notas de rodapé */
+ const ap75MFav=s.ap75M[fav],ap75CZeb=s.ap75C[zeb];
+ const cp=s.concedeuPri,mp=s.marcouPri;
+ const reacFav=cp?(fav===0?cp.pvH:cp.pvA):null;
+ const holdFav=mp?(fav===0?mp.pvH:mp.pvA):null;
  let amostra=jogos.every(Number.isFinite)?Math.min(jogos[0],jogos[1]):null;
  if(s.notas&&s.notas.length){const mn=Math.min(...s.notas);amostra=amostra!=null?Math.min(amostra,mn):mn}
- const LM=lateMetrics(s.dist),o={};
-
- o.back_favorito=[
-  crit(probFav>=65,'prob. normalizada ≥ 65%',probFav?probFav.toFixed(1)+'%':'',probFav!=null),
-  crit(ppjDif>=0.8,'vantagem de PPJ ≥ 0.80',ppjDif!=null?ppjFav.toFixed(2)+' vs '+ppjZeb.toFixed(2)+' (+'+ppjDif.toFixed(2)+')':'',ppjDif!=null),
-  crit(s.win[zeb]<35,'adversário < 35% de vitórias',s.win[zeb]+'%',s.win[zeb]!=null)];
- o.lay_zebra=[
-  crit(zebOdd>=5,'odd da zebra ≥ 5.00',zebOdd,zebOdd!=null),
-  crit(ppjZeb<=1.0,'zebra com PPJ ≤ 1.00',ppjZeb!=null?ppjZeb.toFixed(2):'',ppjZeb!=null),
-  crit(sgZeb>=75,'zebra sofre gol em ≥ 75%',sgZeb+'%',sgZeb!=null),
-  crit(reacFav>=30,'favorito vence ≥ 30% quando sofre primeiro',
-   reacFav!=null?reacFav+'% ('+(fav===0?cp.H.v+'V '+cp.H.d+'D '+cp.H.e+'E':cp.A.v+'V '+cp.A.d+'D '+cp.A.e+'E')+')':'',reacFav!=null)];
+ const LM=lateMetrics(s.dist);
  const F=fav===0?'H':'A',Z=zeb===0?'H':'A';
  const favS61=LM?LM[F].pS[4]:null,favS76=LM?LM[F].pS[5]:null;
  const advC61=LM?LM[Z].pC[4]:null,advC76=LM?LM[Z].pC[5]:null;
- const favS46=LM?LM[F].pS[3]:null,advC46=LM?LM[Z].pC[3]:null;
- o.over_limite_70=[
-  crit(favS61>=25,'favorito marca 61-75 ≥ 25%',favS61+'%',favS61!=null),
-  crit(favS76>=25,'favorito marca 76-90 ≥ 25%',favS76+'%',favS76!=null),
-  crit(advC61>=25,'adversário sofre 61-75 ≥ 25%',advC61+'%',advC61!=null),
-  crit(advC76>=25,'adversário sofre 76-90 ≥ 25%',advC76+'%',advC76!=null),
-  crit(LM&&LM.apos60>=45,'gols após 60 min ≥ 45%',LM?LM.apos60+'%':'',!!LM),
-  crit(ap75CZeb>=30,'adversário concede após 75min em ≥ 30% dos jogos',ap75CZeb+'%',ap75CZeb!=null),
-  crit(ap75MFav>=25,'favorito marca após 75min em ≥ 25% dos jogos',ap75MFav+'%',ap75MFav!=null),
-  crit(sgAvg>=75,'ambos sofrem gol em ≥ 75%',sgAvg+'%',sgAvg!=null),
-  crit((favS46>=25||advC46>=25),'faixa 46-60 ativa ≥ 25%',
-   (favS46!=null?'fav '+favS46+'%':'')+(advC46!=null?' · adv '+advC46+'%':''),favS46!=null||advC46!=null)];
- o.back_2x2=[
-  crit(overAvg>=60,'Over 2.5 médio ≥ 60%',overAvg+'%',overAvg!=null),
-  crit(bttsAvg>=60,'BTTS médio ≥ 60%',bttsAvg+'%',bttsAvg!=null),
-  crit(s.conceded.every(x=>x>=1.2),'ambas sofrem ≥ 1.2 gol/jogo',s.conceded.join(' / '),s.conceded.every(Number.isFinite)),
-  crit(sgAvg>=75,'ambos sofrem gol em ≥ 75%',sgAvg+'%',sgAvg!=null)];
- const g5=(g.scored[fav]!=null&&/últimos 5/i.test(curText))?g.scored[fav]:null;
- o.back_goleada=[
-  crit(probFav>=70,'prob. favorito ≥ 70%',probFav?probFav.toFixed(1)+'%':'',probFav!=null),
-  crit(g5>=2.5,'favorito ≥ 2.5 gols (últimos 5)',g5,g5!=null),
-  crit(s.conceded[zeb]>=2,'adversário sofre ≥ 2.0 gol/jogo',s.conceded[zeb],s.conceded[zeb]!=null),
-  crit(ppjDif>=1.0,'vantagem de PPJ ≥ 1.00',ppjDif!=null?'+'+ppjDif.toFixed(2):'',ppjDif!=null),
-  crit(holdFav>=70,'favorito vence ≥ 70% quando marca primeiro',holdFav+'%',holdFav!=null)];
- const p10=totalAvg>=2.8||(totalAvg>=2.5&&totalAvg<2.8&&mkA>70),p01=totalAvg>=2.8||(totalAvg>=2.5&&totalAvg<2.8&&mkH>70);
- o.lay_1x0=[
-  crit(p10,'P(1-0) < 12%',totalAvg!=null?'média '+totalAvg.toFixed(2):'',totalAvg!=null&&mkA!=null),
-  crit(mkA>65,'visitante Over 0.5 > 65%',mkA+'%',mkA!=null),
-  crit(mkA>60,'visitante marca > 60%',mkA+'%',mkA!=null),
-  crit(totalAvg>=2.5,'média total ≥ 2.5',totalAvg?.toFixed(2),totalAvg!=null),
-  crit(bttsAvg>50,'BTTS > 50%',bttsAvg+'%',bttsAvg!=null),
-  crit(sgH>=70,'mandante sofre gol em ≥ 70%',sgH+'%',sgH!=null)];
- o.lay_0x1=[
-  crit(p01,'P(0-1) < 12%',totalAvg!=null?'média '+totalAvg.toFixed(2):'',totalAvg!=null&&mkH!=null),
-  crit(mkH>65,'mandante Over 0.5 > 65%',mkH+'%',mkH!=null),
-  crit(mkH>60,'mandante marca > 60%',mkH+'%',mkH!=null),
-  crit(totalAvg>=2.5,'média total ≥ 2.5',totalAvg?.toFixed(2),totalAvg!=null),
-  crit(bttsAvg>50,'BTTS > 50%',bttsAvg+'%',bttsAvg!=null),
-  crit(sgA>=70,'visitante sofre gol em ≥ 70%',sgA+'%',sgA!=null)];
- let app=METHODS.filter(k=>k==='over_limite_70'?o[k].filter(x=>x.ok).length>=5:o[k].every(x=>x.ok));
+ const p10est=(totalAvg!=null&&mkA!=null)?(totalAvg>=2.8?9:totalAvg>=2.5&&mkA>70?10:14):null;
+ const p01est=(totalAvg!=null&&mkH!=null)?(totalAvg>=2.8?9:totalAvg>=2.5&&mkH>70?10:14):null;
+ const R={};
+ R.back_favorito=avaliar({min:2,itens:[
+  T(probFav>=62,'prob. normalizada ≥ 62%',probFav?probFav.toFixed(1)+'%':'',probFav!=null),
+  P(ppjDif>=0.8,'vantagem de PPJ ≥ 0.80',ppjDif!=null?ppjFav.toFixed(2)+' vs '+ppjZeb.toFixed(2):'',ppjDif!=null),
+  P(s.win[zeb]<35,'adversário < 35% de vitórias',s.win[zeb]+'%',s.win[zeb]!=null),
+  P(holdFav>=60,'vence ≥ 60% quando marca primeiro',holdFav+'%',holdFav!=null),
+  P(sgFav<=60,'favorito sofre gol em ≤ 60%',sgFav+'%',sgFav!=null)]});
+ R.over_limite_70=avaliar({min:0,
+  grupos:[{nome:'A · favorito ataca tarde',idx:[0,1,2]},
+          {nome:'B · adversário cede tarde',idx:[3,4,5]},
+          {nome:'C · volume de gols',idx:[6,7,8]}],
+  itens:[
+   P(favS61>=25,'favorito marca 61-75 ≥ 25%',favS61+'%',favS61!=null),
+   P(favS76>=25,'favorito marca 76-90 ≥ 25%',favS76+'%',favS76!=null),
+   P(ap75MFav>=25,'favorito marca após 75min em ≥ 25%',ap75MFav+'%',ap75MFav!=null),
+   P(advC61>=25,'adversário sofre 61-75 ≥ 25%',advC61+'%',advC61!=null),
+   P(advC76>=25,'adversário sofre 76-90 ≥ 25%',advC76+'%',advC76!=null),
+   P(ap75CZeb>=30,'adversário concede após 75min em ≥ 30%',ap75CZeb+'%',ap75CZeb!=null),
+   P(totalAvg>=2.5,'média total ≥ 2.50',totalAvg?.toFixed(2),totalAvg!=null),
+   P(sgAvg>=75,'ambos sofrem gol em ≥ 75%',sgAvg+'%',sgAvg!=null),
+   P(LM&&LM.apos60>=45,'gols após 60 min ≥ 45%',LM?LM.apos60+'%':'',!!LM)]});
+ R.back_2x2=avaliar({min:2,itens:[
+  T(bttsAvg>=60,'BTTS médio ≥ 60%',bttsAvg+'%',bttsAvg!=null),
+  T(totalAvg>=2.6,'média total ≥ 2.60',totalAvg?.toFixed(2),totalAvg!=null),
+  P(overAvg>=60,'Over 2.5 médio ≥ 60%',overAvg+'%',overAvg!=null),
+  P(s.conceded.every(x=>x>=1.2),'ambas sofrem ≥ 1.2 gol/jogo',s.conceded.join(' / '),s.conceded.every(Number.isFinite)),
+  P(sgAvg>=75,'ambos sofrem gol em ≥ 75%',sgAvg+'%',sgAvg!=null)]});
+ R.lay_zebra=avaliar({min:2,itens:[
+  T(zebOdd>=5,'odd da zebra ≥ 5.00',zebOdd,zebOdd!=null),
+  T(reacFav>=30,'favorito vence ≥ 30% quando sofre primeiro',reacFav+'%',reacFav!=null),
+  P(ppjZeb<=1.0,'zebra com PPJ ≤ 1.00',ppjZeb!=null?ppjZeb.toFixed(2):'',ppjZeb!=null),
+  P(sgZeb>=75,'zebra sofre gol em ≥ 75%',sgZeb+'%',sgZeb!=null),
+  P(s.win[zeb]<20,'zebra < 20% de vitórias',s.win[zeb]+'%',s.win[zeb]!=null)]});
+ R.lay_1x0=avaliar({min:2,itens:[
+  T(mkA>65,'visitante marca em > 65% dos jogos',mkA+'%',mkA!=null),
+  T(totalAvg>=2.5,'média total ≥ 2.50',totalAvg?.toFixed(2),totalAvg!=null),
+  P(bttsAvg>50,'BTTS > 50%',bttsAvg+'%',bttsAvg!=null),
+  P(sgH>=70,'mandante sofre gol em ≥ 70%',sgH+'%',sgH!=null),
+  P(totalAvg>=2.8,'média total ≥ 2.80 (reforço)',totalAvg?.toFixed(2),totalAvg!=null)]});
+ R.lay_0x1=avaliar({min:2,itens:[
+  T(mkH>65,'mandante marca em > 65% dos jogos',mkH+'%',mkH!=null),
+  T(totalAvg>=2.5,'média total ≥ 2.50',totalAvg?.toFixed(2),totalAvg!=null),
+  P(bttsAvg>50,'BTTS > 50%',bttsAvg+'%',bttsAvg!=null),
+  P(sgA>=70,'visitante sofre gol em ≥ 70%',sgA+'%',sgA!=null),
+  P(totalAvg>=2.8,'média total ≥ 2.80 (reforço)',totalAvg?.toFixed(2),totalAvg!=null)]});
+ R.back_goleada=avaliar({min:2,itens:[
+  T(probFav>=70,'prob. favorito ≥ 70%',probFav?probFav.toFixed(1)+'%':'',probFav!=null),
+  T(s.conceded[zeb]>=1.8,'adversário sofre ≥ 1.80 gol/jogo',s.conceded[zeb],s.conceded[zeb]!=null),
+  P(ppjDif>=1.0,'vantagem de PPJ ≥ 1.00',ppjDif!=null?'+'+ppjDif.toFixed(2):'',ppjDif!=null),
+  P(s.scored[fav]>=2.0,'favorito marca ≥ 2.00 gol/jogo',s.scored[fav],s.scored[fav]!=null),
+  P(holdFav>=70,'vence ≥ 70% quando marca primeiro',holdFav+'%',holdFav!=null)]});
+ let app=METHODS.filter(k=>R[k].aprovado);
  if(app.includes('lay_1x0')&&app.includes('lay_0x1')){
   const s10=(mkA||0)+(s.scored[1]||0)*10,s01=(mkH||0)+(s.scored[0]||0)*10;
   app=app.filter(x=>x!=='lay_1x0'&&x!=='lay_0x1');app.push(s10>=s01?'lay_1x0':'lay_0x1')}
  app.sort((a,b)=>METHODS.indexOf(a)-METHODS.indexOf(b));
- const conf=k=>Math.round(100*o[k].filter(x=>x.ok).length/o[k].length);
- return{checks:o,app,principal:app[0]||null,secondary:app.slice(1),decision:app.length?'entrada':'evitar',
-  conf:app[0]?conf(app[0]):0,confN:app[0]?o[app[0]].filter(x=>x.ok).length:0,confT:app[0]?o[app[0]].length:0,
-  fav,zeb,LM,amostra,
-  m:{probFav,totalAvg,bttsAvg,overAvg,mkH,mkA,scored:s.scored,conceded:s.conceded,win:s.win,zebOdd,
+ const pr=app[0]||null;
+ /* mercado sugerido por método */
+ const favName=fav===0?meta.home:meta.away,zebName=zeb===0?meta.home:meta.away;
+ const MERC={back_favorito:'Back '+favName,over_limite_70:'Over ao vivo (linha = placar + 1)',
+  back_2x2:'Correct Score 2×2',lay_zebra:'Lay '+zebName,lay_1x0:'Lay 1×0',lay_0x1:'Lay 0×1',
+  back_goleada:favName+' marca 4+'};
+ return{R,checks:R,app,principal:pr,secondary:app.slice(1),decision:app.length?'entrada':'evitar',
+  forca:pr?R[pr].forca:null,mercado:pr?MERC[pr]:null,oddRef:pr?ODD_REF[pr]:null,
+  fav,zeb,favName,zebName,LM,amostra,
+  m:{probFav,favOdd,totalAvg,bttsAvg,overAvg,mkH,mkA,scored:s.scored,conceded:s.conceded,win:s.win,zebOdd,
    favS61,favS76,advC61,advC76,apos60:LM?LM.apos60:null,
    ppj,ppjFav,ppjZeb,ppjDif,cs,sgH,sgA,sgFav,sgZeb,sgAvg,jogos,primeiro:s.primeiro,
-   ap75M:s.ap75M,ap75C:s.ap75C,ap75MFav,ap75CZeb,ap75Any,
-   marcouPri:s.marcouPri,concedeuPri:s.concedeuPri,reacFav,reacZeb,holdFav,notas:s.notas}}}
-
+   ap75M:s.ap75M,ap75C:s.ap75C,ap75MFav,ap75CZeb,
+   marcouPri:mp,concedeuPri:cp,reacFav,holdFav,notas:s.notas,p10est,p01est}}}
 function reason(g){
  const a=g.analysis,m=g.meta,x=a.m,k=a.principal;
- const favName=a.fav===0?m.home:m.away,zebName=a.zeb===0?m.home:m.away;
  const pct=v=>v!=null?v+'%':'—',n2=v=>v!=null?v.toFixed(2):'—';
- if(!k)return{txt:'Nenhum dos sete métodos atingiu os critérios obrigatórios com os dados deste PDF.',
-  pts:METHODS.map(mk=>{const f=a.checks[mk].find(c=>!c.ok);return LABEL[mk]+': '+(f?f.label+' — '+f.why:'critério não atendido')}),alerta:''};
- const R={
-  back_favorito:{txt:favName+' soma '+n2(x.ppjFav)+' pontos por jogo contra '+n2(x.ppjZeb)+' de '+zebName+
-    ', vantagem de '+n2(x.ppjDif)+' ponto por partida. A probabilidade real, sem a margem das odds, é de '+
-    (x.probFav!=null?x.probFav.toFixed(1)+'%':'—')+'.',
-   pts:['Pontos por jogo: '+n2(x.ppjFav)+' vs '+n2(x.ppjZeb)+'  (+'+n2(x.ppjDif)+')',
-    'Probabilidade normalizada: '+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—'),
-    'Aproveitamento do adversário: '+pct(x.win[a.zeb]),
-    (x.holdFav!=null?'Vence '+pct(x.holdFav)+' das vezes quando marca primeiro':'Liga: '+m.league)]},
-  over_limite_70:{txt:favName+' marca depois dos 75 minutos em '+pct(x.ap75MFav)+' dos jogos e '+zebName+
-    ' sofre nessa faixa em '+pct(x.ap75CZeb)+'. Na distribuição, '+pct(x.apos60)+' dos gols caem após os 60 minutos '+
-    'e os dois times sofrem gol em '+pct(x.sgAvg)+' das partidas.',
-   pts:['Marca após 75min (jogos): '+pct(x.ap75MFav),'Sofre após 75min (jogos): '+pct(x.ap75CZeb),
-    'Gols após 60 min: '+pct(x.apos60),'Ambos sofrem gol em: '+pct(x.sgAvg),
-    'Média total de gols: '+n2(x.totalAvg),'Entrada somente ao vivo, após 65min']},
-  back_2x2:{txt:'Os dois times entregam volume nos dois lados: Over 2.5 médio de '+pct(x.overAvg?Math.round(x.overAvg):null)+
-    ', ambas marcam em '+pct(x.bttsAvg?Math.round(x.bttsAvg):null)+' e sofrem gol em '+pct(x.sgAvg)+' das partidas.',
-   pts:['Over 2.5 médio: '+pct(x.overAvg?Math.round(x.overAvg):null),'Ambas marcam: '+pct(x.bttsAvg?Math.round(x.bttsAvg):null),
-    'Ambos sofrem gol em: '+pct(x.sgAvg),'Gols sofridos por jogo: '+x.conceded.join(' / ')]},
-  lay_zebra:{txt:zebName+' está cotado a '+x.zebOdd+', soma '+n2(x.ppjZeb)+' ponto por jogo e sofre gol em '+
-    pct(x.sgZeb)+'. '+favName+' consegue reagir: vence '+pct(x.reacFav)+' das partidas em que leva o primeiro gol, '+
-    'o que sustenta a entrada mesmo se a zebra abrir o placar.',
-   pts:['Odd da zebra: '+x.zebOdd,'PPJ da zebra: '+n2(x.ppjZeb),'Zebra sofre gol em: '+pct(x.sgZeb),
-    'Favorito vence após sofrer primeiro: '+pct(x.reacFav),'Lay vence com vitória do favorito OU empate']},
-  lay_1x0:{txt:m.away+' marca em '+pct(x.mkA)+' dos jogos, '+m.home+' sofre gol em '+pct(x.sgH)+
-    ' e a média é de '+n2(x.totalAvg)+' gols. O 1×0 raspado fica improvável.',
-   pts:['Visitante marca em: '+pct(x.mkA),'Mandante sofre gol em: '+pct(x.sgH),
-    'Média total: '+n2(x.totalAvg),'Ambas marcam: '+pct(x.bttsAvg?Math.round(x.bttsAvg):null)]},
-  lay_0x1:{txt:m.home+' marca em '+pct(x.mkH)+' dos jogos como mandante, '+m.away+' sofre gol em '+pct(x.sgA)+
-    ' e a média é de '+n2(x.totalAvg)+' gols.',
-   pts:['Mandante marca em: '+pct(x.mkH),'Visitante sofre gol em: '+pct(x.sgA),
-    'Média total: '+n2(x.totalAvg),'Ambas marcam: '+pct(x.bttsAvg?Math.round(x.bttsAvg):null)]},
-  back_goleada:{txt:favName+' reúne favoritismo extremo ('+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—')+
-    '), média ofensiva de '+n2(x.scored[a.fav])+' e vence '+pct(x.holdFav)+' das vezes em que abre o placar.',
-   pts:['Probabilidade do favorito: '+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—'),
-    'Média ofensiva: '+n2(x.scored[a.fav]),'Vantagem de PPJ: +'+n2(x.ppjDif),
-    'Vence quando marca primeiro: '+pct(x.holdFav)]}
- }[k];
- const extra=a.secondary.length?' Como reforço, a partida também passa em '+a.secondary.map(s=>LABEL[s]).join(' e ')+'.':'';
- /* alertas contextuais */
+ if(!k){
+  const pts=METHODS.map(mk=>{
+   const r=a.R[mk];
+   const tf=r.travas.find(t=>!t.ok);
+   if(tf)return LABEL[mk]+': trava — '+tf.label+' ('+tf.why+')';
+   const gf=r.gruposDet&&r.gruposDet.find(gr=>!gr.ok);
+   if(gf)return LABEL[mk]+': falta evidência do grupo '+gf.nome;
+   return LABEL[mk]+': apoio '+r.nApoio+'/'+r.apoio.length+' — mínimo '+r.minApoio});
+  return{txt:'Nenhum método aprovado. Travas reprovam de imediato; apoio insuficiente indica evidência fraca.',pts,alerta:''}}
+ const r=a.R[k];
+ const apoios=r.apoio.filter(i=>i.ok).map(i=>i.label+' ('+i.why+')');
+ const D={
+  back_favorito:a.favName+' tem '+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—')+' de probabilidade real, já sem a margem das odds.',
+  over_limite_70:'As três frentes da tese estão cobertas: '+a.favName+' ataca na reta final, '+a.zebName+
+   ' cede nessa faixa e o volume sustenta a linha. Média de '+n2(x.totalAvg)+' gols.',
+  back_2x2:'Ambas marcam em '+pct(x.bttsAvg?Math.round(x.bttsAvg):null)+' e a média é de '+n2(x.totalAvg)+' gols.',
+  lay_zebra:a.zebName+' está cotado a '+x.zebOdd+' e '+a.favName+' vence '+pct(x.reacFav)+
+   ' das vezes em que sofre o primeiro gol.',
+  lay_1x0:m.away+' marca em '+pct(x.mkA)+' dos jogos e a média é de '+n2(x.totalAvg)+
+   ' gols. P(1-0) estimada em torno de '+pct(x.p10est)+'.',
+  lay_0x1:m.home+' marca em '+pct(x.mkH)+' dos jogos e a média é de '+n2(x.totalAvg)+
+   ' gols. P(0-1) estimada em torno de '+pct(x.p01est)+'.',
+  back_goleada:a.favName+' tem '+(x.probFav!=null?x.probFav.toFixed(1)+'%':'—')+' de probabilidade e enfrenta defesa que cede '+
+   n2(x.conceded[a.zeb])+' gols por jogo.'}[k];
+ const extra=a.secondary.length?' Também passa em '+a.secondary.map(s=>LABEL[s]).join(' e ')+'.':'';
+ const pts=['Travas: '+r.travas.map(t=>t.label).join(' · ')];
+ if(apoios.length)pts.push('Apoio: '+apoios.join(' · '));
+ if(r.gruposDet&&r.gruposDet.length)pts.push('Grupos: '+r.gruposDet.filter(x=>x.ok).map(x=>x.nome).join(' · '));
  const av=[];
- if(a.amostra!=null&&a.amostra<AMOSTRA_MIN)av.push('Amostra pequena: apenas '+a.amostra+' jogos no recorte.');
- if(k==='lay_zebra'&&x.reacFav!=null&&x.reacFav<30)
-  av.push(favName+' vence só '+pct(x.reacFav)+' das vezes em que sofre o primeiro gol — entrar depois do gol da zebra é arriscado.');
- if(k==='back_favorito'&&x.reacFav!=null&&x.reacFav<25)
-  av.push(favName+' raramente reage: '+pct(x.reacFav)+' de vitórias quando leva o primeiro gol.');
- return{txt:R.txt+extra,pts:R.pts,alerta:av.join(' ')};
-}
+ if(a.amostra!=null&&a.amostra<AMOSTRA_MIN)av.push('Amostra pequena: '+a.amostra+' jogos.');
+ if(r.forca==='baixa')av.push('Força baixa: só o mínimo de apoio foi atingido.');
+ if(k==='lay_zebra'&&x.reacFav!=null&&x.reacFav<40)
+  av.push(a.favName+' vence '+pct(x.reacFav)+' quando sofre primeiro — margem apertada.');
+ const hm=histMetodo(k);
+ if(hm.tot>=5&&hm.g/hm.tot<0.4)av.push('Histórico deste método: '+hm.g+'G-'+hm.r+'R nos últimos dias.');
+ return{txt:D+extra,pts,alerta:av.join(' ')}}
 function addGame(id,text,crests,fileLike){
  curText=text;
  const meta=parseMeta(text,fileLike),stats=parseStats(text),a=assess(meta,stats);
@@ -995,16 +1044,18 @@ function addGame(id,text,crests,fileLike){
   fin:{done:false,res:'none',gh:null,ga:null,at:null},
   live:{gh:0,ga:0,min:0,red:false,travado:false,checks:{},nota:''}};
  gm.reason=reason(gm);games.push(gm);
- log(fileLike.name+': '+meta.home+' × '+meta.away+' → '+(a.principal?LABEL[a.principal]:'SEM MÉTODO'));
+ log(fileLike.name+': '+meta.home+' × '+meta.away+' → '+(a.principal?LABEL[a.principal]+' ('+a.forca+')':'SEM MÉTODO'));
  return gm}
 function allocate(){
  games.forEach(g=>{g.wave=null;g.overflow=false;g.period=periodOf(g.meta.time)});
  const byP={};
  games.filter(g=>g.analysis.decision==='entrada').forEach(g=>(byP[g.period.key]??=[]).push(g));
+ const of={alta:0,media:1,baixa:2};
  Object.keys(byP).forEach(pk=>{
   const arr=byP[pk];
   arr.sort((a,b)=>(toMin(a.meta.time)??9999)-(toMin(b.meta.time)??9999)
-   ||b.analysis.conf-a.analysis.conf||METHODS.indexOf(a.analysis.principal)-METHODS.indexOf(b.analysis.principal));
+   ||(of[a.analysis.forca]??9)-(of[b.analysis.forca]??9)
+   ||METHODS.indexOf(a.analysis.principal)-METHODS.indexOf(b.analysis.principal));
   if(pk==='sem'){arr.forEach((g,i)=>{g.wave={n:Math.floor(i/MAX_ONDA)+1,start:null,end:null,pk}});return}
   const pend=arr.slice();let n=0,last=-9999;
   while(pend.length){
@@ -1020,7 +1071,8 @@ function finalizar(msg){
  loadState();
  $('#selbar').classList.toggle('show',games.length>0);
  const cm=games.filter(g=>g.analysis.decision==='entrada').length;
- $('#status').textContent=msg+' · '+cm+' com método'+(games.length-cm?' · '+(games.length-cm)+' sem':'');
+ const alta=games.filter(g=>g.analysis.forca==='alta').length;
+ $('#status').textContent=msg+' · '+cm+' com método ('+alta+' força alta)';
  fillFilters();render()}
 async function run(){
  if(!selected.length){alert('Selecione a pasta ou PDFs.');return}
@@ -1033,9 +1085,8 @@ async function run(){
  finalizar('Upload manual')}
 function fillFilters(){
  const princ=[...new Set(games.map(g=>g.analysis.principal).filter(Boolean))].sort((a,b)=>METHODS.indexOf(a)-METHODS.indexOf(b));
- const cont=k=>games.filter(g=>g.analysis.principal===k).length;
- $('#methodFilter').innerHTML='<option value="all">Todos ('+games.filter(g=>g.analysis.principal).length+')</option>'+
-  princ.map(k=>'<option value="'+k+'">'+LABEL[k]+' ('+cont(k)+')</option>').join('')}
+ $('#methodFilter').innerHTML='<option value="all">Todos</option>'+
+  princ.map(k=>'<option value="'+k+'">'+LABEL[k]+'</option>').join('')}
 const statusOf=g=>g.analysis.decision==='evitar'?'evitar':(g.overflow?'excedente':'ativo');
 const temMetodo=g=>g.analysis.decision==='entrada';
 function togglePick(id){const g=games.find(x=>x.id===id);if(g){g.pick=!g.pick;saveState();render();if(tab==='mesa')renderMesa()}}
@@ -1056,17 +1107,37 @@ $('#reopenAll').onclick=()=>{
  if(!confirm('Reabrir '+n+' partida(s)?'))return;
  games.forEach(g=>g.fin={done:false,res:'none',gh:null,ga:null,at:null});
  saveState();render();if(tab==='mesa')renderMesa()};
+/* copiar entrada */
+function copiar(txt){
+ if(navigator.clipboard&&navigator.clipboard.writeText)
+  navigator.clipboard.writeText(txt).then(()=>toast('✓ Copiado')).catch(()=>toast('Não foi possível copiar'));
+ else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);
+  ta.select();try{document.execCommand('copy');toast('✓ Copiado')}catch(e){}ta.remove()}}
+function copiarJogo(id){
+ const g=games.find(x=>x.id===id);if(!g)return;
+ const a=g.analysis;
+ copiar(g.meta.time+' · '+g.meta.home+' × '+g.meta.away+'\n'+
+  (a.principal?LABEL[a.principal]+' ('+a.forca+')\nMercado: '+a.mercado+'\nOdd de referência: '+a.oddRef:'Sem método'))}
+$('#copyAll').onclick=()=>{
+ const l=games.filter(g=>g.pick&&temMetodo(g));
+ if(!l.length){toast('Nenhuma partida selecionada');return}
+ const byP={};l.forEach(g=>(byP[g.period.key]??=[]).push(g));
+ let t='GRADE '+(dataAtual||'')+'\n';
+ Object.keys(byP).sort((a,b)=>PERIODS[a].order-PERIODS[b].order).forEach(pk=>{
+  t+='\n'+PERIODS[pk].label.toUpperCase()+'\n';
+  byP[pk].forEach(g=>{t+='  '+(g.meta.time||'--:--')+'  '+g.meta.home+' x '+g.meta.away+
+   '  —  '+LABEL[g.analysis.principal]+' ('+g.analysis.forca+')\n'})});
+ copiar(t)};
 function visibleGames(){
- const pf=$('#periodFilter').value,mf=$('#methodFilter').value,df=$('#decisionFilter').value,
-  ff=$('#finFilter').value,kf=$('#pickFilter').value,q=norm($('#search').value);
+ const pf=$('#periodFilter').value,mf=$('#methodFilter').value,
+  ff=$('#finFilter').value,frf=$('#forcaFilter').value,q=norm($('#search').value);
  const mostrarSem=$('#showNoMethod').checked;
  return games.filter(g=>
   (mostrarSem||temMetodo(g))&&
   (pf==='all'||g.period.key===pf)&&
   (mf==='all'||g.analysis.principal===mf)&&
-  (df==='all'||statusOf(g)===df)&&
+  (frf==='all'||g.analysis.forca===frf)&&
   (ff==='all'||(ff==='aberta'?!g.fin.done:ff==='done'?g.fin.done:g.fin.done&&g.fin.res===ff))&&
-  (kf==='all'||(kf==='on'?g.pick:!g.pick))&&
   (!q||norm(g.meta.home+' '+g.meta.away+' '+g.meta.league).includes(q)))}
 $('#selAll').onclick=()=>{games.forEach(g=>{if(temMetodo(g))g.pick=true});saveState();render()};
 $('#selNone').onclick=()=>{games.forEach(g=>g.pick=false);saveState();render()};
@@ -1078,11 +1149,15 @@ function crestHTML(src,name,cls){
  const ini=(name||'?').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
  return '<div class="'+c+' mono">'+ini+'</div>'}
 function methodHTML(g,k){
- const c=g.analysis.checks[k],n=c.filter(x=>x.ok).length;
- const pass=k==='over_limite_70'?n>=5:c.every(x=>x.ok);
- return '<div class="mrow"><div class="h"><span class="'+(pass?'pass':'fail')+'">'+(pass?'✓':'✕')+' '+LABEL[k]+'</span>'+
-  '<span class="score">'+n+'/'+c.length+(k==='over_limite_70'?' · mín. 5':'')+'</span></div>'+
-  '<ul class="crit">'+c.map(x=>'<li class="'+(x.ok?'y':'n')+'">'+(x.ok?'✓':'✕')+' '+x.label+' — '+x.why+'</li>').join('')+'</ul></div>'}
+ const r=g.analysis.R[k];
+ const li=i=>'<li class="'+(i.ok?'y':(i.tipo==='trava'?'t':'n'))+'">'+(i.ok?'✓':'✕')+' '+i.label+' — '+i.why+'</li>';
+ let h='<div class="mrow"><div class="h"><span class="'+(r.aprovado?'pass':'fail')+'">'+(r.aprovado?'✓':'✕')+' '+LABEL[k]+'</span>'+
+  '<span class="score">'+(r.aprovado?r.nApoio+'/'+r.apoio.length+' apoio':(r.travasOK?(r.gruposOK?'apoio insuficiente':'grupo incompleto'):'trava'))+'</span></div>';
+ if(r.travas.length)h+='<div class="grupo trava">Travas</div><ul class="crit">'+r.travas.map(li).join('')+'</ul>';
+ if(r.gruposDet&&r.gruposDet.length)h+='<div class="grupo">Grupos</div><ul class="crit">'+
+  r.gruposDet.map(gr=>'<li class="'+(gr.ok?'y':'n')+'">'+(gr.ok?'✓':'✕')+' '+gr.nome+'</li>').join('')+'</ul>';
+ if(r.apoio.length)h+='<div class="grupo">Apoio · mín. '+r.minApoio+'</div><ul class="crit">'+r.apoio.map(li).join('')+'</ul>';
+ return h+'</div>'}
 function cmpHTML(g){
  const x=g.analysis.m,m=g.meta;
  if(x.ppjFav==null&&x.sgH==null&&!x.concedeuPri)return '';
@@ -1091,7 +1166,7 @@ function cmpHTML(g){
   const f=v=>fmt==='n2'?v.toFixed(2):v+'%';
   const tot=Math.abs(vh)+Math.abs(va)||1;
   const ph=Math.round(100*Math.abs(vh)/tot),pa=100-ph;
-  const hWin=maiorMelhor?vh>va:vh<va, aWin=maiorMelhor?va>vh:va<vh;
+  const hWin=maiorMelhor?vh>va:vh<va,aWin=maiorMelhor?va>vh:va<vh;
   return '<div class="cmp-row"><div class="cmp-v '+(hWin?'win':'lose')+'">'+f(vh)+'</div>'+
    '<div class="cmp-mid"><div class="nm">'+nome+'</div>'+
     '<div class="cmp-bar"><i class="h" style="width:'+ph+'%"></i><i class="a" style="width:'+pa+'%"></i></div></div>'+
@@ -1101,12 +1176,10 @@ function cmpHTML(g){
   linha('Pontos por jogo',x.ppj[0],x.ppj[1],'n2',true)+
   linha('Sofre gol em',x.sgH,x.sgA,'pct',false)+
   linha('Vitórias',x.win[0],x.win[1],'pct',true);
- /* Após os 75min */
  if(x.ap75M.every(Number.isFinite)||x.ap75C.every(Number.isFinite)){
   h+='<div class="cmp-sep">Após os 75 minutos</div>'+
    linha('Marcou',x.ap75M[0],x.ap75M[1],'pct',true)+
    linha('Concedeu',x.ap75C[0],x.ap75C[1],'pct',false)}
- /* reação ao primeiro gol */
  if(x.marcouPri||x.concedeuPri){
   h+='<div class="cmp-sep">Vitórias após o 1º gol</div>';
   if(x.marcouPri)h+=linha('Marcou primeiro',x.marcouPri.pvH,x.marcouPri.pvA,'pct',true);
@@ -1132,17 +1205,19 @@ function finbarHTML(g){
   '<span class="finscore"><input type="number" min="0" max="20" value="'+(f.gh??'')+'" placeholder="–" onchange="setFinScore(\''+g.id+'\',\'h\',this.value)">'+
   '<span>×</span><input type="number" min="0" max="20" value="'+(f.ga??'')+'" placeholder="–" onchange="setFinScore(\''+g.id+'\',\'a\',this.value)"></span>'+
   '<span class="fbtn undo" onclick="reopen(\''+g.id+'\')">↺</span></div>'}
+const FORCA_LBL={alta:'ALTA',media:'MÉDIA',baixa:'BAIXA'};
 function cardHTML(g){
  const a=g.analysis,m=g.meta,x=a.m,st=statusOf(g),r=g.reason,f=g.fin;
  const tag=f.done?'<span class="tag dn">'+RES[f.res].ic+' '+RES[f.res].lbl+'</span>'
-  :st==='ativo'?'<span class="tag in">Em janela</span>':st==='excedente'?'<span class="tag ov">Fora de janela</span>':'<span class="tag av">Sem método</span>';
+  :st==='ativo'?'<span class="tag in">Em janela</span>':st==='excedente'?'<span class="tag ov">Reserva</span>':'<span class="tag av">Sem método</span>';
  const odds=m.odds.every(Number.isFinite)?'<div class="odds"><span class="odd">1 <b>'+m.odds[0]+'</b></span><span class="odd">X <b>'+m.odds[1]+'</b></span><span class="odd">2 <b>'+m.odds[2]+'</b></span></div>':'';
  const placar=(f.done&&f.gh!=null&&f.ga!=null)?'<div class="vs final">'+f.gh+' × '+f.ga+'</div>':'<div class="vs">VS</div>';
  const ribbon=f.done?'<div class="done-ribbon '+RES[f.res].cls+'">'+(f.res==='none'?'Finalizada':RES[f.res].lbl)+'</div>':'';
- return '<article class="match-card '+(st==='evitar'?'avoid':st==='excedente'?'over':'')+
-  (g.pick?' picked':'')+(f.done?' done res-'+(f.res==='none'?'x':f.res):'')+'" id="'+g.id+'">'+ribbon+
+ const R=a.principal?a.R[a.principal]:null;
+ return '<article class="match-card '+(st==='evitar'?'avoid':st==='excedente'?'over':('f-'+(a.forca||'alta')))+
+  (g.pick?' picked':'')+(f.done?' done':'')+'" id="'+g.id+'">'+ribbon+
   '<div class="mc-body">'+
-  '<div class="mc-top"><div><div class="league">'+m.league+'</div><div class="clock">'+g.period.icon+' '+m.date+' · '+(m.time||'sem horário')+(g.wave?' · onda '+g.wave.n:'')+'</div></div>'+tag+'</div>'+
+  '<div class="mc-top"><div><div class="league">'+m.league+'</div><div class="clock">'+g.period.icon+' '+(m.time||'sem horário')+(g.wave?' · onda '+g.wave.n:'')+'</div></div>'+tag+'</div>'+
   (temMetodo(g)?finbarHTML(g):'')+
   (temMetodo(g)?'<div class="pickwrap'+(g.pick?' on':'')+'" onclick="togglePick(\''+g.id+'\')" data-nopdf="1">'+
    '<span class="pickbox">'+(g.pick?'✓':'')+'</span><span class="picklbl">'+(g.pick?'Selecionada':'Selecionar')+'</span></div>':'')+
@@ -1151,26 +1226,32 @@ function cardHTML(g){
    placar+
    '<div class="team">'+crestHTML(g.crests[1],m.away)+'<div><div class="tname">'+m.away+'</div><div class="side">Visitante</div></div></div>'+
   '</div>'+odds+
-  '<div class="main-m"><span class="lbl">Método principal</span><span class="val">'+(a.principal?LABEL[a.principal]:'Nenhum método elegível')+'</span>'+
-   '<span class="hint">'+(a.principal?HINT[a.principal]:'Nenhum dos 7 métodos atingiu os critérios')+'</span>'+
-   (a.principal?'<div class="conf"><div class="track"><div class="fill" style="width:'+a.conf+'%"></div></div><div class="txt"><span>Cobertura</span><span>'+a.confN+'/'+a.confT+' · '+a.conf+'%</span></div></div>':'')+
+  '<div class="main-m"><span class="lbl">Método principal</span>'+
+   '<span class="val">'+(a.principal?LABEL[a.principal]:'Nenhum método elegível')+
+    (a.forca?'<span class="forca '+a.forca+'">'+FORCA_LBL[a.forca]+'</span>':'')+'</span>'+
+   '<span class="hint">'+(a.principal?HINT[a.principal]:'Nenhum método passou nas travas')+'</span>'+
+   (a.principal?'<div class="mercado"><span class="mk">'+a.mercado+'</span>'+
+     '<span class="od">odd ref. <b>'+a.oddRef+'</b></span></div>':'')+
+   (R?'<div class="conf"><div class="track"><div class="fill" style="width:'+R.pct+'%"></div></div></div>':'')+
   '</div>'+
-  '<div class="why"><span class="lbl">'+(a.principal?'Por que esta entrada':'Por que evitar')+'</span><p>'+r.txt+'</p>'+
+  '<div class="why"><span class="lbl">'+(a.principal?'Por que esta entrada':'Por que nenhum método passou')+'</span><p>'+r.txt+'</p>'+
    '<ul>'+r.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul>'+
    (r.alerta?'<div class="alerta">⚠️ '+r.alerta+'</div>':'')+'</div>'+
   cmpHTML(g)+
   (a.principal==='over_limite_70'?timelineHTML(g):'')+
-  (a.secondary.length?'<div class="chips">'+a.secondary.map(k=>'<span class="chip sec">Secundário · '+LABEL[k]+'</span>').join('')+'</div>':'')+
+  (a.secondary.length?'<div class="chips">'+a.secondary.map(k=>'<span class="chip sec">2º · '+LABEL[k]+'</span>').join('')+'</div>':'')+
   '<div class="stats">'+
    '<div class="st"><b>'+(x.ppjDif!=null?'+'+x.ppjDif.toFixed(2):'—')+'</b><small>Vantagem PPJ</small></div>'+
    '<div class="st"><b>'+(x.sgAvg!=null?x.sgAvg+'%':'—')+'</b><small>Sofre gol</small></div>'+
-   '<div class="st"><b>'+(x.ap75Any!=null?x.ap75Any+'%':'—')+'</b><small>Após 75′</small></div>'+
+   '<div class="st"><b>'+(x.reacFav!=null?x.reacFav+'%':'—')+'</b><small>Reage ao 1º gol</small></div>'+
    '<div class="st"><b>'+(x.totalAvg!=null?x.totalAvg.toFixed(2):'—')+'</b><small>Média gols</small></div>'+
   '</div>'+
   '<details><summary>Auditoria dos 7 métodos</summary>'+METHODS.map(k=>methodHTML(g,k)).join('')+'</details>'+
   '</div>'+
-  '<div class="mc-foot"><div class="foot-line"><span class="wm-tag">tradervikingbr</span>'+
-   '<button onclick="shot(\''+g.id+'\')">🖼️ Baixar imagem</button></div>'+
+  '<div class="mc-foot"><div class="foot-line">'+
+   '<button class="mini" onclick="copiarJogo(\''+g.id+'\')" data-nopdf="1">📋 Copiar</button>'+
+   '<button class="mini" onclick="shot(\''+g.id+'\')" data-nopdf="1">🖼️ Imagem</button>'+
+   '<span class="wm-tag">tradervikingbr</span></div>'+
    '<div class="risk">'+RISK+'</div></div></article>'}
 function waveKey(g){return !temMetodo(g)?'e':(g.overflow?'x':(g.wave?g.wave.n:'x'))}
 function updateTally(){
@@ -1178,32 +1259,60 @@ function updateTally(){
  const G=fin.filter(g=>g.fin.res==='green').length,R=fin.filter(g=>g.fin.res==='red').length,
   V=fin.filter(g=>g.fin.res==='void').length,P=comM.length-fin.length;
  $('#tG').textContent=G;$('#tR').textContent=R;$('#tV').textContent=V;$('#tP').textContent=P;
- $('#tAcc').textContent=(G+R)?Math.round(100*G/(G+R))+'%':'—';
- $('#kFin').textContent=fin.length}
+ $('#tAcc').textContent=(G+R)?Math.round(100*G/(G+R))+'%':'—'}
+/* resumo por método, clicável */
+function renderMetSum(){
+ const el=$('#metsum');
+ const comM=games.filter(temMetodo);
+ if(!comM.length){el.classList.add('hidden');return}
+ el.classList.remove('hidden');
+ const atual=$('#methodFilter').value;
+ const cont={};comM.forEach(g=>{const k=g.analysis.principal;
+  cont[k]=cont[k]||{n:0,alta:0,media:0,baixa:0};cont[k].n++;cont[k][g.analysis.forca]++});
+ let h='<span class="lb">Métodos do dia</span>';
+ h+='<div class="mchip'+(atual==='all'?' on':'')+'" onclick="filtrarMetodo(\'all\')">'+
+  '<span class="q">'+comM.length+'</span><span class="nm">Todos</span></div>';
+ METHODS.filter(k=>cont[k]).forEach(k=>{
+  const c=cont[k],hm=histMetodo(k);
+  let dots='';['alta','media','baixa'].forEach(f=>{for(let i=0;i<c[f];i++)dots+='<i class="'+f[0]+'"></i>'});
+  const cls=hm.tot<3?'neu':(hm.g/hm.tot>=0.5?'pos':'neg');
+  h+='<div class="mchip'+(atual===k?' on':'')+'" onclick="filtrarMetodo(\''+k+'\')">'+
+   '<span class="q">'+c.n+'</span><span class="nm">'+CURTO[k]+'</span>'+
+   '<span class="fr">'+dots+'</span>'+
+   (hm.tot?'<span class="hist '+cls+'">'+hm.g+'-'+hm.r+'</span>':'')+'</div>'});
+ el.innerHTML=h}
+function filtrarMetodo(k){$('#methodFilter').value=k;render()}
 function render(){
  const list=visibleGames(),byP={};
  list.forEach(g=>(byP[g.period.key]??=[]).push(g));
  const ordem=Object.keys(byP).sort((a,b)=>PERIODS[a].order-PERIODS[b].order);
+ const ag=agoraMin();
  let html='';
  ordem.forEach(pk=>{
   const P=PERIODS[pk],arr=byP[pk];
   const ativos=arr.filter(g=>temMetodo(g)&&statusOf(g)==='ativo'&&!g.fin.done).length;
-  const fins=arr.filter(g=>g.fin.done).length;
   const byW={};arr.forEach(g=>(byW[waveKey(g)]??=[]).push(g));
   const waves=Object.keys(byW).filter(k=>k!=='x'&&k!=='e').sort((a,b)=>a-b);
   html+='<section class="period '+pk+'"><div class="period-head"><div class="ic">'+P.icon+'</div>'+
    '<div><h2>'+P.label+'</h2><div class="rg">'+P.range+'</div></div>'+
-   '<div class="ct"><b>'+arr.length+'</b> partida(s) · '+ativos+' em aberto'+(fins?' · '+fins+' finalizada(s)':'')+'</div></div>';
+   '<div class="ct"><b>'+arr.length+'</b> partida(s) · '+ativos+' em aberto</div></div>';
   waves.forEach(w=>{
    const gs=byW[w],ref=gs.find(g=>g.wave),todas=gs.every(g=>g.fin.done);
    let slots='';for(let i=0;i<MAX_ONDA;i++){const g=gs[i];slots+='<span class="slot'+(g?(g.fin.done?' fin':' on'):'')+'"></span>'}
-   const janela=ref&&ref.wave.start!=null?fromMin(ref.wave.start)+' → '+fromMin(ref.wave.end):'sem horário';
-   html+='<div class="wave'+(todas?' done':'')+'"><div class="wave-head"><span class="n">ONDA '+w+(todas?' · ENCERRADA':'')+'</span>'+
-    '<span class="win">🕐 '+janela+'</span><div class="slots">'+slots+'</div>'+
+   const st=ref&&ref.wave.start!=null?ref.wave.start:null;
+   const janela=st!=null?fromMin(st)+' → '+fromMin(ref.wave.end):'sem horário';
+   /* contagem regressiva */
+   let cd='';
+   if(st!=null&&!todas){
+    const d=st-ag;
+    if(d>0&&d<=180)cd='<span class="cnt">em '+(d>=60?Math.floor(d/60)+'h'+String(d%60).padStart(2,'0'):d+' min')+'</span>';
+    else if(d<=0&&d>-120)cd='<span class="cnt agora">em andamento</span>'}
+   html+='<div class="wave'+(todas?' done':'')+'"><div class="wave-head"><span class="n">ONDA '+w+(todas?' ✓':'')+'</span>'+
+    '<span class="win">🕐 '+janela+'</span>'+cd+'<div class="slots">'+slots+'</div>'+
     '<span class="cap">'+gs.filter(g=>!g.fin.done).length+'/'+gs.length+' em aberto</span></div>'+
     '<div class="grid">'+gs.map(cardHTML).join('')+'</div></div>'});
-  if(byW.x)html+='<div class="wave over"><div class="wave-head"><span class="n">FORA DE JANELA</span>'+
-   '<span class="cap">'+byW.x.length+' jogo(s) — reserva</span></div>'+
+  if(byW.x)html+='<div class="wave over"><div class="wave-head"><span class="n">RESERVA</span>'+
+   '<span class="cap">'+byW.x.length+' jogo(s) fora da janela</span></div>'+
    '<div class="grid">'+byW.x.map(cardHTML).join('')+'</div></div>';
   if(byW.e)html+='<div class="wave over"><div class="wave-head"><span class="n">SEM MÉTODO</span>'+
    '<span class="cap">'+byW.e.length+' jogo(s)</span></div>'+
@@ -1211,20 +1320,28 @@ function render(){
   html+='</section>'});
  const semM=games.filter(g=>!temMetodo(g)).length;
  if(semM&&!$('#showNoMethod').checked)
-  html+='<div class="hiddennote">🚫 <b>'+semM+'</b> partida(s) ocultada(s) por não atingirem nenhum método.'+
+  html+='<div class="hiddennote">🚫 <b>'+semM+'</b> partida(s) ocultada(s) por não passarem nas travas.'+
    '<button class="mini" onclick="document.getElementById(\'showNoMethod\').checked=true;render()">Mostrar</button></div>';
  $('#content').innerHTML=html||'<div class="card-panel empty"><div class="ic">🔍</div><p>Nenhuma partida corresponde aos filtros.</p></div>';
  const picked=games.filter(g=>g.pick).length,comM=games.filter(temMetodo);
+ /* KPIs */
  $('#kGames').textContent=comM.length;
- ['manha','tarde','noite'].forEach(k=>{$('#k'+k.charAt(0).toUpperCase()+k.slice(1)).textContent=comM.filter(g=>g.period.key===k).length});
- $('#kPick').textContent=picked;
+ $('#kAlta').textContent=games.filter(g=>g.analysis.forca==='alta').length;
+ const ondas=new Set();comM.forEach(g=>{if(g.wave)ondas.add(g.period.key+'-'+g.wave.n)});
+ $('#kOndas').textContent=ondas.size;
+ const prox=comM.filter(g=>g.wave&&g.wave.start!=null&&g.wave.start>ag&&!g.fin.done)
+  .sort((a,b)=>a.wave.start-b.wave.start)[0];
+ if(prox){const d=prox.wave.start-ag;
+  $('#kProx').textContent=d>=60?Math.floor(d/60)+'h'+String(d%60).padStart(2,'0'):d+'min'}
+ else $('#kProx').textContent='—';
  $('#selCount').textContent=picked+' selecionada(s)';
  $('#pdfBtn').disabled=picked===0;
- $('#pdfBtn').textContent=picked?'🖨️ Caderno de live ('+picked+')':'🖨️ Caderno de live (PDF)';
+ $('#pdfBtn').textContent=picked?'🖨️ Caderno ('+picked+')':'🖨️ Caderno de live (PDF)';
  $('#mesaBadge').textContent=picked;
- updateTally();if(zenOn())mirrorFilters()}
-['periodFilter','methodFilter','decisionFilter','finFilter','pickFilter','showNoMethod'].forEach(id=>$('#'+id).onchange=render);
+ renderMetSum();updateTally();if(zenOn())mirrorFilters()}
+['periodFilter','forcaFilter','finFilter','showNoMethod'].forEach(id=>$('#'+id).onchange=render);
 $('#search').oninput=render;
+setInterval(()=>{if(tab==='analise'&&games.length)render()},60000);
 function verdict(g){
  const L=g.live,k=g.analysis.principal,m=g.meta;
  if(g.fin.done){const pl=(g.fin.gh!=null&&g.fin.ga!=null)?' Placar final '+g.fin.gh+'x'+g.fin.ga+'.':'';
@@ -1232,7 +1349,7 @@ function verdict(g){
  const gh=L.gh,ga=L.ga,tot=gh+ga,dif=Math.abs(gh-ga),min=L.min;
  const favIsHome=g.analysis.fav===0;
  const favGols=favIsHome?gh:ga,zebGols=favIsHome?ga:gh;
- const favName=favIsHome?m.home:m.away,zebName=favIsHome?m.away:m.home;
+ const favName=g.analysis.favName,zebName=g.analysis.zebName;
  const chks=CHECKS[k]||[];
  const feitos=chks.filter((_,i)=>L.checks[i]).length,faltam=chks.length-feitos;
  const auto=[];let v='wait',t='Aguardando gatilho',d='',market='';
@@ -1270,8 +1387,7 @@ function verdict(g){
   const rf=g.analysis.m.reacFav;
   if(zebGols>favGols&&min>=75){v='stop';t='Não entrar';d=zebName+' vence aos '+min+"'."}
   else if(zebGols>favGols){v='wait';t='Zebra na frente';
-   d='Odd inflada. '+favName+' vence '+(rf!=null?rf+'%':'—')+' das vezes em que sofre primeiro — '+
-     (rf!=null&&rf<30?'histórico fraco de virada, cuidado.':'confirme a pressão antes de entrar.')}
+   d='Odd inflada. '+favName+' vence '+(rf!=null?rf+'%':'—')+' das vezes em que sofre primeiro.'}
   else if(!c2){v='wait';t='Janela apertada';d='Resta pouco tempo.'}
   else if(faltam>0){v='wait';t='Confirme o controle';d='Faltam '+faltam+' confirmação(ões).'}
   else{v='go';t='Entrada liberada';d='Lay em '+zebName+'.'}}
@@ -1339,7 +1455,9 @@ function liveCardHTML(g){
    '<div class="mt">'+g.period.icon+' '+(m.time||'s/ horário')+' · '+m.league+'</div></div>'+
    crestHTML(g.crests[1],m.away,'sm')+'</div>'+
   '<div class="lc-head" style="border-top:0;background:transparent">'+
-   '<span class="lc-method">'+(k?LABEL[k]:'Sem método')+'</span></div>'+
+   '<span class="lc-method">'+(k?LABEL[k]:'Sem método')+'</span>'+
+   (g.analysis.forca?'<span class="forca '+g.analysis.forca+'">'+FORCA_LBL[g.analysis.forca]+'</span>':'')+
+   (g.analysis.oddRef?'<span style="margin-left:auto;font-size:11px;color:var(--mut)">odd ref. <b style="color:var(--gold)">'+g.analysis.oddRef+'</b></span>':'')+'</div>'+
   (done?'':'<div class="scoreboard"><div class="sb-row">'+
    '<div class="sb-side"><div class="nm">'+m.home+'</div>'+stepper('h',L.gh)+'</div>'+
    '<div class="sb-mid"><div class="x">×</div></div>'+
@@ -1352,7 +1470,8 @@ function liveCardHTML(g){
   '</div></div>')+
   '<div class="verdict '+V.v+'"><div class="ic">'+ic+'</div><div class="tx">'+
    '<div class="t1">'+V.t+'</div><div class="t2">'+V.d+'</div>'+
-   (V.market&&V.v==='go'?'<div class="market">Mercado: <b>'+V.market+'</b></div>':'')+'</div></div>'+
+   (V.market&&V.v==='go'?'<div class="market">Mercado: <b>'+V.market+'</b>'+
+     '<button class="mini cp" onclick="copiar(\''+V.market.replace(/'/g,"")+'\')">📋</button></div>':'')+'</div></div>'+
   (done?'':(V.auto.length?'<div class="lc-sec"><h4>Travas automáticas<span class="cnt">'+V.auto.filter(a=>a.ok).length+'/'+V.auto.length+'</span></h4>'+
    V.auto.map(a=>'<div class="chk auto'+(a.ok?' on':'')+'"><span class="bx">'+(a.ok?'✓':'')+'</span><span class="tx">'+a.txt+'<span class="aut">auto</span></span></div>').join('')+'</div>':''))+
   (done?'':(chks.length?'<div class="lc-sec"><h4>Confirmação manual<span class="cnt">'+V.feitos+'/'+V.total+'</span></h4>'+
@@ -1388,7 +1507,7 @@ function renderMesa(){
   Object.keys(byW).sort().forEach(w=>{
    const gs=byW[w],ref=gs.find(g=>g.wave);
    const janela=ref&&ref.wave.start!=null?fromMin(ref.wave.start)+' → '+fromMin(ref.wave.end):'sem janela';
-   html+='<div class="wave'+(w==='x'?' over':'')+'"><div class="wave-head"><span class="n">'+(w==='x'?'FORA DE JANELA':'ONDA '+w)+'</span>'+
+   html+='<div class="wave'+(w==='x'?' over':'')+'"><div class="wave-head"><span class="n">'+(w==='x'?'RESERVA':'ONDA '+w)+'</span>'+
     '<span class="win">🕐 '+janela+'</span><span class="cap">'+gs.length+' jogo(s)</span></div>'+
     '<div class="mesa-grid">'+gs.map(liveCardHTML).join('')+'</div></div>'});
   html+='</section>'});
@@ -1399,10 +1518,10 @@ async function snap(el,nome){
  const c=cv.getContext('2d');
  c.save();c.translate(cv.width/2,cv.height/2);c.rotate(-Math.PI/11);c.globalAlpha=.10;c.fillStyle='#fff';
  c.font='bold '+Math.max(38,cv.width/12)+'px Segoe UI, Arial';c.textAlign='center';c.fillText('tradervikingbr',0,0);c.restore();
- c.globalAlpha=1;c.fillStyle='rgba(0,0,0,.78)';c.fillRect(0,cv.height-48,cv.width,48);
- c.fillStyle='#ffd98a';c.font='bold 16px Segoe UI, Arial';c.textAlign='left';c.fillText('tradervikingbr',18,cv.height-27);
- c.fillStyle='#e6eefb';c.font='12px Segoe UI, Arial';
- c.fillText('Apostar envolve risco de perdas e pode causar dependência · +18',18,cv.height-10);
+ c.globalAlpha=1;c.fillStyle='rgba(0,0,0,.78)';c.fillRect(0,cv.height-46,cv.width,46);
+ c.fillStyle='#ffd98a';c.font='bold 15px Segoe UI, Arial';c.textAlign='left';c.fillText('tradervikingbr',18,cv.height-26);
+ c.fillStyle='#e6eefb';c.font='11.5px Segoe UI, Arial';
+ c.fillText('Apostar envolve risco de perdas e pode causar dependência · +18',18,cv.height-9);
  const a=document.createElement('a');a.download=nome+'_tradervikingbr.png';a.href=cv.toDataURL('image/png');a.click()}
 const shot=id=>snap(document.getElementById(id),id);
 const shotLive=id=>snap(document.getElementById('live_'+id),'mesa_'+id);
@@ -1432,7 +1551,7 @@ $('#pdfBtn').onclick=()=>{
  let y=38;
  d.setTextColor(...DARK);d.setFont('helvetica','bold');d.setFontSize(13);d.text('GRADE DO DIA',14,y);y+=11;
  d.setFontSize(8.5);d.setFont('helvetica','normal');d.setTextColor(...GREY);
- d.text(list.length+' partidas com metodo',14,y);y+=9;
+ d.text(list.length+' partidas · '+list.filter(g=>g.analysis.forca==='alta').length+' de forca alta',14,y);y+=9;
  Object.keys(byP).sort((a,b)=>PERIODS[a].order-PERIODS[b].order).forEach(pk=>{
   const P=PERIODS[pk],arr=byP[pk],byW={};
   arr.forEach(g=>(byW[waveKey(g)]??=[]).push(g));
@@ -1445,21 +1564,21 @@ $('#pdfBtn').onclick=()=>{
    if(y>255){pdfFooter(d,page++);d.addPage();pdfHeader(d,'CADERNO','');y=38}
    const janela=ref&&ref.wave.start!=null?fromMin(ref.wave.start)+' as '+fromMin(ref.wave.end):'sem janela';
    d.setFont('helvetica','bold');d.setFontSize(9);d.setTextColor(...DARK);
-   d.text((w==='x'?'FORA DE JANELA':'ONDA '+w+' · '+janela),18,y);y+=7;
+   d.text((w==='x'?'RESERVA':'ONDA '+w+' · '+janela),18,y);y+=7;
    d.setFont('helvetica','normal');d.setFontSize(8.5);
    gs.forEach(g=>{
     if(y>268){pdfFooter(d,page++);d.addPage();pdfHeader(d,'CADERNO','');y=38}
     const mark=g.fin.done?(g.fin.res==='green'?'[G] ':g.fin.res==='red'?'[R] ':'[F] '):'[ ] ';
     d.setTextColor(...(g.fin.done?GREY:DARK));
-    d.text(mark+(g.meta.time||'--:--')+'  '+(g.meta.home+' x '+g.meta.away).substring(0,34),20,y);
-    d.text(g.analysis.principal?LABEL[g.analysis.principal]:'-',120,y);
-    d.text(g.analysis.conf+'%',180,y);y+=5.4});
+    d.text(mark+(g.meta.time||'--:--')+'  '+(g.meta.home+' x '+g.meta.away).substring(0,30),20,y);
+    d.text(LABEL[g.analysis.principal],112,y);
+    d.text((g.analysis.forca||'-').toUpperCase(),168,y);y+=5.4});
    y+=3});
   y+=3});
  pdfFooter(d,page++);
  list.filter(g=>!g.fin.done).forEach(g=>{
   d.addPage();
-  const m=g.meta,a=g.analysis,x=a.m,r=g.reason;
+  const m=g.meta,a=g.analysis,x=a.m,r=g.reason,R=a.R[a.principal];
   pdfHeader(d,'FICHA · '+(m.time||'s/ horario'),m.league);
   let y=36;
   d.setFillColor(248,250,252);d.setDrawColor(...LINE);d.roundedRect(14,y,182,30,3,3,'FD');
@@ -1471,47 +1590,51 @@ $('#pdfBtn').onclick=()=>{
   if(m.odds.every(Number.isFinite)){d.setFontSize(8);d.setTextColor(...DARK);
    d.text('1  '+m.odds[0]+'     X  '+m.odds[1]+'     2  '+m.odds[2],105,y+24,{align:'center'})}
   y+=36;
-  d.setFillColor(...DARK);d.roundedRect(14,y,110,20,2.5,2.5,'F');
-  d.setTextColor(200,212,228);d.setFontSize(7);d.text('METODO PRINCIPAL',18,y+6);
-  d.setTextColor(255,196,74);d.setFont('helvetica','bold');d.setFontSize(13);
-  d.text(a.principal?LABEL[a.principal]:'-',18,y+14);d.setFont('helvetica','normal');
-  box(d,128,y,68,20,'cobertura');
-  d.setTextColor(...DARK);d.setFont('helvetica','bold');d.setFontSize(15);d.text(a.conf+'%',132,y+14);
-  d.setFont('helvetica','normal');d.setFontSize(8);d.setTextColor(...GREY);d.text('('+a.confN+'/'+a.confT+')',148,y+14);
-  y+=24;
-  box(d,14,y,182,22,'indicadores');
-  d.setFontSize(8.5);d.setTextColor(...DARK);
-  d.text('Secundario: '+(a.secondary.map(k=>LABEL[k]).join(' · ')||'nenhum'),18,y+9);
-  d.text('PPJ '+(x.ppjFav!=null?x.ppjFav.toFixed(2)+' vs '+x.ppjZeb.toFixed(2):'-')+
-   '   |   Sofre gol '+(x.sgAvg!=null?x.sgAvg+'%':'-')+
-   '   |   Apos 75min '+(x.ap75MFav!=null?'marca '+x.ap75MFav+'%':'-')+
-   (x.ap75CZeb!=null?' / sofre '+x.ap75CZeb+'%':''),18,y+14.5);
-  d.text('Reacao do favorito apos sofrer o 1o gol: '+(x.reacFav!=null?x.reacFav+'% de vitorias':'-')+
-   '   |   Media gols '+(x.totalAvg!=null?x.totalAvg.toFixed(2):'-'),18,y+19.5);
+  d.setFillColor(...DARK);d.roundedRect(14,y,110,22,2.5,2.5,'F');
+  d.setTextColor(200,212,228);d.setFontSize(7);d.text('MERCADO',18,y+6);
+  d.setTextColor(255,196,74);d.setFont('helvetica','bold');d.setFontSize(12);
+  d.text(a.mercado||'-',18,y+13,{maxWidth:100});
+  d.setFont('helvetica','normal');d.setFontSize(8);d.setTextColor(200,212,228);
+  d.text('odd de referencia: '+a.oddRef,18,y+19);
+  box(d,128,y,68,22,'forca');
+  d.setTextColor(...DARK);d.setFont('helvetica','bold');d.setFontSize(13);
+  d.text((a.forca||'-').toUpperCase(),132,y+13);
+  d.setFont('helvetica','normal');d.setFontSize(8);d.setTextColor(...GREY);
+  d.text('apoio '+R.nApoio+'/'+R.apoio.length,132,y+19);
   y+=26;
-  const txt=d.splitTextToSize(r.txt,174),hWhy=12+txt.length*4.2+r.pts.length*4.2+(r.alerta?6:0);
-  box(d,14,y,182,hWhy,'por que esta entrada');
-  d.setFontSize(8.5);d.setTextColor(...DARK);d.text(txt,18,y+11);
-  let yy=y+11+txt.length*4.2+2;d.setFontSize(8);d.setTextColor(60,80,105);
-  r.pts.forEach(p=>{d.text('•  '+p,18,yy);yy+=4.2});
-  if(r.alerta){d.setTextColor(170,120,10);d.text('! '+r.alerta,18,yy+2,{maxWidth:170})}
+  const hT=9+R.travas.length*5;
+  box(d,14,y,182,hT,'travas obrigatorias');
+  d.setFontSize(8.5);let yt=y+9;
+  R.travas.forEach(t=>{d.setTextColor(...(t.ok?[20,120,70]:[170,40,50]));
+   d.text((t.ok?'OK  ':'X   ')+t.label+' — '+t.why,18,yt,{maxWidth:174});yt+=5});
+  y+=hT+4;
+  const hA=9+R.apoio.length*5;
+  box(d,14,y,182,hA,'evidencias de apoio');
+  d.setFontSize(8.5);let ya=y+9;
+  R.apoio.forEach(t=>{d.setTextColor(...(t.ok?[20,120,70]:GREY));
+   d.text((t.ok?'OK  ':'--  ')+t.label+' — '+t.why,18,ya,{maxWidth:174});ya+=5});
+  y+=hA+4;
+  const txt=d.splitTextToSize(r.txt,174),hWhy=11+txt.length*4.2+(r.alerta?6:0);
+  box(d,14,y,182,hWhy,'leitura');
+  d.setFontSize(8.5);d.setTextColor(...DARK);d.text(txt,18,y+10);
+  if(r.alerta){d.setTextColor(170,120,10);d.text('! '+r.alerta,18,y+10+txt.length*4.2+2,{maxWidth:170})}
   y+=hWhy+4;
-  const plan=a.principal?PLAN[a.principal]:['Sem metodo'],hPlan=11+plan.length*5.2;
-  box(d,14,y,182,hPlan,'gatilhos e regras');
-  d.setFontSize(8.5);d.setTextColor(...DARK);let yp=y+11;
-  plan.forEach(p=>{d.setDrawColor(...GREY);d.rect(18,yp-3,3.2,3.2);d.text(p,24,yp,{maxWidth:166});yp+=5.2});
-  y+=hPlan+4;
-  box(d,14,y,182,16,'resultado');
-  d.setFontSize(8);d.setTextColor(...GREY);
-  d.text('Minuto: ______   Placar: ______   Odd: ______   Stake: ______',18,y+9);
-  d.setDrawColor(...GREY);
-  d.rect(18,y+12,3.2,3.2);d.text('GREEN',24,y+14.6);
-  d.rect(48,y+12,3.2,3.2);d.text('RED',54,y+14.6);
-  d.rect(72,y+12,3.2,3.2);d.text('ANULADO',78,y+14.6);
-  y+=20;
-  const hNote=Math.max(24,(262-y)*0.6);
-  box(d,14,y,182,hNote,'leitura ao vivo');
-  lines(d,18,y+13,174,Math.max(1,Math.floor((hNote-14)/7)),7);
+  const plan=PLAN[a.principal]||[],hPlan=10+plan.length*5.2;
+  if(y+hPlan<250){
+   box(d,14,y,182,hPlan,'gatilhos');
+   d.setFontSize(8.5);d.setTextColor(...DARK);let yp=y+10;
+   plan.forEach(p=>{d.setDrawColor(...GREY);d.rect(18,yp-3,3.2,3.2);d.text(p,24,yp,{maxWidth:166});yp+=5.2});
+   y+=hPlan+4}
+  if(y<250){
+   box(d,14,y,182,16,'resultado');
+   d.setFontSize(8);d.setTextColor(...GREY);
+   d.text('Minuto: ______   Placar: ______   Odd: ______   Stake: ______',18,y+9);
+   d.setDrawColor(...GREY);
+   d.rect(18,y+12,3.2,3.2);d.text('GREEN',24,y+14.6);
+   d.rect(48,y+12,3.2,3.2);d.text('RED',54,y+14.6);
+   d.rect(72,y+12,3.2,3.2);d.text('ANULADO',78,y+14.6);
+   y+=20}
+  if(y<252){const hN=262-y;box(d,14,y,182,hN,'anotacoes');lines(d,18,y+13,174,Math.max(1,Math.floor((hN-14)/7)),7)}
   pdfFooter(d,page++)});
  d.save('tradervikingbr_caderno_live.pdf')};
 function zenOn(){return document.body.classList.contains('zen')}
@@ -1561,7 +1684,7 @@ let deferredPrompt=null,swReg=null;
 const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const OS_STEPS={
- android:[['Toque no menu <b>⋮</b>','Chrome ou Edge'],['Escolha <b>Instalar aplicativo</b>',''],['Confirme',''],],
+ android:[['Toque no menu <b>⋮</b>','Chrome ou Edge'],['Escolha <b>Instalar aplicativo</b>',''],['Confirme','']],
  ios:[['Abra no <b>Safari</b>',''],['Toque em <b>Compartilhar</b> ⬆️',''],['<b>Adicionar à Tela de Início</b>','']],
  desk:[['Clique no ícone <b>⊕</b> na barra de endereço',''],['Escolha <b>Instalar</b>',''],['Abre em janela própria','']]};
 function setOS(os){
@@ -1589,8 +1712,7 @@ async function limparCache(){
 function openHowto(){setOS(isIOS()?'ios':(/android/i.test(navigator.userAgent)?'android':'desk'));$('#howto').classList.add('show');runDiag()}
 function closeHowto(){$('#howto').classList.remove('show')}
 $('#howto').addEventListener('click',e=>{if(e.target.id==='howto')closeHowto()});
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;
- $('#installBtn').classList.add('show')});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('#installBtn').classList.add('show')});
 $('#installBtn').onclick=async()=>{
  if(deferredPrompt){deferredPrompt.prompt();const {outcome}=await deferredPrompt.userChoice;
   if(outcome==='accepted')$('#installBtn').classList.remove('show');deferredPrompt=null}
