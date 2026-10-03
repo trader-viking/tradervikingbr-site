@@ -1,0 +1,145 @@
+{
+  "data": "2026-10-04",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-10-03T17:25:49.773809",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 21,
+  "entradas": [
+    {
+      "horario": "14:45",
+      "liga": "Argentina Liga Profesional",
+      "jogo": "Huracan CA Aldosivi",
+      "metodos_aplicados": [
+        "back_favorito",
+        "lay_zebra"
+      ],
+      "mercado_principal": "Vitória Huracan",
+      "probabilidade_estimada": "68%",
+      "fair_odd": "1.47",
+      "odd_minima_entrada": "1.65",
+      "media_gols_casa": "1.10",
+      "media_gols_fora": "0.70",
+      "media_sofridos_casa": "0.80",
+      "media_sofridos_fora": "2.00",
+      "odds_mercado": {
+        "casa": "1.70",
+        "empate": "3.40",
+        "fora": "6.25",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Não há dados de H2H com odds para análise.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": "neutro",
+        "time": "Huracan",
+        "texto": "Não há dados de H2H com odds para avaliar o desempenho do Huracan nesta faixa de odd."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Huracan é favorito em casa com 68% de probabilidade de vitória contra CA Aldosivi, que está em péssima fase e sofre 2.0 gols/jogo fora. Odd de mercado 1.70 oferece valor.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 68% → fair 1.47; com margem de segurança, só entrar acima de 1.65. Mercado paga 1.70, o que gera valor.",
+      "mercado_secundario": "Lay CA Aldosivi",
+      "odd_minima_secundaria": "5.88",
+      "desempenho_1t": "Huracan marca 0.50 gols no 1ºT em casa.",
+      "desempenho_2t": "CA Aldosivi sofre 1.10 gols no 2ºT fora.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "8º",
+          "posicao_geral": "7º",
+          "objetivo": "libertadores"
+        },
+        "fora": {
+          "posicao": "13º",
+          "posicao_geral": "14º",
+          "objetivo": "rebaixamento"
+        }
+      },
+      "motivacao_tecnica": "Huracan, 6º na Clausura e 7º na Geral, joga em casa contra o CA Aldosivi, 10º na Clausura e 14º na Geral, que está em má fase, especialmente fora de casa (0% vitórias nos últimos 10 fora). O favoritismo do Huracan é reforçado pelo desempenho do adversário.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Huracan tem 40% de vitórias em casa nos últimos 10 jogos.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Huracan marca mais no 2º tempo (0.70 gols/jogo global). CA Aldosivi sofre muito no 2º tempo (1.10 gols/jogo fora).",
+      "momento_gols": "Huracan marcou 30% dos gols após os 75min globalmente. CA Aldosivi concedeu 30% dos gols após os 75min globalmente.",
+      "jogadores_chave": "Não há dados de jogadores chave no PDF.",
+      "placares_provaveis": "1x0, 2x0, 2x1",
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out se o Huracan abrir boa vantagem ou se o jogo se tornar muito equilibrado.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "A odd de mercado já oferece valor, permitindo entrada pré-jogo.",
+        "gatilho_saida_parcial": "Huracan abrir 2 gols de vantagem.",
+        "hard_stop": "Gol da zebra antes dos 30 minutos."
+      }
+    }
+  ],
+  "evitar": [
+    {
+      "horario": "15:45",
+      "jogo": "Greece Germany",
+      "liga": "UEFA Nations League A",
+      "motivo": "Dados insuficientes para aplicar métodos com segurança (odds de Over/Under ausentes, H2H sem odds).",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada 55% (precisa >=68%); odd 1.83 (precisa 1.40-1.80); EV negativo; H2H insuficiente; sem dados de classificação.",
+        "lay_zebra": "Odd da zebra 4.10 (precisa 5.00-8.50); probabilidade da zebra 45% (precisa <=15%); zebra não em má fase; H2H insuficiente.",
+        "over_limite_70": "Critério 'mercado_espera_gols' não atendido (odd Over 2.5 ausente); H2H insuficiente.",
+        "over_ht_05": "Critério 'mercado_confirma' não atendido (odd Over 0.5 HT ausente).",
+        "back_2x2": "Critérios 'over25_>=65' e 'btts_>=65' não atendidos; 'defesas_frageis' não atendido para Germany; 'mercado_espera_gols' não atendido (odd Over 2.5 ausente).",
+        "back_goleada": "Probabilidade do favorito 55% (precisa >=70%); odd 1.83 (precisa <=1.40); ataque do favorito 2.20 GF (precisa >=2.5); defesa adversária 1.50 GS (precisa >=2.0); H2H insuficiente; odd Over 2.5 ausente.",
+        "lay_1x0": "Critério 'under15_caro' não atendido (odd Under 1.5 ausente); H2H insuficiente; P(1-0) estimada 9.3% (precisa <=8.1%).",
+        "lay_0x1": "Critério 'under15_caro' não atendido (odd Under 1.5 ausente); H2H insuficiente; visitante produtivo 1.60 GF (precisa >=1.5)."
+      }
+    },
+    {
+      "horario": "15:45",
+      "jogo": "Netherlands Serbia",
+      "liga": "UEFA Nations League A",
+      "motivo": "Dados insuficientes para aplicar métodos com segurança (odds de Over/Under ausentes, H2H sem odds).",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito 1.17 (precisa 1.40-1.80); EV negativo; H2H insuficiente; sem dados de classificação.",
+        "lay_zebra": "Odd da zebra 17.00 (precisa 5.00-8.50); probabilidade da zebra 18% (precisa <=15%); zebra não em má fase; H2H insuficiente.",
+        "over_limite_70": "Critério 'mercado_espera_gols' não atendido (odd Over 2.5 ausente); H2H insuficiente.",
+        "over_ht_05": "Critério 'mercado_confirma' não atendido (odd Over 0.5 HT ausente).",
+        "back_2x2": "Critérios 'defesas_frageis' e 'ataques_produtivos' não atendidos para ambos; 'mercado_espera_gols' não atendido (odd Over 2.5 ausente).",
+        "back_goleada": "Ataque do favorito 2.20 GF (precisa >=2.5); H2H insuficiente; odd Over 2.5 ausente.",
+        "lay_1x0": "P(1-0) estimada 13.23% (precisa <=8.1%); visitante não marca 1+ gol em >65% dos jogos; H2H insuficiente; odd Under 1.5 ausente.",
+        "lay_0x1": "Visitante produtivo 0.70 GF (precisa >=1.5); H2H insuficiente; odd Under 1.5 ausente."
+      }
+    },
+    {
+      "horario": "23:00",
+      "jogo": "Nicaragua x Dominican Republic",
+      "liga": "CONCACAF Nations League",
+      "motivo": "Faltam odds de mercado para validar a maioria dos métodos e a liga não permite Back Favorito/Lay Zebra.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para Back Favorito.",
+        "lay_zebra": "Jogo fora das ligas permitidas para Lay Zebra.",
+        "over_limite_70": "Critério 'mercado_espera_gols' (odd Over 2.5 <= 1.95) não atendido por falta de odds de mercado no PDF.",
+        "over_ht_05": "Critério 'mercado_confirma' (odd Over 0.5 HT <= 1.50) não atendido por falta de odds de mercado no PDF.",
+        "back_2x2": "Critério 'btts_>=65' (BTTS médio 55% — precisa >= 65%) e 'mercado_espera_gols' (odd Over 2.5 <= 1.85) não atendidos. Faltam odds de mercado.",
+        "back_goleada": "Critério 'prob_favorito_>=70' (probabilidade estimada do favorito ~60-65% — precisa >= 70%) e 'ataque_>=2.5' (favorito marca 2.30 gols/jogo — precisa >= 2.5) não atendidos. Faltam odds de mercado.",
+        "lay_1x0": "Critério 'mandante_produtivo_>=1.5' (mandante marca 1.40 gols/jogo — precisa >= 1.5), 'under15_caro' (odd Under 1.5 >= 2.40) e 'visitante_pontua_h2h' (visitante marcou em 50% dos H2H — precisa maioria) não atendidos. Faltam odds de mercado.",
+        "lay_0x1": "Critério 'under15_caro' (odd Under 1.5 >= 2.40) e 'mandante_pontua_h2h' (mandante marcou em 50% dos H2H — precisa maioria) não atendidos. Faltam odds de mercado."
+      }
+    }
+  ]
+}
