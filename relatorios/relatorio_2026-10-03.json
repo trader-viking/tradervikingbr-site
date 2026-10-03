@@ -1,0 +1,122 @@
+{
+  "data": "2026-10-03",
+  "dia_consultado": "hoje",
+  "gerado_em": "2026-10-03T14:57:58.690525",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 59,
+  "entradas": [],
+  "evitar": [
+    {
+      "horario": "18:30",
+      "jogo": "Atletico Mineiro Bragantino",
+      "liga": "Brazil Serie A",
+      "motivo": "Favoritismo do mandante não é extremo e faltam dados de odds de mercado para Over/Under.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada do favorito (Atletico Mineiro) 62% (precisa >=68%) e odd de 2.00 (precisa entre 1.40 e 1.80).",
+        "lay_zebra": "Odd da zebra (Bragantino) 3.70 (precisa entre 5.00 e 8.50) e probabilidade estimada 27% (precisa <=15%).",
+        "over_limite_70": "Média de gols somada (global 2.60, casa/fora 2.60, casa/fora champ 2.605) não atende consistentemente o mínimo de 2.6 em todos os recortes, e falta odd de mercado para Over 2.5.",
+        "over_ht_05": "Média de Over 0.5 HT (global 55%, casa/fora 75%, casa/fora champ 78%) não atende consistentemente o mínimo de 75% em todos os recortes, e falta odd de mercado para Over 0.5 HT.",
+        "back_2x2": "Índice médio de Over 2.5 (global 45%, casa/fora 55%) não atende o mínimo de 65%, e ataques não são produtivos o suficiente (Bragantino marca 1.00 global, 1.20 fora, precisa >=1.4).",
+        "back_goleada": "Probabilidade estimada do favorito (Atletico Mineiro) 62% (precisa >=70%) e média de gols marcados nos últimos 5 jogos 2.0 (precisa >=2.5).",
+        "lay_1x0": "Probabilidade de 1x0 estimada em 10.99% (precisa P(1-0) * odd_alvo <= 0.85, mas 10.99% * 10.50 = 1.15 > 0.85), e falta odd de mercado para Under 1.5.",
+        "lay_0x1": "Probabilidade de 0x1 estimada em 8.21% (precisa P(0-1) * odd_alvo <= 0.85, mas 8.21% * 11.00 = 0.90 > 0.85), visitante não é produtivo (Bragantino marca 1.00 global, 1.20 fora, precisa >=1.5), e falta odd de mercado para Under 1.5."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Harborough Town St Albans",
+      "liga": "England FA Cup",
+      "motivo": "Dados insuficientes no material para aplicar métodos de gols e liga não permitida para Back Favorito/Lay Zebra.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para este método.",
+        "lay_zebra": "Jogo fora das ligas permitidas para este método.",
+        "over_limite_70": "Critério 'mercado_espera_gols' (odd Over 2.5) ausente no PDF. Critério 'momento_gols_final' não atende o mínimo de 30% na faixa 61-75 nem 35% na 76-90 para o mandante.",
+        "over_ht_05": "Critério 'over05ht_>=75' (índice médio de Over 0.5 HT 30%) não atende o mínimo de 75%. Critério 'media_1t_>=1.1' (média de gols no 1º tempo 0.75) não atende o mínimo de 1.1. Critério 'mercado_confirma' (odd Over 0.5 HT) ausente no PDF.",
+        "back_2x2": "Critério 'over25_>=65' (índice médio de Over 2.5 50%) não atende o mínimo de 65%. Critério 'btts_>=65' (índice médio de Ambas Marcam 40%) não atende o mínimo de 65%. Critério 'defesas_frageis' (ambos sofrem >= 1.3 gols/jogo) não atende (1.10 e 1.20). Critério 'ataques_produtivos' (ambos marcam >= 1.4 gols/jogo) não atende (1.00 e 2.10). Critério 'over_ht_>=70' (gol antes do intervalo 30%) não atende o mínimo de 70%. Critério 'mercado_espera_gols' (odd Over 2.5) ausente no PDF.",
+        "back_goleada": "Critério 'prob_favorito_>=70' (probabilidade estimada 48%) não atende o mínimo de 70%. Critério 'odd_favorito_<=1.40' (odd 2.00) não atende o máximo de 1.40. Critério 'ataque_>=2.5' (favorito marca 1.00 gols/jogo) não atende o mínimo de 2.5. Critério 'adversario_sofre_>=2.0' (adversário sofre 1.20 gols/jogo) não atende o mínimo de 2.0. Critério 'mercado_espera_gols' (odd Over 2.5) ausente no PDF.",
+        "lay_1x0": "Critério 'btts_>50' (BTTS médio 40%) não atende o mínimo de 50%. Critério 'under15_caro' (odd Under 1.5) ausente no PDF. Critério 'visitante_pontua_h2h' (H2H) ausente no PDF.",
+        "lay_0x1": "Critério 'mand_over05_>65' (mandante marca 1+ gol em 60%) não atende o mínimo de 65%. Critério 'btts_>50' (BTTS médio 40%) não atende o mínimo de 50%. Critério 'under15_caro' (odd Under 1.5) ausente no PDF. Critério 'mandante_pontua_h2h' (H2H) ausente no PDF."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Morecambe Darlington 1883",
+      "liga": "England FA Cup",
+      "motivo": "Dados insuficientes no material para aplicar métodos com segurança.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para Back Favorito.",
+        "lay_zebra": "Jogo fora das ligas permitidas para Lay Zebra.",
+        "over_limite_70": "mercado_espera_gols (odd Over 2.5 ausente) e gols_2t_no_h2h (H2H ausente) não atendidos.",
+        "over_ht_05": "over05ht_>=75 (média 55% global, 60% casa/fora — precisa >=75%), media_1t_>=1.1 (média 0.95 global, 1.05 casa/fora — precisa >=1.1), mercado_confirma (odd Over 0.5 HT ausente) e sem_perfil_estudado (dado ausente) não atendidos.",
+        "back_2x2": "over25_>=65 (média 55% global, 50% casa/fora — precisa >=65%), btts_>=65 (média 55% global, 55% casa/fora — precisa >=65%), over_ht_>=70 (média 55% global, 60% casa/fora — precisa >=70%) e mercado_espera_gols (odd Over 2.5 ausente) não atendidos.",
+        "back_goleada": "prob_favorito_>=70 (prob estimada ~50% — precisa >=70%), odd_favorito_<=1.40 (odd 2.00 — precisa <=1.40), ataque_>=2.5 (média 1.50 — precisa >=2.5), goleada_recente_h2h (H2H ausente) e mercado_espera_gols (odd Over 2.5 ausente) não atendidos.",
+        "lay_1x0": "p_1x0_com_margem (P(1-0) estimada ~9-10% * 10.50 > 0.85), under15_caro (odd Under 1.5 ausente) e visitante_pontua_h2h (H2H ausente) não atendidos.",
+        "lay_0x1": "p_0x1_com_margem (P(0-1) estimada ~9-10% * 11.00 > 0.85), under15_caro (odd Under 1.5 ausente) e mandante_pontua_h2h (H2H ausente) não atendidos."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Salisbury FC Dulwich",
+      "liga": "England FA Cup",
+      "motivo": "Dados insuficientes no material para aplicar métodos com segurança.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para Back Favorito.",
+        "lay_zebra": "Jogo fora das ligas permitidas para Lay Zebra.",
+        "over_limite_70": "mercado_espera_gols (odd Over 2.5 ausente) e gols_2t_no_h2h (H2H ausente) não atendidos.",
+        "over_ht_05": "over05ht_>=75 (média 50% global, 55% casa/fora — precisa >=75%), mercado_confirma (odd Over 0.5 HT ausente) e sem_perfil_estudado (dado ausente) não atendidos.",
+        "back_2x2": "over_ht_>=70 (média 50% global, 55% casa/fora — precisa >=70%) e mercado_espera_gols (odd Over 2.5 ausente) não atendidos.",
+        "back_goleada": "adversario_sofre_>=2.0 (Dulwich sofre 1.20 global, 1.60 fora — precisa >=2.0), goleada_recente_h2h (H2H ausente) e mercado_espera_gols (odd Over 2.5 ausente) não atendidos.",
+        "lay_1x0": "under15_caro (odd Under 1.5 ausente) e visitante_pontua_h2h (H2H ausente) não atendidos.",
+        "lay_0x1": "p_0x1_com_margem (P(0-1) estimada ~8-9% * 11.00 > 0.85), under15_caro (odd Under 1.5 ausente) e mandante_pontua_h2h (H2H ausente) não atendidos."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Cambridge City Alvechurch",
+      "liga": "England FA Cup",
+      "motivo": "Dados insuficientes para estimar odds de mercado e critérios de gols não atendidos.",
+      "motivos_por_metodo": {
+        "back_favorito": "prob_vitoria_>=68: prob estimada 55-60% — precisa ≥68%; adversario_ma_fase: Alvechurch não está em má fase; ev_>=5pct: odd de mercado 1.80, fair odd 1.82, mínima 2.09 — sem valor; mando_ou_superioridade: sem dados de classificação para comparar posições; entrega_como_favorito: sem dados de H2H com odds; elenco_completo: sem dados de jogadores; geral_e_mando_alinhados: sem dados de classificação.",
+        "lay_zebra": "odd_zebra_5.00_a_8.50: odd da zebra 3.60 — precisa ≥5.00; prob_zebra_<=15: prob estimada 30-35% — precisa ≤15%; zebra_ma_fase: Cambridge City não tem 3+ derrotas nem sofre >=2.0 gols/jogo; nao_pontua_como_azarona: sem dados de H2H com odds; zebra_sem_retorno_chave: sem dados de jogadores.",
+        "over_limite_70": "momento_gols_final: nenhum time atende % de gols tardios (Cambridge City Marcado 76-90: 30%, Alvechurch Sofrido 76-90: 20%); mercado_espera_gols: odd de Over 2.5 ausente no PDF; gols_2t_no_h2h: sem dados de H2H.",
+        "over_ht_05": "over05ht_>=75: média de Over 0.5 HT 35-50% — precisa ≥75%; media_1t_>=1.1: média de gols no 1ºT 0.60-1.00 — precisa ≥1.1; mercado_confirma: odd de Over 0.5 HT ausente no PDF; sem_perfil_estudado: Alvechurch tem perfil de 1º tempo travado (0.00 gols marcados 1ºT global).",
+        "back_2x2": "defesas_frageis: Alvechurch sofre 0.50 gols/jogo global — precisa ≥1.3; over_ht_>=70: média de Over 0.5 HT 35-55% — precisa ≥70%; mercado_espera_gols: odd de Over 2.5 ausente no PDF.",
+        "back_goleada": "prob_favorito_>=70: prob estimada 55-60% — precisa ≥70%; odd_favorito_<=1.40: odd do favorito 1.80 — precisa ≤1.40; ataque_>=2.5: Alvechurch marca 2.00 gols/jogo global — precisa ≥2.5; adversario_sofre_>=2.0: Cambridge City sofre 1.50 gols/jogo global — precisa ≥2.0; goleada_recente_h2h: sem dados de H2H; mercado_espera_gols: odd de Over 2.5 ausente no PDF.",
+        "lay_1x0": "p_1x0_com_margem: P(1-0) estimada 8.96%, P(1-0) * odd_alvo = 0.94 — precisa ≤0.85; under15_caro: odd de Under 1.5 ausente no PDF; visitante_pontua_h2h: sem dados de H2H.",
+        "lay_0x1": "under15_caro: odd de Under 1.5 ausente no PDF; mandante_pontua_h2h: sem dados de H2H."
+      }
+    },
+    {
+      "horario": "15:45",
+      "jogo": "Switzerland x Slovenia",
+      "liga": "UEFA Nations League B",
+      "motivo": "Jogo de seleções sem dados de odds de mercado para Over/Under e H2H, inviabilizando a maioria dos métodos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para Back Favorito.",
+        "lay_zebra": "Jogo fora das ligas permitidas para Lay Zebra.",
+        "over_limite_70": "Odd Over 2.5 ausente no PDF; H2H ausente; Dados de classificação ausentes para inferir motivação.",
+        "over_ht_05": "Índice médio de Over 0.5 HT (55%) abaixo do mínimo de 75%; Odd Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice médio de Over 2.5 (55%) abaixo do mínimo de 65%; Índice médio de Ambas Marcam (50%) abaixo do mínimo de 65%; Defesas não são frágeis (Switzerland 0.90, Slovenia 1.00); Ataque do Slovenia (0.80) abaixo do mínimo de 1.4; Índice médio de Over HT (55%) abaixo do mínimo de 70%; Odd Over 2.5 ausente no PDF.",
+        "back_goleada": "Adversário (Slovenia) sofre 1.0 gols/jogo, abaixo do mínimo de 2.0; Odd Over 2.5 ausente no PDF.",
+        "lay_1x0": "P(1-0) estimada alta (~12-15%); Visitante (Slovenia) marcou 1+ gol em 60% dos jogos fora, abaixo do mínimo de 65%; Mandante (Switzerland) marca 1.11 gols/jogo, abaixo do mínimo de 1.5; BTTS médio (50%) não é > 50%; Odd Under 1.5 ausente no PDF; H2H ausente.",
+        "lay_0x1": "Visitante (Slovenia) marca 0.80 gols/jogo, abaixo do mínimo de 1.5; BTTS médio (50%) não é > 50%; Odd Under 1.5 ausente no PDF; Mandante marcou em 2/4 H2H, não na maioria."
+      }
+    },
+    {
+      "horario": "10:00",
+      "jogo": "Finland x Albania",
+      "liga": "UEFA Nations League C",
+      "motivo": "Jogo de seleções sem dados de odds de mercado para Over/Under e H2H, inviabilizando a maioria dos métodos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para Back Favorito.",
+        "lay_zebra": "Jogo fora das ligas permitidas para Lay Zebra.",
+        "over_limite_70": "Odd Over 2.5 ausente no PDF; H2H ausente; Dados de classificação ausentes para inferir motivação.",
+        "over_ht_05": "Índice médio de Over 0.5 HT (70%) abaixo do mínimo de 75%; Odd Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice médio de Over 2.5 (45%) abaixo do mínimo de 65%; Índice médio de Ambas Marcam (25%) abaixo do mínimo de 65%; Defesas não são frágeis (Albania 0.80); Ataque do Albania (0.90) abaixo do mínimo de 1.4; Odd Over 2.5 ausente no PDF.",
+        "back_goleada": "Não há favorito extremo (odd Finland 2.50, prob 40%); Ataque do Finland (1.70) abaixo do mínimo de 2.5; Adversário (Albania) sofre 0.80 gols/jogo, abaixo do mínimo de 2.0; H2H ausente; Odd Over 2.5 ausente no PDF.",
+        "lay_1x0": "P(1-0) estimada alta (~12-15%); Mandante (Finland) marca 1.11 gols/jogo, abaixo do mínimo de 1.5; BTTS médio (32%) não é > 50%; Odd Under 1.5 ausente no PDF; H2H ausente.",
+        "lay_0x1": "P(0-1) estimada alta (~10-12%); Mandante (Finland) marcou 1+ gol em 56% dos jogos em casa, abaixo do mínimo de 65%; Visitante (Albania) marca 0.90 gols/jogo, abaixo do mínimo de 1.5; BTTS médio (32%) não é > 50%; Odd Under 1.5 ausente no PDF; H2H ausente."
+      }
+    }
+  ]
+}
