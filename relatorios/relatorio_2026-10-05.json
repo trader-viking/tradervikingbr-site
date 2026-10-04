@@ -1,0 +1,213 @@
+{
+  "data": "2026-10-05",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-10-04T14:57:38.788473",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 17,
+  "entradas": [
+    {
+      "horario": "15:45",
+      "liga": "UEFA Nations League A",
+      "jogo": "France x Belgium",
+      "metodos_aplicados": [
+        "back_favorito",
+        "lay_zebra",
+        "back_goleada"
+      ],
+      "mercado_principal": "Vitória France",
+      "probabilidade_estimada": "68%",
+      "fair_odd": "1.47",
+      "odd_minima_entrada": "1.62",
+      "media_gols_casa": "2.40",
+      "media_gols_fora": "3.10",
+      "media_sofridos_casa": "1.30",
+      "media_sofridos_fora": "1.00",
+      "odds_mercado": {
+        "casa": "1.53",
+        "empate": "4.75",
+        "fora": "5.50",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "O H2H direto mostra a França com 5 vitórias, 1 empate e 1 derrota contra a Bélgica, incluindo 3 vitórias nos últimos 3 confrontos pela Nations League. A França venceu 3 dos 4 jogos em casa contra a Bélgica.",
+        "jogos_relevantes": [
+          {
+            "data": "28/09/2026",
+            "confronto": "Belgium x France",
+            "time_analisado": "France",
+            "papel": null,
+            "odd": null,
+            "placar": "1-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "14/10/2024",
+            "confronto": "Belgium x France",
+            "time_analisado": "France",
+            "papel": null,
+            "odd": null,
+            "placar": "2-1",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "09/09/2024",
+            "confronto": "France x Belgium",
+            "time_analisado": "France",
+            "papel": null,
+            "odd": null,
+            "placar": "2-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "01/07/2024",
+            "confronto": "France x Belgium",
+            "time_analisado": "France",
+            "papel": null,
+            "odd": null,
+            "placar": "1-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "07/10/2021",
+            "confronto": "Belgium x France",
+            "time_analisado": "France",
+            "papel": null,
+            "odd": null,
+            "placar": "2-3",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "10/07/2018",
+            "confronto": "France x Belgium",
+            "time_analisado": "France",
+            "papel": null,
+            "odd": null,
+            "placar": "1-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          }
+        ]
+      },
+      "alerta_odds": {
+        "tipo": "positivo",
+        "time": "France",
+        "texto": "A França tem um histórico positivo contra a Bélgica, vencendo 5 dos 7 confrontos diretos, incluindo os últimos 3 pela Nations League. A odd de 1.53 reflete um favoritismo que a França tem entregado."
+      }
+    },
+    {
+      "horario": "13:00",
+      "liga": "UEFA Nations League C",
+      "jogo": "Cyprus x Latvia",
+      "metodos_aplicados": [
+        "over_ht_05"
+      ],
+      "mercado_principal": "Mais 0.5 gols HT",
+      "probabilidade_estimada": "75%",
+      "fair_odd": "1.33",
+      "odd_minima_entrada": "1.53",
+      "media_gols_casa": "1.50",
+      "media_gols_fora": "0.50",
+      "media_sofridos_casa": "1.70",
+      "media_sofridos_fora": "1.10",
+      "odds_mercado": {
+        "casa": "1.65",
+        "empate": "3.60",
+        "fora": "5.50",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": null,
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Ambos os times têm alto índice de Over 0.5 HT (75% média) e média de gols no 1º tempo de 1.25, indicando um início de jogo movimentado.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 75% → fair 1.33; com margem de segurança, só entrar acima de 1.53",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "Cyprus marca 0.90 gols no 1ºT em casa, Latvia sofre 0.50 gols no 1ºT fora.",
+      "desempenho_2t": "Cyprus marca 0.60 gols no 2ºT em casa, Latvia sofre 0.60 gols no 2ºT fora.",
+      "contexto_times": {
+        "casa": {
+          "posicao": null,
+          "posicao_geral": null,
+          "objetivo": ""
+        },
+        "fora": {
+          "posicao": null,
+          "posicao_geral": null,
+          "objetivo": ""
+        }
+      },
+      "motivacao_tecnica": "Trata-se de um jogo de seleções na UEFA Nations League C, onde a motivação é inerente. As estatísticas de gols no primeiro tempo são favoráveis para um gol cedo.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": null,
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": null,
+      "momento_gols": null,
+      "jogadores_chave": null,
+      "placares_provaveis": null,
+      "momento_entrada": "Pré-jogo ou ao vivo se 0-0 aos 12-18min com pressão",
+      "situacao_saida": null,
+      "stake_recomendada": "1.5%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "As estatísticas de gols no 1º tempo são consistentes, mas a ausência de odds de mercado para Over 0.5 HT exige cautela.",
+        "gatilho_saida_parcial": null,
+        "hard_stop": null
+      }
+    }
+  ],
+  "evitar": []
+}
