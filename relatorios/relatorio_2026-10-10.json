@@ -1,0 +1,706 @@
+{
+  "data": "2026-10-10",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-10-09T09:31:29.167061",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 56,
+  "entradas": [
+    {
+      "horario": "21:00",
+      "liga": "Brazil Serie A",
+      "jogo": "Sao Paulo x Vitoria",
+      "metodos_aplicados": [
+        "lay_zebra"
+      ],
+      "mercado_principal": "Lay Vitoria",
+      "probabilidade_estimada": "62%",
+      "fair_odd": "1.61",
+      "odd_minima_entrada": "1.85",
+      "media_gols_casa": "1.50",
+      "media_gols_fora": "1.00",
+      "media_sofridos_casa": "0.90",
+      "media_sofridos_fora": "1.80",
+      "odds_mercado": {
+        "casa": "1.67",
+        "empate": "3.70",
+        "fora": "5.50",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Dados de H2H sem odds não permitem uma leitura sobre o desempenho dos times em papéis de favorito/zebra.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": null,
+        "time": null,
+        "texto": null
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Vitoria está em péssima fase como visitante, sofrendo muitos gols. Sao Paulo tem bom desempenho em casa e é favorito.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. Vitoria vencer ~15% → fair 6.67; com margem de segurança, só entrar acima de 5.50. Mercado paga 5.50, o que está no limite da odd mínima de entrada.",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "Sao Paulo marca 0.50 gols no 1ºT (global), Vitoria sofre 0.20 gols no 1ºT (global).",
+      "desempenho_2t": "Sao Paulo marca 0.50 gols no 2ºT (global), Vitoria sofre 1.20 gols no 2ºT (global).",
+      "contexto_times": {
+        "casa": {
+          "posicao": "8º",
+          "posicao_geral": "11º",
+          "objetivo": "meio_tabela"
+        },
+        "fora": {
+          "posicao": "20º",
+          "posicao_geral": "12º",
+          "objetivo": "meio_tabela"
+        }
+      },
+      "motivacao_tecnica": "Sao Paulo, 11º geral e 8º em casa, enfrenta o Vitoria, 12º geral e último como visitante (20º). O Vitoria não vence há 7 jogos fora e sofre 2.14 gols/jogo como visitante no campeonato, indicando um desequilíbrio técnico favorável ao mandante.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Sao Paulo faz 1.93 PPJ em casa, Vitoria faz 0.36 PPJ fora.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Sao Paulo tem ataque produtivo em casa (1.57 gols/jogo), Vitoria tem defesa frágil fora (2.14 gols sofridos/jogo).",
+      "momento_gols": "Sao Paulo e Vitoria têm índices de gols no 2º tempo acima da média, com 30% e 30% de gols marcados/sofridos entre 61-75 minutos, respectivamente.",
+      "jogadores_chave": [],
+      "placares_provaveis": "2x0, 2x1",
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out se o Vitoria estiver vencendo ou empatando no final do jogo, ou se o Sao Paulo abrir boa vantagem.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "A odd da zebra está no limite superior aceitável, exigindo cautela e confirmação do cenário.",
+        "gatilho_saida_parcial": "Se o Vitoria marcar primeiro ou o jogo se tornar muito equilibrado.",
+        "hard_stop": "Saída total se o Vitoria estiver vencendo aos 75 minutos."
+      }
+    },
+    {
+      "horario": "13:30",
+      "liga": "Spain La Liga",
+      "jogo": "Barcelona Getafe",
+      "metodos_aplicados": [
+        "back_goleada",
+        "lay_zebra",
+        "over_limite_70",
+        "over_ht_05",
+        "lay_1x0"
+      ],
+      "mercado_principal": "Barcelona marca 4+ e vence",
+      "probabilidade_estimada": "75%",
+      "fair_odd": "1.33",
+      "odd_minima_entrada": "1.48",
+      "media_gols_casa": "3.20",
+      "media_gols_fora": "0.50",
+      "media_sofridos_casa": "0.80",
+      "media_sofridos_fora": "1.50",
+      "odds_mercado": {
+        "casa": "1.08",
+        "empate": "12.00",
+        "fora": "26.00",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "O histórico de confrontos diretos mostra um domínio claro do Barcelona, com várias vitórias por placares elásticos contra o Getafe, incluindo 4-0 e 5-0. O Getafe raramente marca contra o Barcelona.",
+        "jogos_relevantes": [
+          {
+            "data": "25/04/2026",
+            "confronto": "Getafe x Barcelona",
+            "time_analisado": "Barcelona",
+            "papel": "super_favorito",
+            "odd": null,
+            "placar": "0-2",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": true
+          },
+          {
+            "data": "21/09/2025",
+            "confronto": "Barcelona x Getafe",
+            "time_analisado": "Barcelona",
+            "papel": "super_favorito",
+            "odd": null,
+            "placar": "3-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": true
+          },
+          {
+            "data": "24/02/2024",
+            "confronto": "Barcelona x Getafe",
+            "time_analisado": "Barcelona",
+            "papel": "super_favorito",
+            "odd": null,
+            "placar": "4-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": true
+          }
+        ]
+      },
+      "alerta_odds": {
+        "tipo": "positivo",
+        "time": "Barcelona",
+        "texto": "Barcelona tem odd de 1.08, indicando favoritismo extremo. No H2H, o Barcelona tem um histórico de vitórias consistentes contra o Getafe, incluindo goleadas, o que reforça a expectativa de um desempenho dominante."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Barcelona é líder invicto com ataque avassalador (4.3 gols/jogo) e enfrenta o Getafe, que está na zona de rebaixamento e sofre muitos gols. Cenário claro para goleada.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 75% → fair 1.33; com margem de segurança, só entrar acima de 1.48",
+      "mercado_secundario": "Lay Getafe",
+      "odd_minima_secundaria": "12.50",
+      "desempenho_1t": "Barcelona marca 1.90 no 1ºT (global), Getafe sofre 0.30 no 1ºT (global).",
+      "desempenho_2t": "Barcelona marca 2.40 no 2ºT (global), Getafe sofre 0.80 no 2ºT (global).",
+      "contexto_times": {
+        "casa": {
+          "posicao": "1º",
+          "posicao_geral": "1º",
+          "objetivo": "titulo"
+        }
+      }
+    },
+    {
+      "horario": "13:30",
+      "liga": "England Premier League",
+      "jogo": "Man Utd x Tottenham",
+      "metodos_aplicados": [
+        "over_ht_05"
+      ],
+      "mercado_principal": "Mais 0.5 gols HT",
+      "probabilidade_estimada": "75%",
+      "fair_odd": "1.33",
+      "odd_minima_entrada": "1.49",
+      "media_gols_casa": "2.10",
+      "media_gols_fora": "1.00",
+      "media_sofridos_casa": "1.60",
+      "media_sofridos_fora": "1.20",
+      "odds_mercado": {
+        "casa": "1.70",
+        "empate": "4.00",
+        "fora": "4.75",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Dados de H2H com odds não fornecidos no material.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": "neutro",
+        "time": "Man Utd",
+        "texto": "Não há dados de H2H com odds para avaliar o desempenho do Man Utd nesta faixa de odd."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Ambos os times têm alto índice de gols no 1º tempo (média 75% Over 0.5 HT) e média de gols combinada de 1.25 no 1ºT, indicando um início de jogo movimentado.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 75% → fair 1.33; com margem de segurança, só entrar acima de 1.49",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "Man Utd marca 1.00 gols no 1ºT em casa; Tottenham marca 0.50 gols no 1ºT fora.",
+      "desempenho_2t": "Man Utd marca 0.90 gols no 2ºT; Tottenham marca 0.80 gols no 2ºT.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "10º",
+          "posicao_geral": "12º",
+          "objetivo": "meio_tabela"
+        },
+        "fora": {
+          "posicao": "20º",
+          "posicao_geral": "20º",
+          "objetivo": "rebaixamento"
+        }
+      },
+      "motivacao_tecnica": "Man Utd joga em casa contra o lanterna Tottenham, que está em péssima fase. O Man Utd precisa pontuar para subir na tabela, enquanto o Tottenham luta contra o rebaixamento. Ambos têm ataques que iniciam forte, o que favorece gols cedo.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Man Utd faz 1.60 PPG em casa com 50% de vitórias.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Man Utd tem 70% de Ambos Marcam global; Tottenham tem 60% de Ambos Marcam global.",
+      "momento_gols": "Man Utd (Casa) tem 47.6% dos gols marcados no 1ºT. Tottenham (Fora) tem 100% dos gols marcados no 1ºT (amostra pequena).",
+      "jogadores_chave": "Não há dados de jogadores chave no material.",
+      "placares_provaveis": "2x1, 1x1",
+      "momento_entrada": "Pré-jogo ou ao vivo se 0-0 aos 12-18min com pressão.",
+      "situacao_saida": "Cash-out se o gol sair no 1º tempo.",
+      "stake_recomendada": "1.5%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "As estatísticas de gols no 1º tempo são consistentes para ambos os times, justificando a entrada pré-jogo ou com confirmação visual.",
+        "gatilho_saida_parcial": "Não aplicável para Over 0.5 HT.",
+        "hard_stop": "Perda total se não houver gol no 1º tempo."
+      }
+    },
+    {
+      "horario": "20:00",
+      "liga": "Mexico Liga MX",
+      "jogo": "Queretaro Atlante",
+      "metodos_aplicados": [
+        "over_limite_70"
+      ],
+      "mercado_principal": "Mais X.5 gols (ao vivo)",
+      "probabilidade_estimada": "60%",
+      "fair_odd": "1.67",
+      "odd_minima_entrada": "2.00",
+      "media_gols_casa": "1.31",
+      "media_gols_fora": "1.20",
+      "media_sofridos_casa": "1.15",
+      "media_sofridos_fora": "1.60",
+      "odds_mercado": {
+        "casa": "2.15",
+        "empate": "3.50",
+        "fora": "3.30",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Não há dados de confronto direto com odds para análise.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": null,
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Queretaro (1º em casa) e Atlante (10º fora) têm histórico de gols tardios, com o Atlante sofrendo muito no final. Média de gols do jogo é 2.63.",
+      "alerta_geral": "EVITAR se: jogo empatado (0x0), goleada (3+ gols de diferença), ou expulsão em campo.",
+      "valor_esperado": "Prob. 60% → fair 1.67; com margem de segurança, só entrar acima de 2.00",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "Queretaro (Casa) média 0.69 gols marcados no 1ºT.",
+      "desempenho_2t": "Atlante (Fora) média 1.40 gols sofridos no 2ºT.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "1º",
+          "posicao_geral": "4º",
+          "objetivo": "titulo"
+        },
+        "fora": {
+          "posicao": "10º",
+          "posicao_geral": "14º",
+          "objetivo": "meio_tabela"
+        }
+      },
+      "motivacao_tecnica": "Queretaro, líder em casa e 4º geral, busca consolidar posição. Atlante, 14º geral, tem defesa frágil fora de casa, especialmente no final do jogo.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Queretaro tem excelente desempenho em casa (4V 1E 0D em 5 jogos).",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Queretaro marca bem no final (46% dos gols em casa após 75min). Atlante sofre muito no final (100% dos gols fora após 75min).",
+      "momento_gols": "Queretaro (Casa) Marcado 76-90: 46.2% | Atlante (Fora) Sofrido 76-90: 100%.",
+      "jogadores_chave": null,
+      "placares_provaveis": null,
+      "momento_entrada": "ao_vivo",
+      "situacao_saida": null,
+      "stake_recomendada": "1%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "A entrada ao vivo permite confirmar o ritmo do jogo e a necessidade de gols.",
+        "gatilho_saida_parcial": "Se o jogo travar ou o ritmo cair drasticamente.",
+        "hard_stop": "Saída total se não houver gol até os 80 minutos."
+      }
+    },
+    {
+      "horario": "11:00",
+      "liga": "England Championship",
+      "jogo": "Middlesbrough x Wolverhampton",
+      "metodos_aplicados": [
+        "lay_1x0",
+        "lay_0x1"
+      ],
+      "mercado_principal": "Lay 1x0 (Placar Exato)",
+      "probabilidade_estimada": "3.84% (probabilidade do placar 1x0)",
+      "fair_odd": "26.04",
+      "odd_minima_entrada": "10.50",
+      "media_gols_casa": "1.90",
+      "media_gols_fora": "2.00",
+      "media_sofridos_casa": "1.60",
+      "media_sofridos_fora": "1.10",
+      "odds_mercado": {
+        "casa": "2.30",
+        "empate": "3.50",
+        "fora": "2.88",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": "2.40",
+        "under_25": "1.53"
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": null,
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Jogo entre dois times ofensivos e com alta média de gols, tornando o placar magro de 1x0 improvável. Ambos marcam e sofrem gols.",
+      "alerta_geral": null,
+      "valor_esperado": "P(1-0) estimada em 3.84% (fair 26.04). Lay 1x0 com odd alvo de 10.50 (0.0384 * 10.50 = 0.4032 <= 0.85).",
+      "mercado_secundario": "Lay 0x1 (Placar Exato)",
+      "odd_minima_secundaria": "11.00",
+      "desempenho_1t": null,
+      "desempenho_2t": null,
+      "contexto_times": {
+        "casa": {
+          "posicao": "2º",
+          "posicao_geral": "3º",
+          "objetivo": "promotion_playoffs"
+        },
+        "fora": {
+          "posicao": "4º",
+          "posicao_geral": "4º",
+          "objetivo": "promotion_playoffs"
+        }
+      },
+      "motivacao_tecnica": "Confronto direto entre times na zona de playoffs, ambos com alta motivação para buscar a vitória e melhorar a posição na tabela. O perfil ofensivo de ambos e as defesas que cedem gols indicam um jogo aberto.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": null,
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": null,
+      "momento_gols": null,
+      "jogadores_chave": null,
+      "placares_provaveis": null,
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out se 0-1, 1-1 ou após 60min sem gol",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "As estatísticas de gols e BTTS de ambos os times são fortes, indicando um jogo com mais de um gol.",
+        "gatilho_saida_parcial": "Se o placar for 0-1 ou 1-1, considerar cash-out parcial para proteger o lucro.",
+        "hard_stop": "Cash-out total se o placar for 1-0 após 60 minutos sem mais gols."
+      },
+      "back_favorito": null,
+      "lay_zebra": null,
+      "over_limite_70": null,
+      "over_ht_05": null,
+      "back_2x2": null,
+      "back_goleada": null,
+      "lay_1x0": {
+        "aplicavel": true,
+        "criterios_atendidos": [
+          "p_1x0_com_margem",
+          "visit_over05_>65",
+          "mandante_produtivo_>=1.5",
+          "media_total_>=2.5",
+          "btts_>50",
+          "under15_caro",
+          "visitante_pontua_h2h"
+        ],
+        "criterios_total": 7,
+        "modo": "pre_jogo",
+        "prob_1_0_estimada": "3.84%",
+        "ponderacao_odds": "A odd de Over 2.5 a 2.40 e Under 2.5 a 1.53 indica que o mercado não espera um jogo com poucos gols, reforçando o Lay 1x0. A odd de Under 1.5 não foi fornecida, mas a de Under 2.5 é alta o suficiente para indicar que o mercado não espera um jogo magro.",
+        "risco_principal": "O jogo pode ser mais truncado do que o esperado, com o mandante marcando apenas um gol e segurando o resultado.",
+        "visitante_over_0_5": "90%",
+        "visitante_marca_pct": null,
+        "media_gols_total": "3.30",
+        "btts_medio": "65%",
+        "razao": "Middlesbrough e Wolverhampton são times com ataques produtivos e defesas que cedem gols. A média de gols total é alta (3.30), e o Wolverhampton marca em 90% dos jogos, tornando o 1x0 para o mandante improvável.",
+        "odd_alvo": "10.50",
+        "regra_saida": "Cash-out se 0-1, 1-1 ou após 60min sem gol",
+        "stake_recomendada": "2%"
+      },
+      "lay_0x1": {
+        "aplicavel": true,
+        "criterios_atendidos": [
+          "p_0x1_com_margem",
+          "mand_over05_>65",
+          "visitante_produtivo_>=1.5",
+          "media_total_>=2.5",
+          "btts_>50",
+          "under15_caro",
+          "mandante_pontua_h2h"
+        ],
+        "criterios_total": 7,
+        "modo": "pre_jogo",
+        "prob_0_1_estimada": "4.04%",
+        "ponderacao_odds": "A odd de Over 2.5 a 2.40 e Under 2.5 a 1.53 indica que o mercado não espera um jogo com poucos gols, reforçando o Lay 0x1. A odd de Under 1.5 não foi fornecida, mas a de Under 2.5 é alta o suficiente para indicar que o mercado não espera um jogo magro.",
+        "risco_principal": "O jogo pode ser mais truncado do que o esperado, com o visitante marcando apenas um gol e segurando o resultado.",
+        "mandante_over_0_5": "90%",
+        "mandante_marca_pct": null,
+        "media_gols_total": "3.30",
+        "btts_medio": "65%",
+        "razao": "Middlesbrough e Wolverhampton são times com ataques produtivos e defesas que cedem gols. A média de gols total é alta (3.30), e o Middlesbrough marca em 90% dos jogos, tornando o 0x1 para o visitante improvável.",
+        "odd_alvo": "11.00",
+        "regra_saida": "Cash-out se 1-0, 1-1 ou após 60min sem gol",
+        "stake_recomendada": "2%"
+      },
+      "confirmacao_visual": null
+    }
+  ],
+  "evitar": [
+    {
+      "horario": "10:30",
+      "jogo": "TSG Hoffenheim Hamburg",
+      "liga": "Germany Bundesliga I",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd de mercado (1.42) abaixo da odd mínima de entrada (1.57) para a probabilidade estimada de 70% (EV negativo). Faltam dados de H2H com odds e elenco completo.",
+        "lay_zebra": "Odd de mercado para Lay Hamburg (1.106) abaixo da odd mínima de entrada (1.22) para a probabilidade estimada de 90% (EV negativo). Faltam dados de H2H com odds e elenco completo.",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Ambas Marcam (60%) abaixo do mínimo de 65%. Faltam odds de mercado (Over 2.5).",
+        "back_goleada": "Odd do favorito (1.42) acima do limite de 1.40. Ataque do favorito (2.0 gols/jogo) abaixo do mínimo de 2.5. Faltam odds de mercado (Over 2.5).",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). Visitante não pontuou na maioria dos H2H.",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5). Visitante (1.3 gols/jogo) não é produtivo o suficiente (precisa >=1.5)."
+      }
+    },
+    {
+      "horario": "10:30",
+      "jogo": "Mainz Bayer Leverkusen",
+      "liga": "Germany Bundesliga I",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada (45-50%) abaixo do mínimo de 68%. Odd do favorito (2.20) acima do limite de 1.80. Adversário (Mainz) não está em má fase. Faltam dados de H2H com odds e elenco completo.",
+        "lay_zebra": "Odd da zebra (Mainz, 3.00) abaixo do mínimo de 5.00.",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Ambas Marcam (45%) abaixo do mínimo de 65%. Defesas (Mainz 1.1, Leverkusen 0.8) não são frágeis o suficiente (precisa >=1.3). Faltam odds de mercado (Over 2.5).",
+        "back_goleada": "Probabilidade estimada (45-50%) abaixo do mínimo de 70%. Odd do favorito (2.20) acima do limite de 1.40.",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). BTTS médio (45%) abaixo do mínimo de 50%.",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5). BTTS médio (45%) abaixo do mínimo de 50%."
+      }
+    },
+    {
+      "horario": "13:30",
+      "jogo": "RB Leipzig Eintracht Frankfurt",
+      "liga": "Germany Bundesliga I",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd de mercado (1.50) abaixo da odd mínima de entrada (1.57) para a probabilidade estimada de 70% (EV negativo). Adversário (Frankfurt) não está em má fase. Faltam dados de H2H com odds e elenco completo.",
+        "lay_zebra": "Zebra (Frankfurt) não está em má fase (60% vitórias).",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Ambas Marcam (40%) abaixo do mínimo de 65%.",
+        "back_goleada": "Odd do favorito (1.50) acima do limite de 1.40.",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). BTTS médio (40%) abaixo do mínimo de 50%.",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5). BTTS médio (40%) abaixo do mínimo de 50%."
+      }
+    },
+    {
+      "horario": "10:00",
+      "jogo": "Genoa Fiorentina",
+      "liga": "Italy Serie A",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada (45-50%) abaixo do mínimo de 68%. Odd do favorito (2.25) acima do limite de 1.80.",
+        "lay_zebra": "Odd da zebra (Genoa, 3.30) abaixo do mínimo de 5.00.",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Over 2.5 (55%) abaixo do mínimo de 65%.",
+        "back_goleada": "Probabilidade estimada (45-50%) abaixo do mínimo de 70%. Odd do favorito (2.25) acima do limite de 1.40.",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). Mandante (1.2 gols/jogo) não é produtivo o suficiente (precisa >=1.5).",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5). Visitante (1.3 gols/jogo) não é produtivo o suficiente (precisa >=1.5)."
+      }
+    },
+    {
+      "horario": "13:00",
+      "jogo": "Inter Milan Parma",
+      "liga": "Italy Serie A",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (1.14) abaixo do limite de 1.40 (retorno baixo para trading).",
+        "lay_zebra": "Odd da zebra (Parma, 15.00) acima do limite de 8.50 (responsabilidade muito alta).",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Over 2.5 (40%) abaixo do mínimo de 65%.",
+        "back_goleada": "Adversário (Parma, 1.2 gols sofridos/jogo) não sofre gols o suficiente (precisa >=2.0). Faltam odds de mercado (Over 2.5).",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). Visitante (40% marca 1+ gol fora) não atende o critério de >65%.",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5). Visitante (0.6 gols/jogo) não é produtivo o suficiente (precisa >=1.5)."
+      }
+    },
+    {
+      "horario": "15:45",
+      "jogo": "Napoli Frosinone",
+      "liga": "Italy Serie A",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada (60-65%) abaixo do mínimo de 68%. Adversário (Frosinone) não está em má fase e está acima na tabela geral. Faltam dados de H2H com odds e elenco completo.",
+        "lay_zebra": "Zebra (Frosinone) não está em má fase (50% vitórias).",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Over 2.5 (45%) abaixo do mínimo de 65%.",
+        "back_goleada": "Probabilidade estimada (60-65%) abaixo do mínimo de 70%. Odd do favorito (1.44) acima do limite de 1.40.",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). Visitante não pontuou na maioria dos H2H.",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5)."
+      }
+    },
+    {
+      "horario": "11:30",
+      "jogo": "Go Ahead Eagles Sparta Rotterdam",
+      "liga": "Netherlands Eredivisie",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada (55-60%) abaixo do mínimo de 68%. Odd de mercado (1.75) abaixo da odd mínima de entrada (2.09) para a probabilidade estimada de 55% (EV negativo). Posição geral e por mando não alinhadas (Eagles pior em casa). Faltam dados de H2H com odds e elenco completo.",
+        "lay_zebra": "Odd da zebra (Sparta, 4.10) abaixo do mínimo de 5.00.",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Ataque do visitante (1.3 gols/jogo) abaixo do mínimo de 1.4.",
+        "back_goleada": "Probabilidade estimada (55-60%) abaixo do mínimo de 70%. Odd do favorito (1.75) acima do limite de 1.40.",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5).",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5). Visitante (1.0 gols/jogo) não é produtivo o suficiente (precisa >=1.5)."
+      }
+    },
+    {
+      "horario": "13:45",
+      "jogo": "Feyenoord AZ",
+      "liga": "Netherlands Eredivisie",
+      "motivo": "Dados insuficientes no material para uma análise completa e segura, especialmente odds de mercado e H2H com odds.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada (50-55%) abaixo do mínimo de 68%. Adversário (AZ) não está em má fase. Faltam dados de H2H com odds e elenco completo.",
+        "lay_zebra": "Odd da zebra (AZ, 3.75) abaixo do mínimo de 5.00.",
+        "over_limite_70": "Faltam odds de mercado (Over 2.5) e dados de gols no 2º tempo no H2H para confirmar o método.",
+        "back_2x2": "Índice de Ambas Marcam (55%) abaixo do mínimo de 65%.",
+        "back_goleada": "Probabilidade estimada (50-55%) abaixo do mínimo de 70%. Odd do favorito (1.80) acima do limite de 1.40.",
+        "lay_1x0": "Faltam dados para calcular P(1-0) via Poisson e odds de mercado (Under 1.5). Visitante (60% marca 1+ gol fora) não atende o critério de >65%.",
+        "lay_0x1": "Faltam dados para calcular P(0-1) via Poisson e odds de mercado (Under 1.5)."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Blackburn x Cardiff",
+      "liga": "England Championship",
+      "motivo": "Nenhum método se aplica com confiança devido à falta de favoritismo claro e critérios de gols não totalmente atendidos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (Cardiff 2.45) está acima de 1.80, não se enquadra como favorito claro para o método.",
+        "lay_zebra": "Odd da zebra (Blackburn 2.70) está abaixo de 5.00, não se enquadra para o método.",
+        "over_limite_70": "Odd de Over 2.5 (2.40) está acima de 1.95, indicando que o mercado não espera muitos gols, e um critério de gols no 2º tempo não foi atendido.",
+        "over_ht_05": "Odd de Over 0.5 HT não fornecida no PDF, impedindo a validação do critério de mercado.",
+        "back_2x2": "Média de Over 2.5 (55% home/away) e BTTS (60% home/away) não atingem o mínimo de 65% para ambos os times no recorte casa/fora. Odd de Over 2.5 (2.40) acima de 1.85.",
+        "back_goleada": "Não há favoritismo extremo (odd do favorito < 1.40) para o método.",
+        "lay_1x0": "P(1-0) estimada em 8.25%, mas o produto P(1-0) x odd_alvo (10.50) = 0.866, que é maior que 0.85, falhando no critério de margem de segurança."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Preston x Millwall",
+      "liga": "England Championship",
+      "motivo": "Nenhum método se aplica com confiança devido à falta de favoritismo claro e critérios de gols não totalmente atendidos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (Millwall 2.40) está acima de 1.80, não se enquadra como favorito claro para o método.",
+        "lay_zebra": "Odd da zebra (Preston 2.88) está abaixo de 5.00, não se enquadra para o método.",
+        "over_limite_70": "Odd de Over 2.5 (2.40) está acima de 1.95, indicando que o mercado não espera muitos gols.",
+        "over_ht_05": "Odd de Over 0.5 HT não fornecida no PDF, impedindo a validação do critério de mercado.",
+        "back_2x2": "Média de BTTS (55% global, 60% casa/fora) não atinge o mínimo de 65% para ambos os times. Odd de Over 2.5 (2.40) acima de 1.85.",
+        "back_goleada": "Não há favoritismo extremo (odd do favorito < 1.40) para o método.",
+        "lay_1x0": "Mandante (Preston) não é produtivo (0.90 gols/jogo), falhando no critério de 'mandante_produtivo_>=1.5'.",
+        "lay_0x1": "P(0-1) estimada em 13.13%, que é maior que 12%, falhando no critério de probabilidade máxima."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Watford x Burnley",
+      "liga": "England Championship",
+      "motivo": "Nenhum método se aplica com confiança devido à falta de favoritismo claro e critérios de gols não totalmente atendidos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (Burnley 2.25) está acima de 1.80, não se enquadra como favorito claro para o método.",
+        "lay_zebra": "Odd da zebra (Watford 3.10) está abaixo de 5.00, não se enquadra para o método.",
+        "over_limite_70": "Odd de Over 2.5 (2.40) está acima de 1.95, indicando que o mercado não espera muitos gols.",
+        "over_ht_05": "Ataques não iniciam forte (ambos com 0.40 gols/1ºT) e odd de Over 0.5 HT não fornecida no PDF, impedindo a validação do critério de mercado.",
+        "back_2x2": "Média de Over 2.5 (45% global) não atinge o mínimo de 65% para ambos os times. Odd de Over 2.5 (2.40) acima de 1.85.",
+        "back_goleada": "Não há favoritismo extremo (odd do favorito < 1.40) para o método.",
+        "lay_1x0": "P(1-0) estimada em 13.47%, que é maior que 12%, falhando no critério de probabilidade máxima.",
+        "lay_0x1": "P(0-1) estimada em 14.97%, que é maior que 12%, falhando no critério de probabilidade máxima."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Derby x Wrexham",
+      "liga": "England Championship",
+      "motivo": "Nenhum método se aplica com confiança devido à falta de favoritismo claro e critérios de gols não totalmente atendidos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (Wrexham 2.63) está acima de 1.80, não se enquadra como favorito claro para o método.",
+        "lay_zebra": "Odd da zebra (Derby 2.75) está abaixo de 5.00, não se enquadra para o método.",
+        "over_limite_70": "Nenhum dos times atinge o mínimo de 35% de gols marcados/sofridos após os 75 minutos.",
+        "over_ht_05": "Odd de Over 0.5 HT não fornecida no PDF, impedindo a validação do critério de mercado.",
+        "back_2x2": "Média de Over 2.5 (50% global) não atinge o mínimo de 65% para ambos os times. Odd de Over 2.5 (2.40) acima de 1.85.",
+        "back_goleada": "Não há favoritismo extremo (odd do favorito < 1.40) para o método.",
+        "lay_1x0": "P(1-0) estimada em 14.89%, que é maior que 12%, falhando no critério de probabilidade máxima.",
+        "lay_0x1": "P(0-1) estimada em 14.89%, que é maior que 12%, falhando no critério de probabilidade máxima."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Sheff Utd x Lincoln City",
+      "liga": "England Championship",
+      "motivo": "Nenhum método se aplica com confiança devido à falta de favoritismo claro e critérios de gols não totalmente atendidos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (Sheff Utd 2.10) está acima de 1.80, não se enquadra como favorito claro para o método.",
+        "lay_zebra": "Odd da zebra (Lincoln City 3.40) está abaixo de 5.00, não se enquadra para o método.",
+        "over_limite_70": "Média de gols somada (2.40) está abaixo de 2.6, falhando no critério de 'media_gols_>=2.6'.",
+        "over_ht_05": "Média de Over 0.5 HT (55% global) não atinge o mínimo de 75% para ambos os times. Odd de Over 0.5 HT não fornecida no PDF.",
+        "back_2x2": "Média de Over 2.5 (55% global) não atinge o mínimo de 65% para ambos os times. Odd de Over 2.5 (2.40) acima de 1.85.",
+        "back_goleada": "Não há favoritismo extremo (odd do favorito < 1.40) para o método.",
+        "lay_1x0": "P(1-0) estimada em 12.19%, que é maior que 12%, falhando no critério de probabilidade máxima.",
+        "lay_0x1": "P(0-1) estimada em 12.19%, que é maior que 12%, falhando no critério de probabilidade máxima."
+      }
+    }
+  ]
+}
