@@ -1,0 +1,399 @@
+{
+  "data": "2026-10-11",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-10-10T16:33:33.176302",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 50,
+  "entradas": [
+    {
+      "horario": "16:00",
+      "liga": "Brazil Serie A",
+      "jogo": "Atletico Mineiro Santos",
+      "metodos_aplicados": [
+        "over_limite_70",
+        "over_ht_05"
+      ],
+      "mercado_principal": "Mais X.5 gols (ao vivo)",
+      "probabilidade_estimada": "62%",
+      "fair_odd": "1.61",
+      "odd_minima_entrada": "1.90",
+      "media_gols_casa": "1.90",
+      "media_gols_fora": "1.80",
+      "media_sofridos_casa": "0.90",
+      "media_sofridos_fora": "1.20",
+      "odds_mercado": {
+        "casa": "2.05",
+        "empate": "3.40",
+        "fora": "3.80",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": null,
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Altos índices de gols na reta final para ambos os times e média de gols total elevada, indicando boa chance de mais um gol no 2º tempo. Ambos brigam por vaga na Sul-Americana.",
+      "alerta_geral": "Evitar jogos empatados, com goleada já consolidada (3+ gols de diferença) ou após expulsão.",
+      "valor_esperado": "Prob. 62% → fair 1.61; com margem de segurança, só entrar acima de 1.90",
+      "mercado_secundario": "Mais 0.5 gols HT",
+      "odd_minima_secundaria": "1.43",
+      "desempenho_1t": "Atletico Mineiro (Casa) média 1.10 gols total 1ºT; Santos (Fora) média 1.30 gols total 1ºT.",
+      "desempenho_2t": "Atletico Mineiro (Casa) média 1.70 gols total 2ºT; Santos (Fora) média 1.70 gols total 2ºT.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "9º",
+          "posicao_geral": "7º",
+          "objetivo": "sul_americana"
+        },
+        "fora": {
+          "posicao": "5º",
+          "posicao_geral": "8º",
+          "objetivo": "sul_americana"
+        }
+      },
+      "motivacao_tecnica": "Ambos os times estão na briga por vagas na Copa Sudamericana, o que aumenta a motivação para buscar o resultado até o final. O Atletico Mineiro tem um forte desempenho ofensivo em casa no 2º tempo, e o Santos também mostra capacidade de marcar e sofrer gols tardios.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Atletico Mineiro tem 60% de vitórias em casa nos últimos 10 jogos.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Atletico Mineiro marca 1.90 gols/jogo em casa; Santos marca 1.80 gols/jogo fora.",
+      "momento_gols": "Atletico Mineiro (Casa) marcou 64% dos gols entre 61-75min e sofreu 57% entre 76-90min. Santos (Fora) marcou 43% dos gols entre 76-90min e sofreu 64% entre 76-90min.",
+      "jogadores_chave": null,
+      "placares_provaveis": null,
+      "momento_entrada": "ao vivo",
+      "situacao_saida": "Cash-out se o gol sair, ou se o jogo travar sem chances claras.",
+      "stake_recomendada": "1%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "A entrada ao vivo permite confirmar o ritmo do jogo e a necessidade de gols.",
+        "gatilho_saida_parcial": "Se o jogo estiver muito parado ou sem chances após 75 minutos.",
+        "hard_stop": "Fim do jogo sem o gol."
+      }
+    },
+    {
+      "horario": "12:30",
+      "liga": "Germany Bundesliga I",
+      "jogo": "SC Freiburg Schalke",
+      "metodos_aplicados": [
+        "back_favorito"
+      ],
+      "mercado_principal": "Vitória SC Freiburg",
+      "probabilidade_estimada": "70%",
+      "fair_odd": "1.43",
+      "odd_minima_entrada": "1.58",
+      "media_gols_casa": "2.80",
+      "media_gols_fora": "2.30",
+      "media_sofridos_casa": "0.90",
+      "media_sofridos_fora": "1.50",
+      "odds_mercado": {
+        "casa": "1.61",
+        "empate": "4.00",
+        "fora": "5.50",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Não há dados de H2H com odds no material para esta partida.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": "neutro",
+        "time": "SC Freiburg",
+        "texto": "Não há dados de H2H com odds para avaliar o desempenho do SC Freiburg nesta faixa de odd."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "SC Freiburg é o 3º colocado geral e 5º em casa, com 80% de vitórias e odd de 1.61, contra um Schalke 11º geral e 8º fora.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 70% → fair 1.43; com margem de segurança, só entrar acima de 1.58. Mercado paga 1.61, o que oferece valor.",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "SC Freiburg marca 1.20 gols no 1ºT em casa, Schalke sofre 0.70 gols no 1ºT fora.",
+      "desempenho_2t": "SC Freiburg marca 1.60 gols no 2ºT em casa, Schalke sofre 0.80 gols no 2ºT fora.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "5º",
+          "posicao_geral": "3º",
+          "objetivo": "libertadores"
+        },
+        "fora": {
+          "posicao": "8º",
+          "posicao_geral": "11º",
+          "objetivo": "meio_tabela"
+        }
+      },
+      "motivacao_tecnica": "SC Freiburg está em 3º lugar geral e 5º em casa, brigando por vaga na Champions League, o que reforça a motivação. O Schalke está em 11º geral, sem objetivos claros de topo ou rebaixamento, o que pode diminuir sua intensidade.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "SC Freiburg venceu os últimos 5 jogos em casa e não perdeu nos últimos 8.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "SC Freiburg tem ataque muito produtivo (2.90 gols/jogo global, 2.80 em casa) e defesa sólida (0.90 gols sofridos global e em casa).",
+      "momento_gols": "SC Freiburg marca 40% dos gols após os 75min globalmente e 30% em casa. Schalke sofre 30% dos gols após os 75min globalmente.",
+      "jogadores_chave": [],
+      "placares_provaveis": "2x0, 3x1",
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out se o SC Freiburg abrir 2 gols de vantagem ou se o Schalke empatar/virar.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "A odd de mercado oferece valor acima da odd mínima calculada, justificando a entrada pré-jogo.",
+        "gatilho_saida_parcial": "SC Freiburg abrir 2 gols de vantagem.",
+        "hard_stop": "Schalke empatar ou virar o jogo."
+      }
+    },
+    {
+      "horario": "13:30",
+      "liga": "Spain La Liga",
+      "jogo": "Real Betis Osasuna",
+      "metodos_aplicados": [
+        "back_favorito"
+      ],
+      "mercado_principal": "Vitória Real Betis",
+      "probabilidade_estimada": "70%",
+      "fair_odd": "1.42",
+      "odd_minima_entrada": "1.56",
+      "media_gols_casa": "1.80",
+      "media_gols_fora": "1.30",
+      "media_sofridos_casa": "0.50",
+      "media_sofridos_fora": "2.10",
+      "odds_mercado": {
+        "casa": "1.53",
+        "empate": "4.10",
+        "fora": "6.50",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": null,
+        "time": null,
+        "texto": null
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Real Betis em excelente fase em casa (80% vitórias, 2.60 PPJ) contra Osasuna em má fase (não venceu nos últimos 4) e defesa frágil fora (2.10 gols sofridos).",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 70% → fair 1.42; com margem de segurança, só entrar acima de 1.56",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "Real Betis marca 0.70 gols no 1ºT em casa, Osasuna sofre 0.90 gols no 1ºT fora.",
+      "desempenho_2t": "Real Betis marca 1.10 gols no 2ºT em casa, Osasuna sofre 1.20 gols no 2ºT fora.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "5º",
+          "posicao_geral": "3º",
+          "objetivo": "libertadores"
+        },
+        "fora": {
+          "posicao": "12º",
+          "posicao_geral": "14º",
+          "objetivo": "meio_tabela"
+        }
+      },
+      "motivacao_tecnica": "Real Betis, 3º na La Liga e 5º em casa (invicto), busca consolidar vaga na Champions. Osasuna, 14º geral e 12º fora, está em má fase e sem grandes objetivos, o que reforça o favoritismo do Betis.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Real Betis faz 2.60 pontos por jogo em casa, com 80% de vitórias e 0.50 gols sofridos.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Real Betis tem ataque produtivo em casa (1.80 gols/jogo) e defesa sólida (0.50 gols sofridos/jogo). Osasuna sofre muitos gols fora (2.10 gols/jogo).",
+      "momento_gols": "Real Betis marcou 40% dos gols em casa após os 75min. Osasuna sofreu 40% dos gols fora após os 75min.",
+      "jogadores_chave": [],
+      "placares_provaveis": "2x0, 2x1, 3x0",
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out parcial se o Betis abrir 2 gols de vantagem ou se o Osasuna empatar.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "Favoritismo claro e odd de mercado com valor.",
+        "gatilho_saida_parcial": "Real Betis com 2 gols de vantagem.",
+        "hard_stop": "Empate do Osasuna no 2º tempo."
+      }
+    },
+    {
+      "horario": "20:15",
+      "liga": "Mexico Liga MX",
+      "metodos_aplicados": [
+        "back_favorito",
+        "back_goleada",
+        "lay_zebra",
+        "lay_1x0",
+        "lay_0x1"
+      ],
+      "mercado_principal": "Vitória Pachuca",
+      "probabilidade_estimada": "65%",
+      "fair_odd": "1.54",
+      "odd_minima_entrada": "1.70",
+      "media_gols_casa": "1.60",
+      "media_gols_fora": "0.90",
+      "media_sofridos_casa": "1.40",
+      "media_sofridos_fora": "2.10",
+      "odds_mercado": {
+        "casa": "1.70",
+        "empate": "3.75",
+        "fora": "5.25",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Dados de H2H com odds não disponíveis no material.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": "neutro",
+        "time": "Pachuca",
+        "texto": "Dados de H2H com odds não disponíveis para avaliar o desempenho do Pachuca nesta faixa de odd."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Pachuca é favorito claro em casa com bom ataque e Necaxa em má fase, sofrendo muitos gols. Cenário favorável para a vitória do mandante.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 65% → fair 1.54; com margem de segurança, só entrar acima de 1.70",
+      "mercado_secundario": "Pachuca marca 4+ e vence",
+      "odd_minima_secundaria": "3.50",
+      "desempenho_1t": "Pachuca marca 0.60 no 1ºT (casa), Necaxa sofre 1.00 no 1ºT (fora).",
+      "desempenho_2t": "Pachuca marca 1.00 no 2ºT (casa), Necaxa sofre 1.10 no 2ºT (fora).",
+      "contexto_times": {
+        "casa": {
+          "posicao": "18º",
+          "posicao_geral": "12º",
+          "objetivo": "meio_tabela"
+        },
+        "fora": {
+          "posicao": "16º",
+          "posicao_geral": "17º",
+          "objetivo": "rebaixamento"
+        }
+      },
+      "motivacao_tecnica": "Pachuca, apesar de estar em 12º geral, tem um bom desempenho em casa (1.50 PPG nos últimos 10) e enfrenta um Necaxa em péssima fase (10% vitórias fora, 2.10 gols sofridos/jogo). A diferença de qualidade e momento é clara.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Pachuca faz 1.50 PPG em casa nos últimos 10 jogos.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Pachuca tem ataque produtivo (1.60 gols/jogo em casa), Necaxa tem defesa frágil (2.10 gols sofridos/jogo fora).",
+      "momento_gols": "Pachuca marca 50% dos gols após os 75min (global). Necaxa sofre 40% dos gols após os 75min (fora).",
+      "jogadores_chave": [],
+      "placares_provaveis": "2x0, 3x1",
+      "momento_entrada": "Pré-jogo",
+      "situacao_saida": "Cash-out se o Pachuca abrir boa vantagem ou se o Necaxa reagir inesperadamente.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "Favoritismo claro do Pachuca em casa contra um adversário em má fase, com odd de valor.",
+        "gatilho_saida_parcial": "Pachuca abre 2 gols de vantagem.",
+        "hard_stop": "Gol da zebra ou empate persistente até os 70 minutos."
+      }
+    }
+  ],
+  "evitar": [
+    {
+      "horario": "07:15",
+      "jogo": "FC Utrecht Willem II",
+      "liga": "Netherlands Eredivisie",
+      "motivo": "Sem valor nas odds de mercado para Lay Zebra e dados insuficientes para outros métodos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada 65% (precisa >=68%) e odd de mercado 1.50 abaixo da odd mínima de entrada 1.72.",
+        "lay_zebra": "Odd de mercado para Lay Willem II (equivalente a Back 1X) é 1.18, abaixo da odd mínima de entrada 1.27.",
+        "over_limite_70": "Odd real de Over 2.5 ausente no PDF.",
+        "over_ht_05": "Odd real de Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Ataques não produtivos (Utrecht 1.20, Willem II 1.10 — precisa >=1.5 gols/jogo).",
+        "back_goleada": "Favoritismo insuficiente (prob estimada 65% — precisa >=70%) e odd 1X2 1.50 (precisa <=1.40).",
+        "lay_1x0": "Odd real de Under 1.5 ausente no PDF.",
+        "lay_0x1": "Visitante não produtivo (Willem II marca 0.50 fora — precisa >=1.5 gols/jogo) e odd real de Under 1.5 ausente no PDF."
+      }
+    },
+    {
+      "horario": "09:30",
+      "jogo": "Telstar ADO Den Haag",
+      "liga": "Netherlands Eredivisie",
+      "motivo": "Sem valor nas odds de mercado para favoritos e dados insuficientes para outros métodos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada do Telstar 45% (precisa >=68%) e odd de mercado 2.00 abaixo da odd mínima de entrada 2.60.",
+        "lay_zebra": "Odd da zebra (ADO Den Haag) 3.30 (precisa >=5.00).",
+        "over_limite_70": "Odd real de Over 2.5 ausente no PDF.",
+        "over_ht_05": "Índice médio de Over 0.5 HT 65% (precisa >=75%) e odd real de Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice médio de Over 2.5 60% (precisa >=65%).",
+        "back_goleada": "Favoritismo insuficiente (prob estimada 45% — precisa >=70%) e odd 1X2 2.00 (precisa <=1.40).",
+        "lay_1x0": "Odd real de Under 1.5 ausente no PDF.",
+        "lay_0x1": "Visitante não produtivo (ADO Den Haag marca 1.20 fora — precisa >=1.5 gols/jogo) e odd real de Under 1.5 ausente no PDF."
+      }
+    },
+    {
+      "horario": "09:30",
+      "jogo": "PEC Zwolle Cambuur Leeuwarden",
+      "liga": "Netherlands Eredivisie",
+      "motivo": "Sem valor nas odds de mercado para favoritos e dados insuficientes para outros métodos.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada do PEC Zwolle 48% (precisa >=68%) e odd de mercado 1.90 abaixo da odd mínima de entrada 2.43.",
+        "lay_zebra": "Odd da zebra (Cambuur Leeuwarden) 3.60 (precisa >=5.00).",
+        "over_limite_70": "Odd real de Over 2.5 ausente no PDF.",
+        "over_ht_05": "Odd real de Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice médio de Ambas Marcam 60% (precisa >=65%) e ataques não produtivos (PEC Zwolle 1.20, Cambuur 1.40 — precisa >=1.5 gols/jogo).",
+        "back_goleada": "Favoritismo insuficiente (prob estimada 48% — precisa >=70%) e odd 1X2 1.90 (precisa <=1.40).",
+        "lay_1x0": "Mandante não produtivo (PEC Zwolle marca 1.20 em casa — precisa >=1.5 gols/jogo) e odd real de Under 1.5 ausente no PDF.",
+        "lay_0x1": "Visitante não produtivo (Cambuur Leeuwarden marca 1.40 fora — precisa >=1.5 gols/jogo) e odd real de Under 1.5 ausente no PDF."
+      }
+    }
+  ]
+}
