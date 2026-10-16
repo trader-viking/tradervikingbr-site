@@ -1,0 +1,146 @@
+{
+  "data": "2026-10-16",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-10-15T21:44:30.406208",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 15,
+  "entradas": [
+    {
+      "horario": "13:30",
+      "liga": "Germany Bundesliga II",
+      "jogo": "Holstein Kiel x Hertha Berlin",
+      "metodos_aplicados": [
+        "over_ht_05",
+        "lay_1x0",
+        "lay_0x1"
+      ],
+      "mercado_principal": "Mais 0.5 gols HT",
+      "probabilidade_estimada": "90%",
+      "fair_odd": "1.11",
+      "odd_minima_entrada": "1.22",
+      "media_gols_casa": "1.70",
+      "media_gols_fora": "2.50",
+      "media_sofridos_casa": "1.50",
+      "media_sofridos_fora": "1.40",
+      "odds_mercado": {
+        "casa": "2.80",
+        "empate": "3.75",
+        "fora": "2.20",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": "2.70",
+        "over_25": "2.40",
+        "under_25": "1.53"
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Dados de H2H com odds não disponíveis no material.",
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": null,
+        "time": null,
+        "texto": null
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Ambos os times têm alta média de gols no 1º tempo e ataques produtivos. Hertha Berlin é líder e Holstein Kiel luta contra o rebaixamento.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 90% → fair 1.11; com margem de segurança, só entrar acima de 1.22",
+      "mercado_secundario": "Lay 1x0",
+      "odd_minima_secundaria": "10.50",
+      "desempenho_1t": "Holstein Kiel marca 0.80 gols no 1ºT (global), Hertha Berlin marca 0.90 gols no 1ºT (global).",
+      "desempenho_2t": "Holstein Kiel sofre 0.80 gols no 2ºT (global), Hertha Berlin sofre 0.60 gols no 2ºT (global).",
+      "contexto_times": {
+        "casa": {
+          "posicao": "14º",
+          "posicao_geral": "18º",
+          "objetivo": "rebaixamento"
+        },
+        "fora": {
+          "posicao": "1º",
+          "posicao_geral": "1º",
+          "objetivo": "titulo"
+        }
+      },
+      "motivacao_tecnica": "Hertha Berlin, líder geral e fora de casa, busca o título e promoção, enfrentando o Holstein Kiel, lanterna geral e em zona de rebaixamento, com defesa frágil. Ambos os times têm alta média de gols no 1º tempo.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Holstein Kiel tem 30% de vitórias em casa, Hertha Berlin tem 70% de vitórias fora.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Holstein Kiel tem ataque moderado e defesa frágil. Hertha Berlin tem ataque muito produtivo e defesa sólida.",
+      "momento_gols": "Holstein Kiel (Casa) Marcado 1ºT: 46.7% | Hertha Berlin (Fora) Sofrido 1ºT: 43.8%.",
+      "jogadores_chave": "Dados de jogadores ausentes no PDF.",
+      "placares_provaveis": "1x1, 1x2, 2x1",
+      "momento_entrada": "Pré-jogo na odd de abertura, ou ao vivo se 0-0 aos 12-18min com pressão clara de um lado.",
+      "situacao_saida": "Cash-out se o gol sair no 1º tempo.",
+      "stake_recomendada": "1.5%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "As estatísticas de gols no 1º tempo são muito fortes, justificando a entrada.",
+        "gatilho_saida_parcial": "Não aplicável para Over HT.",
+        "hard_stop": "Não aplicável para Over HT."
+      }
+    }
+  ],
+  "evitar": [
+    {
+      "horario": "20:00",
+      "jogo": "Mirassol x Internacional",
+      "liga": "Brazil Serie A",
+      "motivo": "Nenhum método se aplica devido a critérios estatísticos não atendidos e falta de dados de odds de mercado.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada do favorito (Mirassol) ~45-50% — precisa >=68%. Odd do favorito 2.15 — precisa entre 1.40 e 1.80.",
+        "lay_zebra": "Odd da zebra (Internacional) 3.40 — precisa entre 5.00 e 8.50.",
+        "over_limite_70": "Nenhum dos times atende o critério de % de gols marcados/sofridos após 61min (precisa >=30% ou >=35%). Odd de Over 2.5 ausente no PDF.",
+        "over_ht_05": "Índice médio de Over 0.5 HT dos dois times 70% — precisa >=75%. Odd de Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice médio de Over 2.5 dos dois times 40% — precisa >=65%.",
+        "back_goleada": "Favoritismo insuficiente (prob estimada ~45-50%, precisa >=70%). Odd do favorito 2.15 — precisa <=1.40.",
+        "lay_1x0": "Mandante (Mirassol) marca menos de 1.5 gols/jogo em casa (1.40) — precisa >=1.5. Odd de Under 1.5 ausente no PDF.",
+        "lay_0x1": "Mandante (Mirassol) marca 1+ gol em 60% dos jogos (BTTS global) — precisa >65%. Odd de Under 1.5 ausente no PDF."
+      }
+    },
+    {
+      "horario": "19:30",
+      "jogo": "Ponte Preta x Atletico GO",
+      "liga": "Brazil Serie B",
+      "motivo": "Nenhum método se aplica devido a critérios estatísticos não atendidos e falta de dados de odds de mercado.",
+      "motivos_por_metodo": {
+        "back_favorito": "Odd do favorito (Atletico GO) 1.33 — precisa entre 1.40 e 1.80.",
+        "lay_zebra": "Odd da zebra (Ponte Preta) 10.00 — precisa entre 5.00 e 8.50.",
+        "over_limite_70": "Odd de Over 2.5 ausente no PDF.",
+        "over_ht_05": "Odd de Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice médio de Over 2.5 dos dois times 35% — precisa >=65%.",
+        "back_goleada": "Ataque do favorito (Atletico GO) marca 1.70 gols/jogo nos últimos 10 — precisa >=2.5.",
+        "lay_1x0": "Visitante (Atletico GO) marca 1+ gol em 40% dos jogos (BTTS global) — precisa >65%.",
+        "lay_0x1": "Mandante (Ponte Preta) marca 1+ gol em 10% dos jogos (BTTS global) — precisa >65%."
+      }
+    },
+    {
+      "horario": "20:30",
+      "jogo": "Sport Recife x Fortaleza",
+      "liga": "Brazil Serie B",
+      "motivo": "Nenhum método se aplica devido a critérios estatísticos não atendidos e falta de dados de odds de mercado.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada do favorito (Sport Recife) ~40-45% — precisa >=68%. Odd do favorito 2.38 — precisa entre 1.40 e 1.80.",
+        "lay_zebra": "Odd da zebra (Fortaleza) 3.10 — precisa entre 5.00 e 8.50.",
+        "over_limite_70": "Média de gols somada dos dois times 2.55 — precisa >=2.6. Odd de Over 2.5 ausente no PDF.",
+        "over_ht_05": "Odd de Over 0.5 HT ausente no PDF.",
+        "back_2x2": "Índice de Over 2.5 do Fortaleza 30% — precisa >=65%.",
+        "back_goleada": "Favoritismo insuficiente (prob estimada ~40-45%, precisa >=70%). Odd do favorito 2.38 — precisa <=1.40.",
+        "lay_1x0": "Visitante (Fortaleza) marca 1+ gol em 60% dos jogos (BTTS global) — precisa >65%.",
+        "lay_0x1": "Odd de Under 1.5 ausente no PDF. Mandante (Sport Recife) não marcou na maioria dos H2H."
+      }
+    }
+  ]
+}
