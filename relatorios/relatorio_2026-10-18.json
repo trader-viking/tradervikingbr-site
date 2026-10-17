@@ -1,0 +1,457 @@
+{
+  "data": "2026-10-18",
+  "dia_consultado": "amanha",
+  "gerado_em": "2026-10-17T13:04:48.657484",
+  "fonte": "radaresportivo.com",
+  "total_jogos_analisados": 45,
+  "entradas": [
+    {
+      "horario": "15:45",
+      "liga": "France Ligue 1",
+      "jogo": "Lyon Nice",
+      "metodos_aplicados": [
+        "back_favorito"
+      ],
+      "mercado_principal": "Vitória Lyon",
+      "probabilidade_estimada": "70%",
+      "fair_odd": "1.43",
+      "odd_minima_entrada": "1.57",
+      "media_gols_casa": "2.80",
+      "media_gols_fora": "0.60",
+      "media_sofridos_casa": "1.40",
+      "media_sofridos_fora": "1.20",
+      "odds_mercado": {
+        "casa": "1.73",
+        "empate": "4.10",
+        "fora": "4.33",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": {
+        "tipo": "neutro",
+        "time": "Lyon",
+        "texto": "Não há dados de H2H com odds para avaliar o desempenho do Lyon nesta faixa de cotação."
+      },
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Lyon tem 70% de vitórias em casa e Nice tem apenas 10% de vitórias fora, além de estar em má fase. Favoritismo claro do mandante.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. 70% → fair 1.43; com margem de segurança, só entrar acima de 1.57. Mercado paga 1.73, o que gera valor.",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": "Lyon marca 0.90 gols no 1ºT global, Nice sofre 0.40 gols no 1ºT global.",
+      "desempenho_2t": "Lyon marca 1.50 gols no 2ºT global, Nice sofre 0.50 gols no 2ºT global.",
+      "contexto_times": {
+        "casa": {
+          "posicao": "3º",
+          "posicao_geral": "4º",
+          "objetivo": "libertadores"
+        },
+        "fora": {
+          "posicao": "17º",
+          "posicao_geral": "10º",
+          "objetivo": "meio_tabela"
+        }
+      },
+      "motivacao_tecnica": "Lyon, 4º colocado geral e 3º em casa, briga por vaga na Champions League. Nice, 10º geral e 17º fora, está em má fase como visitante e sem grandes objetivos, o que reforça o favoritismo do Lyon.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": "Lyon faz 70% dos pontos em casa nos últimos 10 jogos.",
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": "Lyon tem ataque produtivo (1.80 gols/jogo global, 2.80 em casa) e Nice tem ataque frágil (0.80 gols/jogo global, 0.60 fora).",
+      "momento_gols": "Lyon marca 50% dos gols após os 75min global e 62.5% em casa.",
+      "jogadores_chave": [],
+      "placares_provaveis": "2x0, 2x1, 3x0",
+      "momento_entrada": "ao_vivo",
+      "situacao_saida": "Cash-out se Lyon abrir 2 gols de vantagem ou se o Nice reagir inesperadamente.",
+      "stake_recomendada": "2%",
+      "plano_execucao": {
+        "abordagem": "propor",
+        "justificativa_abordagem": "A odd pré-jogo está atraente e o favoritismo é claro, mas entrar ao vivo permite confirmar a dominância do Lyon.",
+        "gatilho_saida_parcial": "Lyon abre 1-0 e Nice não reage.",
+        "hard_stop": "Nice abre o placar ou Lyon sofre expulsão."
+      }
+    },
+    {
+      "horario": "16:00",
+      "liga": "Spain La Liga",
+      "jogo": "Real Madrid x Sevilla",
+      "metodos_aplicados": [
+        "back_goleada",
+        "lay_zebra",
+        "over_ht_05"
+      ],
+      "mercado_principal": "Real Madrid marca 4+ e vence",
+      "probabilidade_estimada": "78%",
+      "fair_odd": "1.28",
+      "odd_minima_entrada": "1.43",
+      "media_gols_casa": "2.60",
+      "media_gols_fora": "1.20",
+      "media_sofridos_casa": "0.90",
+      "media_sofridos_fora": "1.00",
+      "odds_mercado": {
+        "casa": "1.22",
+        "empate": "7.00",
+        "fora": "10.00",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": "Real Madrid tem histórico dominante contra o Sevilla, vencendo 8 dos últimos 10 confrontos diretos, com 5 vitórias por 2 ou mais gols de diferença.",
+        "jogos_relevantes": [
+          {
+            "data": "17/05/2026",
+            "confronto": "Sevilla x Real Madrid",
+            "time_analisado": "Real Madrid",
+            "papel": "favorito",
+            "odd": "1.22",
+            "placar": "0-1",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "20/12/2025",
+            "confronto": "Real Madrid x Sevilla",
+            "time_analisado": "Real Madrid",
+            "papel": "super_favorito",
+            "odd": "1.22",
+            "placar": "2-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "18/05/2025",
+            "confronto": "Sevilla x Real Madrid",
+            "time_analisado": "Real Madrid",
+            "papel": "favorito",
+            "odd": "1.22",
+            "placar": "0-2",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "22/12/2024",
+            "confronto": "Real Madrid x Sevilla",
+            "time_analisado": "Real Madrid",
+            "papel": "super_favorito",
+            "odd": "1.22",
+            "placar": "4-2",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "25/02/2024",
+            "confronto": "Real Madrid x Sevilla",
+            "time_analisado": "Real Madrid",
+            "papel": "super_favorito",
+            "odd": "1.22",
+            "placar": "1-0",
+            "resultado": "V",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          },
+          {
+            "data": "21/10/2023",
+            "confronto": "Sevilla x Real Madrid",
+            "time_analisado": "Real Madrid",
+            "papel": "favorito",
+            "odd": "1.22",
+            "placar": "1-1",
+            "resultado": "E",
+            "marcou_primeiro": null,
+            "gol_1t": null,
+            "gol_2t": null,
+            "nao_sofreu": null
+          }
+        ]
+      }
+    },
+    {
+      "horario": "10:00",
+      "liga": "England Premier League",
+      "jogo": "Leeds Man Utd",
+      "metodos_aplicados": [
+        "lay_1x0",
+        "lay_0x1"
+      ],
+      "mercado_principal": "Lay 1x0 (Placar Exato)",
+      "probabilidade_estimada": "93.99% (probabilidade do evento 'não 1x0')",
+      "fair_odd": "1.06",
+      "odd_minima_entrada": "1.17",
+      "media_gols_casa": "2.20",
+      "media_gols_fora": "1.40",
+      "media_sofridos_casa": "0.90",
+      "media_sofridos_fora": "0.90",
+      "odds_mercado": {
+        "casa": "2.35",
+        "empate": "3.60",
+        "fora": "2.88",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": "2.70",
+        "over_25": "2.40",
+        "under_25": "1.53"
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": null,
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Jogo com alta média de gols (3.25) e BTTS (60%), indicando que o placar 1x0 é improvável. Visitante marca em 90% dos jogos.",
+      "alerta_geral": null,
+      "valor_esperado": "P(1-0) estimada em 6.01%. Lay 1x0 com odd alvo de 10.50 tem valor (0.631 <= 0.85).",
+      "mercado_secundario": "Lay 0x1 (Placar Exato)",
+      "odd_minima_secundaria": "1.12",
+      "desempenho_1t": "Leeds média de gols marcados no 1ºT: 0.90 (global), Man Utd média de gols sofridos no 1ºT: 0.60 (home/away).",
+      "desempenho_2t": "Leeds média de gols marcados no 2ºT: 0.90 (global), Man Utd média de gols sofridos no 2ºT: 1.20 (global).",
+      "contexto_times": {
+        "casa": {
+          "posicao": "8º",
+          "posicao_geral": "7º",
+          "objetivo": "meio_tabela"
+        },
+        "fora": {
+          "posicao": "16º",
+          "posicao_geral": "13º",
+          "objetivo": "meio_tabela"
+        }
+      }
+    },
+    {
+      "horario": "13:30",
+      "liga": "Germany Bundesliga Women",
+      "jogo": "Mainz (W) x Wolfsburg (W)",
+      "metodos_aplicados": [
+        "back_goleada"
+      ],
+      "mercado_principal": "Wolfsburg (W) marca 4+ e vence",
+      "probabilidade_estimada": "25% (Wolfsburg marcar 4+ gols)",
+      "fair_odd": "4.00",
+      "odd_minima_entrada": "4.80",
+      "media_gols_casa": "1.20",
+      "media_gols_fora": "2.80",
+      "media_sofridos_casa": "2.40",
+      "media_sofridos_fora": "1.30",
+      "odds_mercado": {
+        "casa": "21.00",
+        "empate": "15.00",
+        "fora": "1.05",
+        "dupla_chance_1x": null,
+        "dupla_chance_12": null,
+        "dupla_chance_x2": null,
+        "over_05": null,
+        "under_05": null,
+        "over_15": null,
+        "under_15": null,
+        "over_25": null,
+        "under_25": null
+      },
+      "h2h_odds": {
+        "resumo_favorito_casa": null,
+        "resumo_favorito_fora": null,
+        "leitura": null,
+        "jogos_relevantes": []
+      },
+      "alerta_odds": null,
+      "jogadores": {
+        "destaques_casa": [],
+        "destaques_fora": [],
+        "titulares_casa": null,
+        "titulares_fora": null,
+        "ausencias_impacto": []
+      },
+      "explicacao_curta": "Wolfsburg é favorito extremo (odd 1.05), marca 2.8 gols/jogo fora e enfrenta Mainz, que sofre 2.4 gols/jogo e perdeu de 1-4 no H2H.",
+      "alerta_geral": null,
+      "valor_esperado": "Prob. de Wolfsburg marcar 4+ gols 25% → fair 4.00; com margem de segurança, só entrar acima de 4.80.",
+      "mercado_secundario": null,
+      "odd_minima_secundaria": null,
+      "desempenho_1t": null,
+      "desempenho_2t": null,
+      "contexto_times": {
+        "casa": {
+          "posicao": "14º",
+          "posicao_geral": "14º",
+          "objetivo": "rebaixamento"
+        },
+        "fora": {
+          "posicao": "1º",
+          "posicao_geral": "2º",
+          "objetivo": "titulo"
+        }
+      },
+      "motivacao_tecnica": "Wolfsburg (2º geral, 1º fora) briga pelo título e enfrenta o lanterna Mainz (14º geral, 14º em casa) que não pontuou. Desequilíbrio técnico e motivacional extremo.",
+      "coeficiente_regularidade": null,
+      "mando_de_campo": null,
+      "condicoes_campo": "sem fatores relevantes",
+      "desfalques_chave": "elenco completo",
+      "especificidades_gols": null,
+      "momento_gols": null,
+      "jogadores_chave": null,
+      "placares_provaveis": null,
+      "momento_entrada": "pré-jogo",
+      "situacao_saida": null,
+      "stake_recomendada": "1%",
+      "plano_execucao": null,
+      "back_favorito": null,
+      "lay_zebra": null,
+      "over_limite_70": null,
+      "over_ht_05": null,
+      "back_2x2": null,
+      "back_goleada": {
+        "aplicavel": true,
+        "criterios_atendidos": [
+          "prob_favorito_>=70",
+          "odd_favorito_<=1.40",
+          "ataque_>=2.5",
+          "adversario_sofre_>=2.0",
+          "goleada_recente_h2h"
+        ],
+        "criterios_total": 6,
+        "candidato": "Wolfsburg (W)",
+        "razao": "Wolfsburg é favorito extremo, marca muitos gols e enfrenta Mainz, que tem defesa muito frágil e já sofreu goleada no H2H.",
+        "modo": "pre_jogo",
+        "mercado_sugerido": "Wolfsburg (W) marca 4+ e vence",
+        "ponderacao_odds": "Odd 1X2 de 1.05 confirma favoritismo extremo. Ausência da odd de Over 2.5 impede confirmação do mercado para gols, mas o H2H de 1-4 reforça o cenário de goleada.",
+        "risco_principal": "Falta de odd de Over 2.5 para confirmar expectativa do mercado.",
+        "odd_esperada": "4.80 a 7.00",
+        "stake_recomendada": "1%"
+      },
+      "lay_1x0": null,
+      "lay_0x1": null,
+      "confirmacao_visual": null
+    }
+  ],
+  "evitar": [
+    {
+      "horario": "16:00",
+      "jogo": "Fluminense Santos",
+      "liga": "Brazil Serie A",
+      "motivo": "Sem valor nas odds para Back Favorito/Lay Zebra e dados insuficientes de odds de mercado para métodos de gols.",
+      "motivos_por_metodo": {
+        "back_favorito": "Probabilidade estimada Fluminense 45% (precisa >=68%); Odd de mercado 2.30 (fora da faixa 1.40-1.80); EV negativo (mercado 2.30 < mínimo 2.55); Adversário não em má fase (60% aproveitamento); Dados H2H com odds e elenco ausentes.",
+        "lay_zebra": "Odd da zebra Santos 3.10 (fora da faixa 5.00-8.50); Probabilidade estimada Santos 32.2% (precisa <=15%); Favorito (Fluminense) com odd 2.30 (precisa <=1.80); Dados H2H com odds e elenco ausentes; Defesa da zebra vazada em 70% dos jogos (precisa >=70%).",
+        "over_limite_70": "Momento dos gols final não atende (Fluminense Marcado 76-90: 33.3% < 35%); Odd Over 2.5 ausente no PDF; Gols no 2º tempo no H2H 40% (precisa >=60%).",
+        "over_ht_05": "Índice médio de Over 0.5 HT 70% (precisa >=75%); Odd Over 0.5 HT ausente no PDF; Sem dados de perfil estudado.",
+        "back_2x2": "Defesas frágeis (ambos sofrem 1.3 gols/jogo, precisa >=1.5); Odd Over 2.5 ausente no PDF.",
+        "back_goleada": "Favoritismo insuficiente (probabilidade 45%, precisa >=70%); Odd do favorito 2.30 (precisa <=1.40); Ataque do favorito 1.80 gols/jogo (precisa >=2.5); Adversário sofre 1.30 gols/jogo (precisa >=2.0); Odd Over 2.5 ausente no PDF.",
+        "lay_1x0": "P(1-0) estimada 5.8% * odd 10.50 = 0.609 (ATENDIDO); Odd Under 1.5 ausente no PDF; Visitante pontua no H2H em 50% dos confrontos (não é maioria).",
+        "lay_0x1": "P(0-1) estimada 4.9% * odd 11.00 = 0.539 (ATENDIDO); Odd Under 1.5 ausente no PDF."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Werder Bremen (W) x TSG 1899 Hoffenheim (W)",
+      "liga": "Germany Bundesliga Women",
+      "motivo": "Sem favoritismo claro, dados de odds de gols insuficientes e liga não permitida para Back Favorito/Lay Zebra.",
+      "motivos_por_metodo": {
+        "back_favorito": "Jogo fora das ligas permitidas para Back Favorito.",
+        "lay_zebra": "Jogo fora das ligas permitidas para Lay Zebra.",
+        "over_limite_70": "Odd de Over 2.5 não fornecida no PDF para confirmar expectativa do mercado.",
+        "over_ht_05": "Índice médio de Over 0.5 HT (65% global, 70% casa/fora) abaixo do mínimo de 75% e odd de Over 0.5 HT não fornecida.",
+        "back_2x2": "Índice médio de Over 2.5 (55% global) e Ambas Marcam (50% global) abaixo do mínimo de 65%.",
+        "back_goleada": "Probabilidade de vitória do favorito (52%) abaixo do mínimo de 70% e ataque do favorito (1.60 gols/jogo) abaixo do mínimo de 2.5.",
+        "lay_1x0": "P(1-0) estimada 9.065% * odd alvo 10.50 = 0.9518, acima do limite de 0.85, e BTTS médio (50%) abaixo do mínimo de 50%.",
+        "lay_0x1": "P(0-1) estimada 9.065% * odd alvo 11.00 = 0.997, acima do limite de 0.85, e BTTS médio (50%) abaixo do mínimo de 50%."
+      }
+    },
+    {
+      "horario": "00:00",
+      "jogo": "Cruz Azul Juarez FC",
+      "liga": "Mexico Liga MX",
+      "motivo": "Dados insuficientes no material.",
+      "motivos_por_metodo": {
+        "back_favorito": "Dados insuficientes no material.",
+        "lay_zebra": "Dados insuficientes no material.",
+        "over_limite_70": "Dados insuficientes no material.",
+        "back_2x2": "Dados insuficientes no material.",
+        "back_goleada": "Dados insuficientes no material.",
+        "lay_1x0": "Dados insuficientes no material.",
+        "lay_0x1": "Dados insuficientes no material."
+      }
+    },
+    {
+      "horario": "22:00",
+      "jogo": "Monterrey Pachuca",
+      "liga": "Mexico Liga MX",
+      "motivo": "Dados insuficientes no material.",
+      "motivos_por_metodo": {
+        "back_favorito": "Dados insuficientes no material.",
+        "lay_zebra": "Dados insuficientes no material.",
+        "over_limite_70": "Dados insuficientes no material.",
+        "back_2x2": "Dados insuficientes no material.",
+        "back_goleada": "Dados insuficientes no material.",
+        "lay_1x0": "Dados insuficientes no material.",
+        "lay_0x1": "Dados insuficientes no material."
+      }
+    },
+    {
+      "horario": "11:00",
+      "jogo": "Celtic Hearts",
+      "liga": "Scotland Premiership",
+      "motivo": "Dados insuficientes no material.",
+      "motivos_por_metodo": {
+        "back_favorito": "Dados insuficientes no material.",
+        "lay_zebra": "Dados insuficientes no material.",
+        "over_limite_70": "Dados insuficientes no material.",
+        "back_2x2": "Dados insuficientes no material.",
+        "back_goleada": "Dados insuficientes no material.",
+        "lay_1x0": "Dados insuficientes no material.",
+        "lay_0x1": "Dados insuficientes no material."
+      }
+    }
+  ]
+}
