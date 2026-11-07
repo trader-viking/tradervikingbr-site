@@ -1,0 +1,9 @@
+.perfil_navegador/
+.sessao.json
+config.json
+debug/
+diagnostico/
+log_publicacao.txt
+__pycache__/
+*.antes_leitor_v2.html
+.tmp_pdfs/

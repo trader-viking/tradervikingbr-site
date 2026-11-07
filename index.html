@@ -1807,5 +1807,275 @@ window.addEventListener('load',async()=>{
  if(ok&&p.get('auto')!=='0')carregarDoRepo();
 });
 </script>
+<!-- LEITOR_RADAR_V2:INICIO -->
+<script>
+/* ======================================================================
+   LEITOR RADAR v2 · TraderVikingBR Live Desk
+   Lê os PDFs gerados pelo publicar_radar.py (abas Geral, Odds, H2H,
+   Desempenho, Gols, Tabela) e aplica os 7 métodos com esses dados.
+   PDFs no formato antigo ("Mercado Resultado final") continuam usando
+   o leitor original — nada é perdido.
+   ====================================================================== */
+(function(){
+'use strict';
+if(window.__leitorV2)return;window.__leitorV2=true;
+
+const OLD={parseMeta:window.parseMeta,parseStats:window.parseStats,assess:window.assess,
+           reason:window.reason,grabCrests:window.grabCrests};
+
+/* ---------- utilidades ---------- */
+const N=s=>{if(s==null)return null;const n=Number(String(s).replace(',','.'));return Number.isFinite(n)?n:null};
+const esc=s=>String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const lbl=s=>esc(s).replace(/\s+/g,'\\s+');
+const PCT='(\\d+(?:[.,]\\d+)?)\\s*%';
+const DEC='(\\d+[.,]\\d+)';
+const INT='(\\d+)';
+function par(re,t){const m=t.match(re);return m?[N(m[1]),N(m[2])]:[null,null]}
+const pPct=(nome,t)=>par(new RegExp(lbl(nome)+'\\s+'+PCT+'\\s+'+PCT,'i'),t);
+const pDec=(nome,t)=>par(new RegExp(lbl(nome)+'\\s+'+DEC+'\\s+'+DEC,'i'),t);
+const media=a=>{const v=a.filter(Number.isFinite);return v.length===a.length&&v.length?v.reduce((x,y)=>x+y,0)/v.length:null};
+const soma=a=>a.reduce((x,y)=>x+(y||0),0);
+const fmt=(v,d=2)=>v==null?'—':Number(v).toFixed(d);
+const pc=v=>v==null?'—':Math.round(v)+'%';
+const trecho=(t,ini,fim,max=1500)=>{const i=t.search(ini);if(i<0)return '';const r=t.slice(i,i+max);const j=fim?r.slice(1).search(fim):-1;return j>0?r.slice(0,j+1):r};
+
+function isV2(text){return !/Mercado\s+Resultado final/i.test(text)&&/(Aproveitamento|Momentos dos Gols|Pontos por Jogo|Liga:\s)/i.test(text)}
+
+/* ---------- META (times, liga, horário, odds) ---------- */
+function tokensArquivo(file){return ((file&&file.name)||'').replace(/\.pdf$/i,'').replace(/^\d+[_-]/,'').split(/[_-]+/).filter(Boolean)}
+function parseMetaV2(text,file){
+ const head=text.slice(0,700);
+ let league=(text.match(/Liga:\s*(.+?)\s*·\s*Fonte/i)||[])[1]||'';
+ if(!league&&file&&file.webkitRelativePath)league=file.webkitRelativePath.split('/').slice(-2,-1)[0]||'';
+ let home=((text.match(/Geral\s+([^\d()]{2,45}?)\s+Casa\s+Competi/i)||[])[1]||'').trim();
+ let away=((text.match(/\d+\s*-\s*\d+\s+[VED]\s+([^\d()]{2,45}?)\s+Fora\s+Competi/i)||[])[1]||'').trim();
+ if(!home||!away){
+  const tk=tokensArquivo(file),body=head.replace(/\s+/g,' ');
+  for(let i=1;i<tk.length;i++){
+   const h=tk.slice(0,i).join(' '),a=tk.slice(i).join(' ');
+   if(new RegExp(lbl(h),'i').test(body)&&new RegExp(lbl(a),'i').test(body)){home=home||h;away=away||a;break}
+  }
+  if(!home&&tk.length){home=tk[0];away=away||tk.slice(1).join(' ')}
+ }
+ const time=(head.match(/\b(\d{1,2}:\d{2})\b/)||[])[1]||'';
+ const date=(head.match(/\b(\d{2}\/\d{2})\b/)||[])[1]||'';
+ let odds=[null,null,null];
+ const o=text.match(/Mandante\s+Empate\s+Visitante\s+Resultado\s+([\d.,]+)\s+([\d.,]+)\s+([\d.,]+)/i);
+ if(o)odds=[N(o[1]),N(o[2]),N(o[3])];
+ else{const r=text.match(/Principais Mercados.{0,40}?Resultado\s+([\d.,]+)\s+([\d.,]+)/i);if(r)odds=[N(r[1]),null,N(r[2])]}
+ return{home:home||'Mandante',away:away||'Visitante',date,time:time?time.padStart(5,'0'):'',
+  league:league||'Liga não identificada',odds};
+}
+
+/* ---------- ESTATÍSTICAS ---------- */
+const FAIXAS=['0-15','16-30','31-45','46-60','61-75','76-90'];
+function momentos(text){
+ const pat=FAIXAS.map(b=>b.replace('-','\\s*-\\s*')+'\\s+\\d+%\\s*\\((\\d+)\\)\\s+\\d+%\\s*\\((\\d+)\\)').join('\\s+');
+ const re=new RegExp('Momentos dos Gols\\s+'+pat,'gi'),out=[],vistos=new Set();
+ for(const m of text.matchAll(re)){
+  const v=m.slice(1).map(Number),k=v.join(',');if(vistos.has(k))continue;vistos.add(k);
+  out.push({s:v.filter((_,i)=>i%2===0),c:v.filter((_,i)=>i%2===1)});
+ }
+ return out;
+}
+function tabelas(text){
+ const res={};const reCab=/J\s+V\s+E\s+D\s+\+\/-\s+=\s+P/gi;let m;const idx=[];
+ while((m=reCab.exec(text)))idx.push(m.index);
+ idx.forEach((ix,k)=>{
+  const ant=text.slice(Math.max(0,ix-90),ix);
+  const w=([...ant.matchAll(/(Tabela|Casa|Fora|Influentes)/g)].pop()||[])[1]||'Tabela';
+  if(w==='Influentes')return;
+  const tipo=w==='Casa'?'casa':w==='Fora'?'fora':'geral';
+  if(res[tipo])return;
+  const bloco=text.slice(ix,idx[k+1]||ix+4000).split(/Confronto Direto/i)[0];
+  const rows=[...bloco.matchAll(/([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ.'&\- ]{1,40}?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*-\s*(\d+)\s+([+-]?\d+)\s+(\d+)/g)]
+   .map((r,i)=>({pos:i+1,time:r[1].replace(/^(Geral Casa Fora|#)\s*/i,'').trim(),j:+r[2],v:+r[3],e:+r[4],d:+r[5],gp:+r[6],gc:+r[7],p:+r[9]}));
+  if(rows.length)res[tipo]={rows,total:rows.length};
+ });
+ return res;
+}
+function linhaTime(tab,nome){
+ if(!tab)return null;const nz=x=>typeof norm==='function'?norm(x):String(x).toLowerCase();const n=nz(nome);
+ return tab.rows.find(r=>nz(r.time)===n)||tab.rows.find(r=>{const a=nz(r.time);return a.includes(n)||n.includes(a)})||null;
+}
+function overs(seg){
+ const o={};for(const m of seg.matchAll(/Over\s+(\d\.5)\s+gols\s+(\d+)%\s+(\d+)%\s+(\d+)%/gi))if(!o[m[1]])o[m[1]]=[+m[2],+m[3],+m[4]];return o;
+}
+function parseStatsV2(text){
+ const S={v2:true};
+ S.jogos=par(/Total de Jogos\s+(\d+)\s+(\d+)/i,text);
+ S.ppg=pDec('Pontos por Jogo',text);
+ S.win=pPct('Venceu',text);S.loss=pPct('Perdeu',text);S.draw=pPct('Empatou',text);
+ S.mk=pPct('Marcou Gol',text);S.sf=pPct('Sofreu Gol',text);
+ S.scored=pDec('Gols Marcados',text);S.conceded=pDec('Gols Sofridos',text);
+ S.posse=pPct('Média de Posse de Bola',text);S.btts=pPct('Ambas Marcam',text);
+ S.chutes=pDec('Chutes por Jogo',text);S.alvo=pDec('Chutes no Alvo',text);
+ S.xgF=pDec('xG - A Favor',text);S.xgC=pDec('xG - Contra',text);
+ S.primeiro=pPct('Marcou Primeiro',text);S.sofreuPrimeiro=pPct('Sofreu Primeiro',text);
+ S.venceuAposAbrir=pPct('Venceu após abrir',text);S.virou=pPct('Virou e venceu',text);
+ const ht=trecho(text,/Desempenho por Tempo\s+Primeiro\s+Venceu/i,/Primeiro\s+Segundo/i,700);
+ const st=trecho(text,/Desempenho por Tempo\s+Segundo\s+Venceu/i,/Primeiro\s+Segundo/i,700);
+ S.ht={mk:pPct('Marcou Gol',ht),gm:pDec('Média Gols Marcados',ht),gs:pDec('Média Gols Sofridos',ht)};
+ S.st={mk:pPct('Marcou Gol',st),gm:pDec('Média Gols Marcados',st),gs:pDec('Média Gols Sofridos',st)};
+ const g=text.match(/Gols Marcados\s+(\d+)\s+(\d+)\s+Gols Sofridos\s+(\d+)\s+(\d+)\s+Média Gols Marcados\s+[\d.,]+\s+[\d.,]+\s+Média Gols Sofridos\s+[\d.,]+\s+[\d.,]+\s+Média total de Gols\s+([\d.,]+)\s+([\d.,]+)/i);
+ S.gm=g?[+g[1],+g[2]]:[null,null];S.gs=g?[+g[3],+g[4]]:[null,null];S.total=g?[N(g[5]),N(g[6])]:pDec('Média total de Gols',text);
+ const tot=overs(trecho(text,/Total de Gols/i,/Gols por Tempo/i,900));
+ S.over=tot['2.5']?[tot['2.5'][0],tot['2.5'][1]]:[null,null];S.overs=tot;
+ S.htOvers=overs(trecho(text,/Gols no 1º Tempo/i,/Primeiro\s+Segundo/i,400));
+ S.stOvers=overs(trecho(text,/Gols no 2º Tempo/i,/Primeiro\s+Segundo/i,400));
+ /* distribuição por faixa: identifica o bloco de cada time pelos totais de gols */
+ const B=momentos(text);let H=null,A=null;
+ if(S.gm[0]!=null){H=B.find(b=>soma(b.s)===S.gm[0]&&soma(b.c)===S.gs[0]);A=B.find(b=>soma(b.s)===S.gm[1]&&soma(b.c)===S.gs[1])}
+ if(!H&&B.length)H=B[0];if(!A&&B.length>1)A=B.find(b=>b!==H);
+ S.dist=(H&&A)?{H,A}:null;
+ /* confronto direto e tendências */
+ const cd=trecho(text,/Confronto Direto/i,/Tendências/i,400);
+ S.h2h={under25:(cd.match(/Menos de 2\.5 Gols\s+(\d+)\/(\d+)/i)||[]).slice(1).map(Number),
+        over25:(cd.match(/Mais de 2\.5 Gols\s+(\d+)\/(\d+)/i)||[]).slice(1).map(Number),
+        btts:(cd.match(/Ambas marcam\s+(\d+)\/(\d+)/i)||[]).slice(1).map(Number)};
+ S.tend=(trecho(text,/Tendências\s+RECORTE RECENTE/i,/Principais Mercados/i,600).replace(/Tendências\s+RECORTE RECENTE/i,'').trim());
+ /* odds de mercado */
+ const ou=text.match(/2\.5 Gols\s+([\d.,]+)\s+([\d.,]+)\s+3\.5 Gols/i);S.oddO25=ou?[N(ou[1]),N(ou[2])]:[null,null];
+ const bt=text.match(/Ambas Marcam\s+([\d.,]+)\s+([\d.,]+)\s+Ambas Marcam no 1/i);S.oddBtts=bt?[N(bt[1]),N(bt[2])]:[null,null];
+ S.tab=tabelas(text);
+ return S;
+}
+
+/* ---------- MÉTODOS ---------- */
+function assessV2(meta,S){
+ const [oh,od,oa]=meta.odds;let probs=[null,null,null];
+ if([oh,od,oa].every(Number.isFinite)){const inv=[1/oh,1/od,1/oa],t=inv[0]+inv[1]+inv[2];probs=inv.map(x=>100*x/t)}
+ else if(Number.isFinite(oh)&&Number.isFinite(oa)){const inv=[1/oh,1/oa],t=(inv[0]+inv[1])/0.72;probs=[100*inv[0]/t,null,100*inv[1]/t]}
+ const fav=(probs[0]??0)>=(probs[2]??0)?0:1,zeb=1-fav;
+ const probFav=probs[fav*2],zebOdd=zeb===0?oh:oa;
+ const F=fav===0?'H':'A',Z=zeb===0?'H':'A';
+ const btts=S.btts.every(Number.isFinite)?S.btts:null,bttsAvg=btts?media(btts):null;
+ const overAvg=media(S.over),totalAvg=media(S.total);
+ const mkH=S.mk[0],mkA=S.mk[1];
+ const LM=S.dist?lateMetrics(S.dist):null;
+ const tg=S.tab.geral,lh=linhaTime(tg,meta.home),la=linhaTime(tg,meta.away);
+ const lCasa=linhaTime(S.tab.casa,meta.home),lFora=linhaTime(S.tab.fora,meta.away);
+ const pos=[lh?lh.pos:null,la?la.pos:null];
+ const venue=[lCasa&&lCasa.j?{ppg:(3*lCasa.v+lCasa.e)/lCasa.j,gp:lCasa.gp/lCasa.j,gc:lCasa.gc/lCasa.j,j:lCasa.j}:null,
+              lFora&&lFora.j?{ppg:(3*lFora.v+lFora.e)/lFora.j,gp:lFora.gp/lFora.j,gc:lFora.gc/lFora.j,j:lFora.j}:null];
+ const o={};
+ /* 1 · BACK FAVORITO */
+ o.back_favorito=[
+  crit(probFav>=65,'prob. normalizada ≥ 65%',probFav?probFav.toFixed(1)+'%':'',probFav!=null),
+  crit(fav===0||((S.win[fav]??-99)-(S.win[zeb]??99)>=30),'favorito em casa ou superior',fav===0?'mandante':'aproveitamento '+S.win[fav]+'% × '+S.win[zeb]+'%',fav===0||S.win.every(Number.isFinite)),
+  crit(S.win[zeb]<35,'adversário vence < 35%',S.win[zeb]+'%',S.win[zeb]!=null),
+  crit(S.ppg[fav]>=1.7,'favorito ≥ 1.70 pontos por jogo',fmt(S.ppg[fav]),S.ppg[fav]!=null),
+  crit((S.xgF[fav]??0)>(S.xgF[zeb]??9),'xG a favor do favorito maior',fmt(S.xgF[fav])+' × '+fmt(S.xgF[zeb]),S.xgF.every(Number.isFinite))];
+ /* 2 · LAY ZEBRA */
+ o.lay_zebra=[
+  crit(zebOdd>=5,'odd da zebra ≥ 5.00',zebOdd,zebOdd!=null),
+  crit((S.win[zeb]!=null&&S.win[zeb]<=20)||(S.conceded[zeb]>=2),'zebra em má fase','vence '+S.win[zeb]+'% · sofre '+fmt(S.conceded[zeb]),S.win[zeb]!=null||S.conceded[zeb]!=null),
+  crit(S.ppg[zeb]<1.2,'zebra < 1.20 pontos por jogo',fmt(S.ppg[zeb]),S.ppg[zeb]!=null)];
+ /* 3 · OVER LIMITE (+1 gol) — mín. 3 */
+ const favS61=LM?LM[F].pS[4]:null,favS76=LM?LM[F].pS[5]:null,advC61=LM?LM[Z].pC[4]:null,advC76=LM?LM[Z].pC[5]:null;
+ const favS46=LM?LM[F].pS[3]:null,advC46=LM?LM[Z].pC[3]:null;
+ o.over_limite_70=[
+  crit(favS61>=25,'favorito marca 61-75 ≥ 25%',favS61+'%',favS61!=null),
+  crit(favS76>=25,'favorito marca 76-90 ≥ 25%',favS76+'%',favS76!=null),
+  crit(advC61>=25,'adversário sofre 61-75 ≥ 25%',advC61+'%',advC61!=null),
+  crit(advC76>=25,'adversário sofre 76-90 ≥ 25%',advC76+'%',advC76!=null),
+  crit(LM&&LM.apos60>=45,'gols após 60 min (2 times) ≥ 45%',LM?LM.apos60+'%':'',!!LM),
+  crit((favS46>=25||advC46>=25),'faixa 46-60 ativa ≥ 25%',(favS46!=null?'fav '+favS46+'%':'')+(advC46!=null?' · adv '+advC46+'%':''),favS46!=null||advC46!=null),
+  crit(S.stOvers['0.5']&&S.stOvers['0.5'][2]>=75,'gol no 2º tempo ≥ 75%',S.stOvers['0.5']?S.stOvers['0.5'][2]+'%':'',!!S.stOvers['0.5'])];
+ /* 4 · BACK 2x2 */
+ o.back_2x2=[
+  crit(overAvg>=60,'Over 2.5 médio ≥ 60%',pc(overAvg),overAvg!=null),
+  crit(bttsAvg>=60,'BTTS médio ≥ 60%',pc(bttsAvg),bttsAvg!=null),
+  crit(S.conceded.every(x=>x>=1.2),'ambos sofrem ≥ 1.2',S.conceded.map(v=>fmt(v)).join(' / '),S.conceded.every(Number.isFinite))];
+ /* 5 · BACK GOLEADA */
+ o.back_goleada=[
+  crit(probFav>=70,'prob. favorito ≥ 70%',probFav?probFav.toFixed(1)+'%':'',probFav!=null),
+  crit(S.scored[fav]>=2,'favorito marca ≥ 2.0 por jogo',fmt(S.scored[fav]),S.scored[fav]!=null),
+  crit(S.conceded[zeb]>=2,'adversário sofre ≥ 2.0',fmt(S.conceded[zeb]),S.conceded[zeb]!=null),
+  crit(S.overs['3.5']&&S.overs['3.5'][fav]>=50,'favorito em jogos Over 3.5 ≥ 50%',S.overs['3.5']?S.overs['3.5'][fav]+'%':'',!!S.overs['3.5'])];
+ /* 6/7 · LAY 1x0 / LAY 0x1 */
+ const p10=totalAvg>=2.8||(totalAvg>=2.5&&totalAvg<2.8&&mkA>70),p01=totalAvg>=2.8||(totalAvg>=2.5&&totalAvg<2.8&&mkH>70);
+ o.lay_1x0=[
+  crit(p10,'P(1-0) < 12%',totalAvg!=null?'média '+totalAvg.toFixed(2):'',totalAvg!=null&&mkA!=null),
+  crit(mkA>65,'visitante Over 0.5 > 65%',mkA+'%',mkA!=null),
+  crit(mkA>60,'visitante marca > 60%',mkA+'%',mkA!=null),
+  crit(totalAvg>=2.5,'média total ≥ 2.5',fmt(totalAvg),totalAvg!=null),
+  crit(bttsAvg>50,'BTTS > 50%',pc(bttsAvg),bttsAvg!=null)];
+ o.lay_0x1=[
+  crit(p01,'P(0-1) < 12%',totalAvg!=null?'média '+totalAvg.toFixed(2):'',totalAvg!=null&&mkH!=null),
+  crit(mkH>65,'mandante Over 0.5 > 65%',mkH+'%',mkH!=null),
+  crit(mkH>60,'mandante marca > 60%',mkH+'%',mkH!=null),
+  crit(totalAvg>=2.5,'média total ≥ 2.5',fmt(totalAvg),totalAvg!=null),
+  crit(bttsAvg>50,'BTTS > 50%',pc(bttsAvg),bttsAvg!=null)];
+ let app=METHODS.filter(k=>k==='over_limite_70'?o[k].filter(x=>x.ok).length>=3:o[k].every(x=>x.ok));
+ if(app.includes('lay_1x0')&&app.includes('lay_0x1')){
+  const s10=(mkA||0)+(S.scored[1]||0)*10,s01=(mkH||0)+(S.scored[0]||0)*10;
+  app=app.filter(x=>x!=='lay_1x0'&&x!=='lay_0x1');app.push(s10>=s01?'lay_1x0':'lay_0x1');
+ }
+ app.sort((a,b)=>METHODS.indexOf(a)-METHODS.indexOf(b));
+ const conf=k=>Math.round(100*o[k].filter(x=>x.ok).length/o[k].length);
+ return{v2:true,checks:o,app,principal:app[0]||null,secondary:app.slice(1),decision:app.length?'entrada':'evitar',
+  conf:app[0]?conf(app[0]):0,confN:app[0]?o[app[0]].filter(x=>x.ok).length:0,confT:app[0]?o[app[0]].length:0,
+  fav,zeb,LM,S,pos,venue,totalTimes:tg?tg.total:null,
+  m:{probFav,totalAvg,bttsAvg,overAvg,mkH,mkA,scored:S.scored,conceded:S.conceded,win:S.win,zebOdd,
+     favS61,favS76,advC61,advC76,apos60:LM?LM.apos60:null}};
+}
+
+/* ---------- TEXTO DA JUSTIFICATIVA ---------- */
+function reasonV2(g){
+ const base=OLD.reason(g),a=g.analysis,S=a.S,m=g.meta;
+ const nome=i=>i===0?m.home:m.away;
+ const extra=[];
+ if(S.ppg.every(Number.isFinite))extra.push('Pontos por jogo: '+m.home+' '+fmt(S.ppg[0])+' · '+m.away+' '+fmt(S.ppg[1]));
+ if(a.pos.every(Number.isFinite))extra.push('Tabela: '+m.home+' '+a.pos[0]+'º · '+m.away+' '+a.pos[1]+'º'+(a.totalTimes?' de '+a.totalTimes:''));
+ if(a.venue[0])extra.push(m.home+' em casa: '+fmt(a.venue[0].ppg)+' pts/j · '+fmt(a.venue[0].gp)+' gols pró · '+fmt(a.venue[0].gc)+' contra ('+a.venue[0].j+' j)');
+ if(a.venue[1])extra.push(m.away+' fora: '+fmt(a.venue[1].ppg)+' pts/j · '+fmt(a.venue[1].gp)+' gols pró · '+fmt(a.venue[1].gc)+' contra ('+a.venue[1].j+' j)');
+ if(S.xgF.every(Number.isFinite))extra.push('xG a favor: '+fmt(S.xgF[0])+' × '+fmt(S.xgF[1])+' · xG contra: '+fmt(S.xgC[0])+' × '+fmt(S.xgC[1]));
+ if(S.primeiro.every(Number.isFinite))extra.push('Marca primeiro: '+m.home+' '+S.primeiro[0]+'% · '+m.away+' '+S.primeiro[1]+'%');
+ const h=S.h2h,hh=[];
+ if(h.under25.length)hh.push('Under 2.5 '+h.under25.join('/'));if(h.over25.length)hh.push('Over 2.5 '+h.over25.join('/'));if(h.btts.length)hh.push('Ambas marcam '+h.btts.join('/'));
+ if(hh.length)extra.push('Confronto direto: '+hh.join(' · '));
+ if(S.oddO25[0]!=null||S.oddBtts[0]!=null)extra.push('Odds: Over 2.5 @'+fmt(S.oddO25[0])+' · Ambas marcam @'+fmt(S.oddBtts[0]));
+ return{txt:base.txt,pts:base.pts.concat(extra)};
+}
+
+/* ---------- ESCUDOS (critério mais flexível para o PDF novo) ---------- */
+async function grabCrestsV2(doc){
+ const r=await OLD.grabCrests(doc);if(r&&r[0]&&r[1])return r;
+ try{
+  const page=await doc.getPage(1),ops=await page.getOperatorList(),O=pdfjsLib.OPS;
+  let ctm=[1,0,0,1,0,0];const st=[],spots=[];
+  const paint=[O.paintImageXObject,O.paintImageXObjectRepeat,O.paintJpegXObject,O.paintInlineImageXObject].filter(x=>x!=null);
+  for(let i=0;i<ops.fnArray.length;i++){const fn=ops.fnArray[i];
+   if(fn===O.save)st.push(ctm.slice());else if(fn===O.restore)ctm=st.pop()||[1,0,0,1,0,0];
+   else if(fn===O.transform)ctm=mul(ctm,ops.argsArray[i]);
+   else if(paint.includes(fn)){const w=Math.abs(ctm[0]),h=Math.abs(ctm[3]);
+    if(w>12&&w<200&&h>12&&h<200&&Math.max(w,h)/Math.min(w,h)<2.2&&!(w>h*1.3))spots.push({x:ctm[4],y:ctm[5],w,h})}}
+  if(spots.length<2)return r||[null,null];
+  spots.sort((a,b)=>b.w*b.h-a.w*a.h);const two=spots.slice(0,2).sort((a,b)=>a.x-b.x);
+  const vp=page.getViewport({scale:3}),cv=document.createElement('canvas');
+  cv.width=Math.ceil(vp.width);cv.height=Math.ceil(vp.height);
+  await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+  return two.map(s=>{const q=vp.convertToViewportRectangle([s.x,s.y,s.x+s.w,s.y+s.h]);
+   const x=Math.min(q[0],q[2]),y=Math.min(q[1],q[3]),w=Math.abs(q[2]-q[0]),h=Math.abs(q[3]-q[1]);
+   const c=document.createElement('canvas');c.width=Math.round(w);c.height=Math.round(h);
+   c.getContext('2d').drawImage(cv,x,y,w,h,0,0,c.width,c.height);return c.toDataURL('image/png')});
+ }catch(e){return r||[null,null]}
+}
+
+/* ---------- LIGAÇÃO COM O HTML ---------- */
+window.parseMeta=function(text,file){return isV2(text)?parseMetaV2(text,file):OLD.parseMeta(text,file)};
+window.parseStats=function(text){return isV2(text)?parseStatsV2(text):OLD.parseStats(text)};
+window.assess=function(meta,S){return S&&S.v2?assessV2(meta,S):OLD.assess(meta,S)};
+window.reason=function(g){return g.analysis&&g.analysis.v2?reasonV2(g):OLD.reason(g)};
+if(OLD.grabCrests)window.grabCrests=grabCrestsV2;
+
+/* critérios novos também na mesa/auditoria: rótulo de versão */
+window.LEITOR_V2={parseMetaV2,parseStatsV2,assessV2,isV2,versao:'2.0'};
+try{console.info('Leitor Radar v2 ativo')}catch(e){}
+})();
+
+</script>
+<!-- LEITOR_RADAR_V2:FIM -->
 </body>
 </html>
