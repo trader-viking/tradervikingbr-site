@@ -1,10 +1,11 @@
+// leitor-v2 202611072022
 /* TraderVikingBR · Live Desk — Service Worker
    Estrategia:
    - App shell (HTML, manifest, icones): stale-while-revalidate
    - Bibliotecas do CDN: cache-first (versionadas, nao mudam)
    - Pacotes de dados (dados/*.json): network-first com fallback para cache
 */
-const VERSION = 'tvbr-v1';
+const VERSION = 'tvbr-v1-lv202611072022';
 const SHELL = VERSION + '-shell';
 const LIBS  = VERSION + '-libs';
 const DATA  = VERSION + '-data';
