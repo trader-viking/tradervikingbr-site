@@ -999,7 +999,7 @@ function assess(meta,S){/*LV2*/if(window.LEITOR_V2&&S&&S.v2){const __r=LEITOR_V2
   crit(mkH>60,'mandante marca > 60%',mkH+'%',mkH!=null),
   crit(totalAvg>=2.5,'média total ≥ 2.5',totalAvg?.toFixed(2),totalAvg!=null),
   crit(bttsAvg>50,'BTTS > 50%',bttsAvg+'%',bttsAvg!=null)];
- let app=METHODS.filter(k=>k==='over_limite_70'?o[k].filter(x=>x.ok).length>=3:o[k].every(x=>x.ok));
+ let app=METHODS.filter(k=>!['lay_1x0','lay_0x1'].includes(k)).filter(k=>k==='over_limite_70'?o[k].filter(x=>x.ok).length>=3:o[k].every(x=>x.ok));
  if(app.includes('lay_1x0')&&app.includes('lay_0x1')){
   const s10=(mkA||0)+(s.scored[1]||0)*10,s01=(mkH||0)+(s.scored[0]||0)*10;
   app=app.filter(x=>x!=='lay_1x0'&&x!=='lay_0x1');app.push(s10>=s01?'lay_1x0':'lay_0x1');
@@ -1825,7 +1825,7 @@ window.addEventListener('load',async()=>{
 });
 </script>
 <!-- LEITOR_RADAR_V2:INICIO -->
-<script>window.RADAR_LIMITES={"geral": {"min_jogos": 8, "margem_valor": 1.0}, "back_favorito": {"prob_min": 62, "prob_max": 78, "dif_ppg_mando": 0.6, "adv_ppg_max": 1.1, "fav_ppg_min": 1.7}, "over_limite": {"min_criterios": 4, "faixa_min": 28, "min_gols_amostra": 15, "apos60_min": 45, "media_total_min": 2.5, "gol_2t_min": 75}, "back_2x2": {"over25_min": 60, "btts_min": 60, "sofridos_min": 1.2, "media_total_min": 2.7, "checar_odd": true}, "lay_zebra": {"odd_min": 4.5, "odd_max": 9.0, "zebra_vitorias_max": 20, "zebra_sofre_min": 2.0, "fav_prob_min": 65, "zebra_ppg_max": 0.9}, "lay_placar": {"prob_placar_max": 10, "marca_min": 70, "media_total_min": 2.7, "btts_min": 50}, "back_goleada": {"prob_min": 70, "fav_marca_min": 2.0, "adv_sofre_min": 2.0, "fav_over35_min": 45, "fav_marca_mando_min": 2.2}};</script>
+<script>window.RADAR_LIMITES={"geral": {"min_jogos": 8, "margem_valor": 1.0}, "back_favorito": {"prob_min": 62, "prob_max": 78, "dif_ppg_mando": 0.6, "adv_ppg_max": 1.1, "fav_ppg_min": 1.7}, "over_limite": {"min_criterios": 4, "faixa_min": 28, "min_gols_amostra": 15, "apos60_min": 45, "media_total_min": 2.5, "gol_2t_min": 75}, "back_2x2": {"over25_min": 60, "btts_min": 60, "sofridos_min": 1.2, "media_total_min": 2.7, "checar_odd": false}, "lay_zebra": {"odd_min": 4.5, "odd_max": 9.0, "zebra_vitorias_max": 20, "zebra_sofre_min": 2.0, "fav_prob_min": 65, "zebra_ppg_max": 0.9}, "lay_placar": {"prob_placar_max": 10, "marca_min": 70, "media_total_min": 2.7, "btts_min": 50}, "back_goleada": {"prob_min": 70, "fav_marca_min": 2.0, "adv_sofre_min": 2.0, "fav_over35_min": 45, "fav_marca_mando_min": 2.2}};</script>
 <script>
 /* ======================================================================
    LEITOR RADAR v2.3 · TraderVikingBR Live Desk
@@ -1841,7 +1841,7 @@ const PADRAO={
  geral:{min_jogos:8,margem_valor:1.00},
  back_favorito:{prob_min:62,prob_max:78,dif_ppg_mando:0.6,adv_ppg_max:1.1,fav_ppg_min:1.7},
  over_limite:{min_criterios:4,faixa_min:28,min_gols_amostra:15,apos60_min:45,media_total_min:2.5,gol_2t_min:75},
- back_2x2:{over25_min:60,btts_min:60,sofridos_min:1.2,media_total_min:2.7,checar_odd:true},
+ back_2x2:{over25_min:60,btts_min:60,sofridos_min:1.2,media_total_min:2.7,checar_odd:false},
  lay_zebra:{odd_min:4.5,odd_max:9.0,zebra_vitorias_max:20,zebra_sofre_min:2.0,fav_prob_min:65,zebra_ppg_max:0.9},
  lay_placar:{prob_placar_max:10,marca_min:70,media_total_min:2.7,btts_min:50},
  back_goleada:{prob_min:70,fav_marca_min:2.0,adv_sofre_min:2.0,fav_over35_min:45,fav_marca_mando_min:2.2}
@@ -2047,7 +2047,7 @@ function assessV2(meta,S){
   crit(bttsAvg>=L3.btts_min,'Ambas marcam médio ≥ '+L3.btts_min+'%',pc(bttsAvg),bttsAvg!=null),
   crit(ok2(S.conceded)&&Math.min(...S.conceded)>=L3.sofridos_min,'ambos sofrem ≥ '+fmt(L3.sofridos_min,1),S.conceded.map(x=>fmt(x)).join(' / '),ok2(S.conceded)),
   crit(totalAvg>=L3.media_total_min,'média total ≥ '+fmt(L3.media_total_min,1),fmt(totalAvg),totalAvg!=null)];
- if(L3.checar_odd)o.back_2x2.push(crit(oddO25>=oddJusta,'odd Over 2.5 paga o risco (≥ '+fmt(oddJusta)+')','mercado '+fmt(oddO25),oddO25!=null&&oddJusta!=null));
+ /* Critério de odd Over 2.5 removido temporariamente do Back 2x2. */
 
  const L5=LIM.lay_placar;
  let lH=null,lA=null,p10=null,p01=null;
@@ -2072,7 +2072,7 @@ function assessV2(meta,S){
   crit(o35>=L7.fav_over35_min,'favorito com Over 3.5 em ≥ '+L7.fav_over35_min+'%',o35+'%',o35!=null),
   crit(gpM>=L7.fav_marca_mando_min,'favorito marca ≥ '+fmt(L7.fav_marca_mando_min,1)+' no mando ('+(fav===0?'casa':'fora')+')',fmt(gpM),gpM!=null)];
 
- let app=METHODS.filter(k=>k==='over_limite_70'?overOK:o[k].every(x=>x.ok));
+ let app=METHODS.filter(k=>!['lay_1x0','lay_0x1'].includes(k)).filter(k=>k==='over_limite_70'?overOK:o[k].every(x=>x.ok));
  if(app.includes('lay_1x0')&&app.includes('lay_0x1')){app=app.filter(x=>x!=='lay_1x0'&&x!=='lay_0x1');app.push(p10<=p01?'lay_1x0':'lay_0x1')}
  app.sort((a,b)=>METHODS.indexOf(a)-METHODS.indexOf(b));
  const nOK=k=>o[k].filter(x=>x.ok).length;
