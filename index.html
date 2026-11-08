@@ -1913,14 +1913,14 @@ window.FILTRO_SITE={cfg,ehElite,temMetodo,filtrar,stats,LIGAS_ELITE};
 <script>window.RADAR_LIMITES={"geral": {"min_jogos": 8, "margem_valor": 1.0}, "back_favorito": {"prob_min": 62, "prob_max": 78, "dif_ppg_mando": 0.6, "adv_ppg_max": 1.1, "fav_ppg_min": 1.7}, "over_limite": {"min_criterios": 4, "faixa_min": 28, "min_gols_amostra": 15, "apos60_min": 45, "media_total_min": 2.5, "gol_2t_min": 75}, "back_2x2": {"over25_min": 60, "btts_min": 60, "sofridos_min": 1.2, "media_total_min": 2.7, "checar_odd": true}, "lay_zebra": {"odd_min": 4.5, "odd_max": 9.0, "zebra_vitorias_max": 20, "zebra_sofre_min": 2.0, "fav_prob_min": 65, "zebra_ppg_max": 0.9}, "lay_placar": {"prob_placar_max": 10, "marca_min": 70, "media_total_min": 2.7, "btts_min": 50}, "back_goleada": {"prob_min": 70, "fav_marca_min": 2.0, "adv_sofre_min": 2.0, "fav_over35_min": 45, "fav_marca_mando_min": 2.2}};</script>
 <script>
 /* ======================================================================
-   LEITOR RADAR v2.3 · TraderVikingBR Live Desk
+   LEITOR RADAR v2.4 · TraderVikingBR Live Desk
    Lê o texto do PDF gerado pelo publicar_radar.py e aplica os 7 métodos.
    Limites editáveis no config.json → "limites_metodos"
    (o instalar_leitor_v2.py grava esses limites no index como RADAR_LIMITES).
    ====================================================================== */
 (function(){
 'use strict';
-if(window.__leitorV2)return;window.__leitorV2='2.3';
+if(window.__leitorV2)return;window.__leitorV2='2.4';
 
 /* ---------- LIMITES PADRÃO (sobrescritos por window.RADAR_LIMITES) ---------- */
 const PADRAO={
@@ -2119,11 +2119,14 @@ function assessV2(meta,S){
  const v=(t,k,i)=>golsOK?LM[t][k][i]:null;
  const favS61=v(F,'pS',4),favS76=v(F,'pS',5),advC61=v(Z,'pC',4),advC76=v(Z,'pC',5),favS46=v(F,'pS',3),advC46=v(Z,'pC',3);
  const st05=S.stOvers['0.5']?S.stOvers['0.5'][2]:null;
+ const faixa6175OK=(favS61>=fx)||(advC61>=fx);
  const obrig=[
   crit(LM&&LM.apos60>=L2.apos60_min,'OBRIGATÓRIO · gols após 60 min ≥ '+L2.apos60_min+'%',LM?LM.apos60+'%':'',!!LM),
-  crit(totalAvg>=L2.media_total_min,'OBRIGATÓRIO · média total ≥ '+fmt(L2.media_total_min,1),fmt(totalAvg),totalAvg!=null)];
+  crit(totalAvg>=L2.media_total_min,'OBRIGATÓRIO · média total ≥ '+fmt(L2.media_total_min,1),fmt(totalAvg),totalAvg!=null),
+  crit(faixa6175OK,'OBRIGATÓRIO · faixa 61-75 ativa ≥ '+fx+'%',
+   (favS61!=null?'favorito marca '+favS61+'%':'')+(favS61!=null&&advC61!=null?' · ':'')+(advC61!=null?'adversário sofre '+advC61+'%':''),
+   favS61!=null||advC61!=null)];
  const extras=[
-  crit(favS61>=fx,'favorito marca 61-75 ≥ '+fx+'%',favS61+'%',favS61!=null),
   crit(favS76>=fx,'favorito marca 76-90 ≥ '+fx+'%',favS76+'%',favS76!=null),
   crit(advC61>=fx,'adversário sofre 61-75 ≥ '+fx+'%',advC61+'%',advC61!=null),
   crit(advC76>=fx,'adversário sofre 76-90 ≥ '+fx+'%',advC76+'%',advC76!=null),
