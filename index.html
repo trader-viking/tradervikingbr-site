@@ -442,6 +442,13 @@ details[open] summary:before{content:"▾ "}
 ::-webkit-scrollbar-thumb{background:#2f4a6b;border-radius:9px}
 @media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid,.mesa-grid{grid-template-columns:1fr}.srcgrid{grid-template-columns:1fr}.mesa-sum{grid-template-columns:repeat(2,1fr)}}
+
+/* UX v3: menu principal recolhível + filtro rápido de principais ligas */
+.nav.nav-collapsed{width:auto;display:inline-flex;padding:5px;margin-bottom:12px}
+.nav.nav-collapsed>button:not(.navToggle),.nav.nav-collapsed>.navspacer{display:none}
+.navToggle{display:inline-flex!important;padding:8px 12px!important;font-size:12.5px!important;color:#ffdf9a!important;background:rgba(255,201,74,.09)!important;border:1px solid rgba(255,201,74,.24)!important}
+.mainLeagueBtn.on{background:linear-gradient(140deg,var(--gold),var(--gold2))!important;color:#1a1200!important;border-color:transparent!important}
+@media(max-width:760px){.nav.nav-collapsed{display:flex;width:100%}.navToggle{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -577,6 +584,7 @@ details[open] summary:before{content:"▾ "}
       <option value="red">Só red</option></select></label>
     <label>📌 Seleção <select id="pickFilter">
       <option value="all">Todas</option><option value="on">Selecionadas</option><option value="off">Não selecionadas</option></select></label>
+    <button type="button" class="mini mainLeagueBtn" id="mainLeagueBtn" onclick="toggleMainLeagues()">🏆 Principais ligas</button>
     <input type="text" id="search" placeholder="🔎 Buscar time ou liga">
   </div>
   <div class="alert" id="libAlert"></div>
@@ -1127,6 +1135,7 @@ function visibleGames(){
   (df==='all'||statusOf(g)===df)&&
   (ff==='all'||(ff==='aberta'?!g.fin.done:ff==='done'?g.fin.done:g.fin.done&&g.fin.res===ff))&&
   (kf==='all'||(kf==='on'?g.pick:!g.pick))&&
+  (!mainLeaguesOnly||isMainLeague(g.meta.league))&&
   (!q||norm(g.meta.home+' '+g.meta.away+' '+g.meta.league).includes(q)));
 }
 $('#selAll').onclick=()=>{games.forEach(g=>g.pick=true);saveState();render()};
@@ -1622,6 +1631,13 @@ $('#pdfBtn').onclick=()=>{
  d.save('tradervikingbr_caderno_live.pdf');
 };
 
+/* ===== UX v3: MENU REDUZIDO + PRINCIPAIS LIGAS ===== */
+const MAIN_LEAGUES=[/champions league/i,/europa league/i,/conference league/i,/libertadores/i,/sudamericana|sul-americana/i,/premier league|england.*primeira divis/i,/la liga|spain.*primeira divis/i,/serie a|italy.*primeira divis/i,/bundesliga|germany.*primeira divis/i,/ligue 1|france.*primeira divis/i,/primeira liga|portugal.*primeira divis/i,/eredivisie|netherlands.*primeira divis|paises baixos.*primeira divis/i,/brasil.*serie a|brasil.*primeira divis|copa do brasil/i,/argentina.*primeira divis/i];
+let mainLeaguesOnly=false;
+function isMainLeague(liga){const l=norm(liga||'');return MAIN_LEAGUES.some(r=>r.test(l))}
+function toggleMainLeagues(force){mainLeaguesOnly=force!==undefined?!!force:!mainLeaguesOnly;const b=$('#mainLeagueBtn');if(b){b.classList.toggle('on',mainLeaguesOnly);b.textContent=mainLeaguesOnly?'🏆 Principais ligas ✓':'🏆 Principais ligas'}try{localStorage.setItem('tvbr_main_leagues',mainLeaguesOnly?'1':'0')}catch(e){}render()}
+function initMenuCompacto(){const nav=document.querySelector('.nav');if(!nav||document.getElementById('navToggle'))return;const b=document.createElement('button');b.id='navToggle';b.className='navToggle';b.type='button';const apply=on=>{nav.classList.toggle('nav-collapsed',on);b.textContent=on?'☰ Menu':'✕ Ocultar menu';try{localStorage.setItem('tvbr_nav_collapsed',on?'1':'0')}catch(e){}};b.onclick=()=>apply(!nav.classList.contains('nav-collapsed'));nav.prepend(b);let on=true;try{on=localStorage.getItem('tvbr_nav_collapsed')!=='0';mainLeaguesOnly=localStorage.getItem('tvbr_main_leagues')==='1'}catch(e){}apply(on);const mb=$('#mainLeagueBtn');if(mb){mb.classList.toggle('on',mainLeaguesOnly);mb.textContent=mainLeaguesOnly?'🏆 Principais ligas ✓':'🏆 Principais ligas'}}
+
 /* ============================================================
    MODO FOCO · oculta menus e destaca os cards
    ============================================================ */
@@ -1800,6 +1816,7 @@ async function initPWA(){
 window.addEventListener('load',async()=>{
  libsOK();
  initZen();
+ initMenuCompacto();
  initPWA();
  const p=new URLSearchParams(location.search);
  if(p.get('tab')==='mesa')setTab('mesa');
