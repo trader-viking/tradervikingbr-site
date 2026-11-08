@@ -2110,5 +2110,107 @@ window.LEITOR_V2={versao:window.__leitorV2,isV2,
 
 </script>
 <!-- LEITOR_RADAR_V2:FIM -->
+<!-- FILTRO_SITE:INICIO -->
+<script>
+/* ======================================================================
+   FILTRO DO SITE · TraderVikingBR Live Desk
+   1) Somente ligas elite
+   2) Esconde jogos sem método aprovado
+   Age nos dados publicados (dados/AAAA-MM-DD.json) antes de o site
+   montar os cards — então os jogos filtrados nem aparecem.
+   Requer o Leitor v2.2 (window.LEITOR_V2) já instalado no index.
+   ====================================================================== */
+(function(){
+'use strict';
+if(window.__filtroSite)return;window.__filtroSite='1.0';
+
+/* ---------- LIGAS ELITE (edite aqui se quiser) ---------- */
+/* nomes sem acento (a comparação ignora acentos) */
+const LIGAS_ELITE=[
+ /champions league/, /europa league/, /conference league/,
+ /inglaterra - primeira divis/, /espanha - primeira divis/, /italia - primeira divis/,
+ /alemanha - primeira divis/, /franca - primeira divis/, /portugal - primeira divis/,
+ /(holanda|paises baixos) - primeira divis/,
+ /brasil - (primeira divis|copa do brasil)/, /libertadores/, /sul-?americana|sudamericana/,
+ /argentina - primeira divis/,
+];
+const CONTINENTAIS=/champions league|europa league|conference league|libertadores|sul-?americana|sudamericana/;
+const CFG_KEY='tvbr_filtro_site';
+const cfg=Object.assign({elite:true,soMetodo:true},JSON.parse(localStorage.getItem(CFG_KEY)||'{}'));
+const salvar=()=>localStorage.setItem(CFG_KEY,JSON.stringify(cfg));
+
+function nomeLiga(p){return String(p.liga||p.liga_pasta||'').trim()}
+const semAcento=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ');
+function ehElite(liga){
+ const l=semAcento(liga);if(!l)return false;
+ if(CONTINENTAIS.test(l))return !/(afc|caf|concacaf|feminin|women|u-?\d{2}|sub-?\d{2})/.test(l);
+ return LIGAS_ELITE.some(r=>r.test(l));
+}
+function temMetodo(p){
+ const L=window.LEITOR_V2;
+ if(!L||!p.texto)return true;               // sem leitor: não esconde
+ if(!L.isV2(p.texto))return true;           // formato antigo: deixa o site decidir
+ try{const r=L.testar(p.texto);return !!(r&&r.principal)}catch(e){return true}
+}
+
+const stats={total:0,foraLiga:0,semMetodo:0,mostrados:0};
+function filtrar(json){
+ if(!json||!Array.isArray(json.partidas))return json;
+ const P=json.partidas;stats.total=P.length;stats.foraLiga=0;stats.semMetodo=0;
+ const out=P.filter(p=>{
+  if(cfg.elite&&!ehElite(nomeLiga(p))){stats.foraLiga++;return false}
+  if(cfg.soMetodo&&!temMetodo(p)){stats.semMetodo++;return false}
+  return true;
+ });
+ stats.mostrados=out.length;
+ atualizarPainel();
+ try{if(typeof log==='function')log('🔎 Filtro: '+out.length+' de '+P.length+' jogos'+
+   (cfg.elite?' · '+stats.foraLiga+' fora das ligas elite':'')+(cfg.soMetodo?' · '+stats.semMetodo+' sem método':''))}catch(_){}
+ return Object.assign({},json,{partidas:out,total:out.length,filtro:{...cfg,...stats}});
+}
+
+/* ---------- intercepta a leitura de dados/AAAA-MM-DD.json ---------- */
+const fetchOrig=window.fetch.bind(window);
+window.fetch=async function(input,init){
+ const resp=await fetchOrig(input,init);
+ try{
+  const url=typeof input==='string'?input:(input&&input.url)||'';
+  if(!/dados\/\d{4}-\d{2}-\d{2}\.json/i.test(url)||!resp.ok)return resp;
+  const json=await resp.clone().json();
+  const novo=filtrar(json);
+  return new Response(JSON.stringify(novo),{status:resp.status,statusText:resp.statusText,
+   headers:{'Content-Type':'application/json'}});
+ }catch(e){return resp}
+};
+
+/* ---------- painel com os 2 interruptores ---------- */
+function atualizarPainel(){
+ const s=document.getElementById('fsResumo');if(!s)return;
+ s.textContent=stats.total?('Mostrando '+stats.mostrados+' de '+stats.total+' jogos'):'Filtros aplicados ao carregar as partidas';
+}
+function painel(){
+ if(document.getElementById('filtroSite'))return;
+ const alvo=document.getElementById('loadRepo')&&document.getElementById('loadRepo').closest('.bar');
+ const box=document.createElement('div');box.id='filtroSite';
+ box.style.cssText='display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:10px 0 2px;font-size:13px';
+ box.innerHTML=
+  '<label style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="fsElite"> 🏆 Somente ligas elite</label>'+
+  '<label style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="fsMetodo"> ✅ Esconder jogos sem método</label>'+
+  '<small id="fsResumo" style="opacity:.75"></small>';
+ if(alvo)alvo.after(box);else{(document.querySelector('main')||document.body).prepend(box)}
+ const e=box.querySelector('#fsElite'),m=box.querySelector('#fsMetodo');
+ e.checked=cfg.elite;m.checked=cfg.soMetodo;
+ const mudou=()=>{cfg.elite=e.checked;cfg.soMetodo=m.checked;salvar();
+  const b=document.getElementById('loadRepo');if(b)b.click();};   // recarrega as partidas com o filtro novo
+ e.onchange=mudou;m.onchange=mudou;
+ atualizarPainel();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',painel);else painel();
+
+window.FILTRO_SITE={cfg,ehElite,temMetodo,filtrar,stats,LIGAS_ELITE};
+})();
+
+</script>
+<!-- FILTRO_SITE:FIM -->
 </body>
 </html>

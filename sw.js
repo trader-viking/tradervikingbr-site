@@ -1,3 +1,4 @@
+// filtro 202611072231
 // leitor-v2 202611072022
 /* TraderVikingBR · Live Desk — Service Worker
    Estrategia:
@@ -5,7 +6,7 @@
    - Bibliotecas do CDN: cache-first (versionadas, nao mudam)
    - Pacotes de dados (dados/*.json): network-first com fallback para cache
 */
-const VERSION = 'tvbr-v1-lv202611072022';
+const VERSION = 'tvbr-v1-lv202611072022-f202611072231';
 const SHELL = VERSION + '-shell';
 const LIBS  = VERSION + '-libs';
 const DATA  = VERSION + '-data';
