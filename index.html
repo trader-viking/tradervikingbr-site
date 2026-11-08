@@ -2250,5 +2250,56 @@ window.LEITOR_V2={versao:window.__leitorV2,isV2,limites:LIM,
 
 </script>
 <!-- LEITOR_RADAR_V2:FIM -->
+<!-- MENU_COMPACTO:INICIO -->
+<script>
+/* MENU COMPACTO · TraderVikingBR Live Desk
+   Deixa só uma linha: [data] [⚡ Carregar] [↻] [⚙ Opções ▾] + resumo.
+   Upload manual e filtros ficam dentro de "Opções" (fechado por padrão). */
+(function(){
+'use strict';
+if(window.__compacto)return;window.__compacto='1.0';
+const css=`
+#srcPanel{padding:10px 14px!important;margin-bottom:10px!important}
+#srcPanel>h3.sec{display:none}
+#cmpBar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#cmpBar select{min-width:150px;max-width:190px}
+#cmpBar button{white-space:nowrap}
+#cmpBar .cmp-res{font-size:12px;opacity:.75;margin-left:4px}
+#cmpMais{margin-top:8px}
+#cmpMais>summary{display:none}
+#cmpMais .srcgrid{margin-top:6px}
+#cmpMais .srcbox p{display:none}
+#cmpMais .drop{padding:10px!important;min-height:0!important}
+#filtroSite{margin:6px 0 0!important}
+@media (max-width:640px){#cmpBar select{flex:1 1 100%;max-width:none}#cmpBar button{flex:1}}`;
+function montar(){
+ const p=document.getElementById('srcPanel'),sel=document.getElementById('dateSel'),
+       load=document.getElementById('loadRepo'),ref=document.getElementById('refreshRepo');
+ if(!p||!sel||!load||document.getElementById('cmpBar'))return !!document.getElementById('cmpBar');
+ const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+ const bar=document.createElement('div');bar.id='cmpBar';
+ const mais=document.createElement('details');mais.id='cmpMais';mais.innerHTML='<summary></summary>';
+ const resto=[...p.children].filter(e=>!(e.matches&&e.matches('h3.sec')));
+ bar.append(sel,load);if(ref){ref.textContent='↻';ref.title='Atualizar lista de datas';bar.append(ref)}
+ const btn=document.createElement('button');btn.type='button';btn.className='mini';btn.textContent='⚙ Opções ▾';
+ btn.onclick=()=>{mais.open=!mais.open;btn.textContent=mais.open?'⚙ Opções ▴':'⚙ Opções ▾'};
+ const res=document.createElement('span');res.className='cmp-res';res.id='cmpRes';
+ const meta=document.getElementById('repoMeta');
+ const sync=()=>{const f=document.getElementById('fsResumo');const t=[meta&&meta.textContent,f&&f.textContent].filter(Boolean).join(' · ');if(res.textContent!==t)res.textContent=t};
+ bar.append(btn,res);
+ resto.forEach(e=>mais.appendChild(e));
+ p.append(bar,mais);
+ const fs=document.getElementById('filtroSite');if(fs)mais.prepend(fs);
+ let ag=0;new MutationObserver(ms=>{if(ms.every(m=>res.contains(m.target)||m.target===res))return;
+  if(ag)return;ag=requestAnimationFrame(()=>{ag=0;const f=document.getElementById('filtroSite');if(f&&f.parentElement!==mais)mais.prepend(f);sync()})})
+  .observe(p,{subtree:true,childList:true,characterData:true});
+ sync();return true;
+}
+function tentar(n){if(!montar()&&n>0)setTimeout(()=>tentar(n-1),300)}
+if(document.readyState==='complete')tentar(20);else window.addEventListener('load',()=>tentar(20));
+})();
+
+</script>
+<!-- MENU_COMPACTO:FIM -->
 </body>
 </html>
