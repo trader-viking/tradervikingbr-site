@@ -7,3 +7,6 @@ log_publicacao.txt
 __pycache__/
 *.antes_leitor_v2.html
 .tmp_pdfs/
+*.tmp
+amostra_leitor.txt
+rodar_agendado.bat
