@@ -2084,5 +2084,469 @@ if(document.readyState==='complete')tentar(20);else window.addEventListener('loa
 })();
 </script>
 <!-- MENU_COMPACTO:FIM -->
+<!-- RECREATIVO:INICIO -->
+<script>
+/* ======================================================================
+   RECREATIVO · TraderVikingBR Live Desk
+   Aba própria (🎲 Recreativo) com 4 métodos que usam os blocos extras do PDF:
+     🎯 Finalizações · 🚩 Escanteios · 🟨 Cartões · 👤 Jogadores
+   Regras:
+   · Só jogos ELITE.
+   · Só jogos com dados suficientes (mesmo descarte do site) e amostra mínima.
+   · Cada método só é avaliado se o bloco dele foi lido para OS DOIS times e
+     os valores estão em faixa plausível. Caso contrário: "sem dados confiáveis".
+   · Não altera os 7 métodos principais, a grade Elite/Mundo nem a Mesa.
+   Limites: config.json → limites_metodos.recreativo
+   Rótulos extras (calibração sem editar o site):
+     config.json → limites_metodos.recreativo.rotulos.{fin_f, fin_c, alvo_f, alvo_c,
+                   can_f, can_c, can_t, car_f, car_c, car_t}
+   ====================================================================== */
+(function(){
+'use strict';
+if(window.RECREATIVO)return;
+
+/* ---------------- limites ---------------- */
+const PAD={
+ min_jogos:8,
+ fin_total_min:23,fin_alvo_total_min:8,fin_margem_linha:2.5,
+ cantos_over_min:10.0,cantos_under_max:8.2,cantos_pct_min:60,
+ cartoes_over_min:4.6,cartoes_prob_fav_max:60,cartoes_pct_min:55,
+ jogador_min_gols:4,jogador_taxa_min:0.45,jogador_fav_prob_min:55,jogador_time_marca_min:1.5,
+ rotulos:{}
+};
+function LIM(){
+ const RL=window.RADAR_LIMITES||{},g=RL.geral||{};
+ return Object.assign({},PAD,{min_jogos:g.min_jogos||PAD.min_jogos},RL.recreativo||{});
+}
+
+/* ---------------- utilidades ---------------- */
+const ok=v=>v!=null&&Number.isFinite(v);
+const N=s=>{if(s==null)return null;const n=Number(String(s).replace(',','.'));return Number.isFinite(n)?n:null};
+const reEsc=s=>String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const lbl=s=>reEsc(s).replace(/\s+/g,'\\s*');
+const NUM='(\\d+(?:[.,]\\d+)?)(?![\\d.,]|\\s*%)';
+const H=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const f1=v=>ok(v)?v.toFixed(1):'—';
+const f2=v=>ok(v)?v.toFixed(2):'—';
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+function trecho(t,re,max,fim){
+ const i=t.search(re);if(i<0)return '';
+ let r=t.slice(i,i+(max||2500));
+ if(fim){const j=r.slice(12).search(fim);if(j>=0)r=r.slice(0,j+12)}
+ return r;
+}
+
+/* rótulo seguido de 2 números (mandante, visitante) */
+function par(nome,t){
+ const re=new RegExp('(?<![A-Za-z\\u00C0-\\u00FF])'+lbl(nome)+'\\s*:?\\s*'+NUM+'\\s+'+NUM,'i');
+ const m=re.exec(t);if(!m)return null;
+ const antes=t.slice(Math.max(0,m.index-28),m.index);
+ if(/total\s*(de)?\s*$|m[ée]dia\s+total\s*(de)?\s*$|no\s+jogo\s*$/i.test(antes))return null;
+ return{v:[N(m[1]),N(m[2])],r:nome};
+}
+/* primeiro rótulo encontrado com os 2 valores dentro da faixa plausível */
+function pega(rots,t,min,max){
+ for(const r of rots){const p=par(r,t);if(p&&p.v.every(x=>ok(x)&&x>=min&&x<=max))return p}
+ return null;
+}
+const esp=(F,C,i)=>!F?null:(C?(F.v[i]+C.v[1-i])/2:F.v[i]);
+
+/* linhas Over X.5 de uma seção (ex.: Escanteios, Cartões) */
+function oversSecao(t,ini,fim,linMin,linMax){
+ const sec=trecho(t,ini,1800,fim);const o={};
+ if(!sec)return o;
+ for(const m of sec.matchAll(/Over\s+(\d{1,2})[.,]5\s+(\d{1,3})\s*%\s+(\d{1,3})\s*%/gi)){
+  const l=+m[1];if(l<linMin||l>linMax)continue;
+  const k=l+'.5';if(!o[k])o[k]=[+m[2],+m[3]];
+ }
+ return o;
+}
+
+const ROT={
+ fin_f:['Finalizações - A Favor','Finalizações a Favor','Média de Finalizações','Finalizações por Jogo','Chutes - A Favor','Chutes a Favor','Chutes por Jogo','Finalizações','Chutes'],
+ fin_c:['Finalizações - Contra','Finalizações Contra','Finalizações Sofridas','Chutes - Contra','Chutes Contra','Chutes Sofridos'],
+ alvo_f:['Finalizações no Gol - A Favor','Chutes no Gol - A Favor','Finalizações no Gol','Chutes no Gol','Chutes ao Gol','Finalizações ao Gol','Chutes no Alvo'],
+ alvo_c:['Finalizações no Gol - Contra','Chutes no Gol - Contra','Chutes no Gol Sofridos','Finalizações no Gol Sofridas'],
+ can_f:['Escanteios - A Favor','Escanteios a Favor','Média de Escanteios','Escanteios por Jogo','Cantos a Favor','Escanteios'],
+ can_c:['Escanteios - Contra','Escanteios Contra','Escanteios Sofridos','Cantos Contra'],
+ can_t:['Média total de Escanteios','Total de Escanteios','Escanteios Totais','Escanteios no Jogo'],
+ car_f:['Cartões - A Favor','Cartões a Favor','Média de Cartões','Cartões por Jogo','Cartões Recebidos','Cartões'],
+ car_c:['Cartões - Contra','Cartões Contra','Cartões do Adversário'],
+ car_t:['Média total de Cartões','Total de Cartões','Cartões Totais','Cartões no Jogo']
+};
+function rotulos(L){
+ const R={};for(const k in ROT)R[k]=ROT[k].slice();
+ const u=L.rotulos||{};for(const k in u)if(Array.isArray(u[k]))R[k]=u[k].concat(R[k]||[]);
+ return R;
+}
+const crit=(okk,label,why,has=true,opc=false)=>({ok:has&&!!okk,label,why:has?String(why):'dado ausente no PDF',has,opc});
+function aprova(dados,c){return dados&&c.every(x=>x.opc?(!x.has||x.ok):x.ok)}
+
+/* favorito pelas odds (caso o leitor principal não tenha calculado) */
+function favOdds(o){
+ if(!o||!ok(o[0])||!ok(o[2]))return{fav:0,prob:null};
+ const inv=[1/o[0],ok(o[1])?1/o[1]:0,1/o[2]],t=inv[0]+inv[1]+inv[2];
+ const p=[100*inv[0]/t,100*inv[2]/t];return p[0]>=p[1]?{fav:0,prob:p[0]}:{fav:1,prob:p[1]};
+}
+
+/* ---------------- métodos ---------------- */
+function mFin(t,R,L,X){
+ const F=pega(R.fin_f,t,3,35),C=pega(R.fin_c,t,3,35),AF=pega(R.alvo_f,t,0.8,14),AC=pega(R.alvo_c,t,0.8,14);
+ const dados=X.amostra&&!!F;
+ const eH=esp(F,C,0),eA=esp(F,C,1),tot=dados?eH+eA:null;
+ const alvo=AF?esp(AF,AC,0)+esp(AF,AC,1):null;
+ const c=[
+  crit(X.amostra,'amostra ≥ '+L.min_jogos+' jogos cada',X.jg.join(' / ')+' jogos',ok(X.jg[0])),
+  crit(!!F,'finalizações dos 2 times no PDF',F?F.r+': '+f1(F.v[0])+' × '+f1(F.v[1]):'',!!F),
+  crit(tot>=L.fin_total_min,'finalizações esperadas no jogo ≥ '+L.fin_total_min,f1(tot)+(C?' (a favor × contra)':' (só a favor)'),tot!=null),
+  crit(alvo>=L.fin_alvo_total_min,'no gol esperadas ≥ '+L.fin_alvo_total_min,f1(alvo),alvo!=null,true)
+ ];
+ const ap=aprova(dados,c),linha=tot!=null?Math.floor(tot-L.fin_margem_linha)+0.5:null;
+ const quem=dados?(eH>=eA?X.meta.home:X.meta.away):'';
+ return{k:'fin',dados,c,ap,
+  resumo:dados?'Esperado: '+X.meta.home+' '+f1(eH)+' · '+X.meta.away+' '+f1(eA)+' · total '+f1(tot)+(alvo!=null?' · no gol '+f1(alvo):''):'',
+  mercado:ap?'Over '+linha+' finalizações (jogo)':'',
+  extra:dados?'Mais finalizações esperadas: '+quem:'',
+  semDados:!X.amostra?'amostra curta':!F?'bloco de finalizações não encontrado':''};
+}
+function mCan(t,R,L,X){
+ const F=pega(R.can_f,t,1.2,13),C=pega(R.can_c,t,1.2,13),T=pega(R.can_t,t,4,18);
+ const dados=X.amostra&&(!!F||!!T);
+ let tot=null,eH=null,eA=null;
+ if(F){eH=esp(F,C,0);eA=esp(F,C,1);tot=eH+eA}
+ if(T){const tt=(T.v[0]+T.v[1])/2;tot=tot==null?tt:(tot+tt)/2}
+ const lado=tot==null?null:tot>=L.cantos_over_min?'over':tot<=L.cantos_under_max?'under':null;
+ const ov=oversSecao(t,/Escanteios/i,/Cart[õo]es|Jogadores|Artilheir|Finaliza/i,6,14);
+ let linha=null,pct=null;
+ if(lado==='over'){linha=Math.floor(tot-1.5)+0.5;const k=linha+'';if(ov[k])pct=(ov[k][0]+ov[k][1])/2}
+ if(lado==='under'){linha=Math.ceil(tot+1.5)-0.5;const k=(linha)+'';if(ov[k])pct=100-(ov[k][0]+ov[k][1])/2}
+ const c=[
+  crit(X.amostra,'amostra ≥ '+L.min_jogos+' jogos cada',X.jg.join(' / ')+' jogos',ok(X.jg[0])),
+  crit(!!(F||T),'escanteios dos 2 times no PDF',F?F.r+': '+f1(F.v[0])+' × '+f1(F.v[1]):T?T.r+': '+f1(T.v[0])+' × '+f1(T.v[1]):'',!!(F||T)),
+  crit(!!lado,'média esperada ≥ '+f1(L.cantos_over_min)+' (Over) ou ≤ '+f1(L.cantos_under_max)+' (Under)',f1(tot),tot!=null),
+  crit(pct>=L.cantos_pct_min,'histórico da linha ≥ '+L.cantos_pct_min+'%',ok(pct)?Math.round(pct)+'%':'',ok(pct),true)
+ ];
+ const ap=aprova(dados,c);
+ return{k:'can',dados,c,ap,
+  resumo:dados?(eH!=null?X.meta.home+' '+f1(eH)+' · '+X.meta.away+' '+f1(eA)+' · ':'')+'total esperado '+f1(tot):'',
+  mercado:ap?(lado==='over'?'Over ':'Under ')+linha+' escanteios':'',
+  extra:'',
+  semDados:!X.amostra?'amostra curta':'bloco de escanteios não encontrado'};
+}
+function mCar(t,R,L,X){
+ const F=pega(R.car_f,t,0.3,6),C=pega(R.car_c,t,0.3,6),T=pega(R.car_t,t,1,10);
+ const dados=X.amostra&&(!!F||!!T);
+ let tot=null,eH=null,eA=null;
+ if(F){eH=esp(F,C,0);eA=esp(F,C,1);tot=eH+eA}
+ if(T){const tt=(T.v[0]+T.v[1])/2;tot=tot==null?tt:(tot+tt)/2}
+ const linha=tot!=null?Math.floor(tot-1)+0.5:null;
+ const ov=oversSecao(t,/Cart[õo]es/i,/Escanteios|Jogadores|Artilheir|Finaliza/i,1,8);
+ const pct=linha!=null&&ov[linha+'']?(ov[linha+''][0]+ov[linha+''][1])/2:null;
+ const c=[
+  crit(X.amostra,'amostra ≥ '+L.min_jogos+' jogos cada',X.jg.join(' / ')+' jogos',ok(X.jg[0])),
+  crit(!!(F||T),'cartões dos 2 times no PDF',F?F.r+': '+f2(F.v[0])+' × '+f2(F.v[1]):T?T.r+': '+f2(T.v[0])+' × '+f2(T.v[1]):'',!!(F||T)),
+  crit(tot>=L.cartoes_over_min,'cartões esperados ≥ '+f1(L.cartoes_over_min),f2(tot),tot!=null),
+  crit(X.probFav<=L.cartoes_prob_fav_max,'jogo equilibrado · favorito ≤ '+L.cartoes_prob_fav_max+'%',ok(X.probFav)?X.probFav.toFixed(1)+'%':'',ok(X.probFav)),
+  crit(pct>=L.cartoes_pct_min,'histórico da linha ≥ '+L.cartoes_pct_min+'%',ok(pct)?Math.round(pct)+'%':'',ok(pct),true)
+ ];
+ const ap=aprova(dados,c);
+ return{k:'car',dados,c,ap,
+  resumo:dados?(eH!=null?X.meta.home+' '+f2(eH)+' · '+X.meta.away+' '+f2(eA)+' · ':'')+'total esperado '+f2(tot):'',
+  mercado:ap?'Over '+linha+' cartões':'',
+  extra:'',
+  semDados:!X.amostra?'amostra curta':'bloco de cartões não encontrado'};
+}
+/* jogadores: só conta leitura com "gols" explícito (formatos A e B); o resto não é confiável */
+const NAO_NOME=/^(total|jogos?|gols?|media|m[ée]dia|geral|casa|fora|over|under|ambas|time|equipe|jogador|jogadores|artilheiros?|assist[eê]ncias?|minutos|partidas)$/i;
+function lerJogadores(t,meta){
+ const sec=trecho(t,/Artilheir|Goleador|Jogadores/i,4500,/Confronto Direto|Tend[êe]ncias|Principais Mercados/i);
+ if(!sec)return null;
+ const NOME="([A-Z\\u00C0-\\u00DD][A-Za-z\\u00C0-\\u00FF'.-]+(?:\\s+(?:de|da|do|dos|van|von|di|el|[A-Z\\u00C0-\\u00DD][A-Za-z\\u00C0-\\u00FF'.-]+)){0,3})";
+ const pats=[new RegExp(NOME+'\\s+(\\d{1,2})\\s*gols?\\b','g'),new RegExp(NOME+'[^\\d]{0,30}?Gols\\s*:?\\s*(\\d{1,2})\\b','g')];
+ const nAway=norm(meta.away),secN=sec;
+ /* posição do nome do visitante dentro da seção: antes dela = mandante */
+ let corte=-1;{const words=meta.away.split(/\s+/).filter(w=>w.length>2);
+  for(const w of [meta.away,...words]){const i=secN.search(new RegExp(reEsc(w),'i'));if(i>0){corte=i;break}}}
+ const out=[],vistos=new Set();
+ const tTimes=new Set((meta.home+' '+meta.away).split(/\s+/).map(norm).filter(w=>w.length>2));
+ for(const re of pats){
+  for(const m of sec.matchAll(re)){
+   const g=+m[2];
+   /* tira do começo palavras que não são nome (títulos, nome dos times) */
+   const ws=m[1].trim().split(/\s+/);
+   while(ws.length&&(NAO_NOME.test(ws[0])||tTimes.has(norm(ws[0]))))ws.shift();
+   const nome=ws.join(' ');
+   if(!nome||norm(nome)===norm(meta.home)||norm(nome)===nAway)continue;
+   if(g<1||g>40||vistos.has(norm(nome)))continue;
+   vistos.add(norm(nome));
+   out.push({nome,gols:g,time:corte>0?(m.index<corte?0:1):null});
+  }
+ }
+ return{lista:out,separado:corte>0};
+}
+function mJog(t,R,L,X){
+ const J=lerJogadores(t,X.meta);
+ const lista=J?J.lista.filter(p=>p.time===X.fav):[];
+ lista.sort((a,b)=>b.gols-a.gols);
+ const top=lista[0]||null,jogosFav=X.jg[X.fav];
+ const taxa=top&&ok(jogosFav)&&jogosFav>0?top.gols/jogosFav:null;
+ const marca=X.S&&Array.isArray(X.S.scored)?X.S.scored[X.fav]:null;
+ const dados=X.amostra&&!!J&&J.separado&&!!top;
+ const favNome=X.fav===0?X.meta.home:X.meta.away;
+ const c=[
+  crit(X.amostra,'amostra ≥ '+L.min_jogos+' jogos cada',X.jg.join(' / ')+' jogos',ok(X.jg[0])),
+  crit(!!(J&&J.separado&&top),'artilheiro do favorito identificado no PDF',top?top.nome+' · '+top.gols+' gols':'',!!(J&&J.separado&&top)),
+  crit(top&&top.gols>=L.jogador_min_gols,'artilheiro com ≥ '+L.jogador_min_gols+' gols',top?top.gols:'',!!top),
+  crit(taxa>=L.jogador_taxa_min,'gols por jogo do artilheiro ≥ '+f2(L.jogador_taxa_min),f2(taxa),taxa!=null),
+  crit(X.probFav>=L.jogador_fav_prob_min,'favorito ≥ '+L.jogador_fav_prob_min+'%',ok(X.probFav)?X.probFav.toFixed(1)+'%':'',ok(X.probFav)),
+  crit(marca>=L.jogador_time_marca_min,favNome+' marca ≥ '+f1(L.jogador_time_marca_min)+' por jogo',f2(marca),ok(marca))
+ ];
+ const ap=aprova(dados,c);
+ return{k:'jog',dados,c,ap,
+  resumo:dados?favNome+' · '+lista.slice(0,3).map(p=>p.nome+' '+p.gols).join(' · '):'',
+  mercado:ap?top.nome+' marca (a qualquer momento)':'',
+  extra:'',
+  semDados:!X.amostra?'amostra curta':!J?'bloco de jogadores não encontrado':!J.separado?'não deu para separar os jogadores por time':'artilheiro do favorito não encontrado'};
+}
+
+const MET=[
+ {k:'fin',nome:'Finalizações',ic:'🎯',f:mFin},
+ {k:'can',nome:'Escanteios',ic:'🚩',f:mCan},
+ {k:'car',nome:'Cartões',ic:'🟨',f:mCar},
+ {k:'jog',nome:'Jogadores',ic:'👤',f:mJog}
+];
+const MNOME={};MET.forEach(m=>MNOME[m.k]=m.ic+' '+m.nome);
+
+function amostras(t){
+ const out=[];
+ [['Finalizações',/Finaliza|Chutes/i],['Escanteios',/Escanteio/i],['Cartões',/Cart[õo]es/i],['Jogadores',/Artilheir|Jogadores|Goleador/i]].forEach(([n,re])=>{
+  const i=t.search(re);out.push({n,txt:i<0?'(não encontrado no PDF)':t.slice(i,i+320)});
+ });
+ return out;
+}
+
+function analisar(meta,S,a,text){
+ const L=LIM(),R=rotulos(L);
+ const jg=S&&Array.isArray(S.jogos)?S.jogos:[null,null];
+ const amostra=ok(jg[0])&&ok(jg[1])&&Math.min(jg[0],jg[1])>=L.min_jogos;
+ const fo=favOdds(meta.odds);
+ const fav=a&&(a.fav===0||a.fav===1)?a.fav:fo.fav;
+ const probFav=a&&a.m&&ok(a.m.probFav)?a.m.probFav:fo.prob;
+ const X={meta,S,jg,amostra,fav,probFav};
+ const r={};MET.forEach(m=>{try{r[m.k]=m.f(text,R,L,X)}catch(e){r[m.k]={k:m.k,dados:false,c:[],ap:false,resumo:'',mercado:'',extra:'',semDados:'erro: '+e.message}}});
+ const nDados=MET.filter(m=>r[m.k].dados).length,app=MET.filter(m=>r[m.k].ap).map(m=>m.k);
+ return{r,nDados,app,fav,probFav,amostras:amostras(text)};
+}
+
+/* ---------------- integração com o site ---------------- */
+let buffer=[],lista=[],ultimaLeitura=0;
+const KEY=()=>'tvbr_rec_'+((typeof dataAtual!=='undefined'&&dataAtual)||'manual');
+function resultados(){try{return JSON.parse(localStorage.getItem(KEY())||'{}')}catch(e){return{}}}
+function salvarRes(o){try{localStorage.setItem(KEY(),JSON.stringify(o))}catch(e){}}
+
+function grupoDoJogo(fileLike,meta){
+ try{return fileLike.grupo||(typeof grupoDe==='function'?grupoDe(fileLike.liga||meta.league):'mundo')}catch(e){return 'mundo'}
+}
+function logR(t){try{if(typeof log==='function')log('🎲 '+t)}catch(e){}}
+
+function instalarHooks(){
+ if(typeof window.lerTexto!=='function'||typeof window.setTab!=='function')return false;
+ const _ler=window.lerTexto;
+ window.lerTexto=function(text,fileLike,descartar,validado){
+  const L=_ler.apply(this,arguments);
+  try{
+   const agora=Date.now();
+   if(typeof games!=='undefined'&&games.length===0&&agora-ultimaLeitura>3000)buffer=[];
+   ultimaLeitura=agora;
+   if(!L.motivo&&grupoDoJogo(fileLike||{},L.meta)==='elite'){
+    const A=analisar(L.meta,L.S,L.a,text||'');
+    if(A.nDados>0)buffer.push({id:'rec_'+buffer.length+'_'+String((fileLike&&fileLike.name)||'').replace(/[^A-Za-z0-9]/g,'').slice(0,24),
+     file:(fileLike&&fileLike.name)||('jogo'+buffer.length),meta:L.meta,A,crests:[null,null]});
+   }
+  }catch(e){logR('erro na análise recreativa: '+e.message)}
+  return L;
+ };
+ if(typeof window.addGame==='function'){
+  const _add=window.addGame;
+  window.addGame=function(id,L,crests,fileLike){
+   const gm=_add.apply(this,arguments);
+   try{const b=buffer.find(x=>x.file===(fileLike&&fileLike.name));if(b&&crests)b.crests=crests}catch(e){}
+   return gm;
+  };
+ }
+ if(typeof window.finalizar==='function'){
+  const _fin=window.finalizar;
+  window.finalizar=function(){
+   const aberto=ativo;
+   lista=buffer;buffer=[];
+   const r=_fin.apply(this,arguments);
+   const ap=lista.filter(x=>x.A.app.length).length;
+   logR('Recreativo: '+lista.length+' jogo(s) Elite com dados extras confiáveis · '+ap+' com método aprovado');
+   badge();
+   if(aberto)window.setTab('recreativo');
+   return r;
+  };
+ }
+ const _set=window.setTab;
+ window.setTab=function(t){
+  if(t==='recreativo'){
+   ativo=true;
+   try{tab='recreativo'}catch(e){}
+   ['viewAnalise','viewMesa'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('hidden')});
+   ['tabElite','tabMundo','tabMesa'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('on')});
+   document.getElementById('viewRec').classList.remove('hidden');
+   document.getElementById('tabRec').classList.add('on');
+   render();window.scrollTo({top:0,behavior:'smooth'});return;
+  }
+  ativo=false;
+  document.getElementById('viewRec').classList.add('hidden');
+  document.getElementById('tabRec').classList.remove('on');
+  return _set.apply(this,arguments);
+ };
+ return true;
+}
+let ativo=false;
+
+/* ---------------- interface ---------------- */
+const CSS=`
+#viewRec .rec-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#viewRec .rec-top label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
+#viewRec .rec-top input[type=checkbox]{width:16px;height:16px;padding:0}
+.rec-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.rec-kpi{border:1px solid var(--stroke);border-radius:16px;padding:14px 16px;background:var(--glass)}
+.rec-kpi b{display:block;font-size:15px;color:#ffdf9a;margin-bottom:6px}
+.rec-kpi span{display:block;font-size:12px;color:var(--mut);line-height:1.6}
+.rec-kpi span i{font-style:normal;color:#fff;font-weight:800}
+.rec-m{margin-top:12px;padding:12px 14px;border-radius:14px;border:1px solid var(--stroke);background:rgba(0,0,0,.22)}
+.rec-m.ap{border-color:rgba(46,232,138,.45);background:rgba(46,232,138,.07)}
+.rec-m.nd{opacity:.6}
+.rec-m .h{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800;font-size:13px}
+.rec-m .st{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:99px;white-space:nowrap}
+.rec-m.ap .st{background:rgba(46,232,138,.16);color:#8bffc4}
+.rec-m.no .st{background:rgba(255,176,32,.14);color:#ffd98a}
+.rec-m.nd .st{background:rgba(120,138,160,.18);color:#c3d0e0}
+.rec-m .rs{font-size:12px;color:#d8e6f8;margin-top:6px;line-height:1.55}
+.rec-m .ex{font-size:11.5px;color:var(--mut);margin-top:3px}
+.rec-m details{margin-top:8px;padding-top:6px}
+.rec-m .rbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.rec-snip{font:11px ui-monospace,Consolas,monospace;color:#a9c2de;background:rgba(0,0,0,.3);border:1px solid var(--stroke);border-radius:10px;padding:8px 10px;margin-top:6px;white-space:normal;word-break:break-word}
+@media(max-width:1000px){.rec-kpis{grid-template-columns:repeat(2,1fr)}}
+`;
+function montarUI(){
+ if(document.getElementById('viewRec'))return true;
+ const nav=document.querySelector('nav.nav'),mesa=document.getElementById('viewMesa');
+ if(!nav||!mesa)return false;
+ const st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
+ const b=document.createElement('button');b.id='tabRec';b.className='grp';
+ b.innerHTML='🎲 Recreativo <span class="badge" id="recBadge">0</span>';
+ b.onclick=()=>window.setTab('recreativo');
+ const sp=nav.querySelector('.navspacer');nav.insertBefore(b,sp||null);
+ const v=document.createElement('div');v.id='viewRec';v.className='hidden';
+ v.innerHTML=
+  '<section class="card-panel" id="recPanel">'+
+   '<h3 class="sec">Recreativo · Elite com dados confiáveis</h3>'+
+   '<p style="margin:0 0 12px;color:var(--mut);font-size:13px;line-height:1.6">Finalizações, escanteios, cartões e jogadores. Só entram jogos Elite cujo PDF trouxe o bloco do método para os dois times. Stake reduzida: uso recreativo.</p>'+
+   '<div class="rec-top">'+
+    '<label>🎯 Método <select id="recMet"><option value="all">Todos</option>'+MET.map(m=>'<option value="'+m.k+'">'+m.ic+' '+m.nome+'</option>').join('')+'</select></label>'+
+    '<label>🌓 Período <select id="recPer"><option value="all">Todos</option><option value="manha">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite</option></select></label>'+
+    '<label><input type="checkbox" id="recSoAp" checked> Só métodos aprovados</label>'+
+    '<input type="text" id="recBusca" placeholder="🔎 Buscar time ou liga">'+
+    '<span class="status" id="recStatus"></span>'+
+   '</div></section>'+
+  '<section class="rec-kpis" id="recKpis"></section>'+
+  '<section id="recContent"><div class="card-panel empty"><div class="ic">🎲</div><p>Carregue uma data na aba Elite para ver os jogos recreativos.</p></div></section>';
+ mesa.parentNode.insertBefore(v,mesa.nextSibling);
+ ['recMet','recPer','recSoAp'].forEach(id=>document.getElementById(id).onchange=render);
+ document.getElementById('recBusca').oninput=render;
+ document.addEventListener('keydown',e=>{
+  const t=e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||e.ctrlKey||e.altKey||e.metaKey)return;
+  if(e.key==='4'){e.preventDefault();window.setTab('recreativo')}
+ });
+ return true;
+}
+function badge(){const el=document.getElementById('recBadge');if(el)el.textContent=lista.filter(x=>x.A.app.length).length}
+
+function periodo(meta){try{return periodOf(meta.time)}catch(e){return{key:'sem',icon:'⏱',label:'Sem horário',order:9}}}
+function crest(src,nome){try{return crestHTML(src,H(nome))}catch(e){return ''}}
+
+function blocoMetodo(g,m,R){
+ const x=g.A.r[m.k];if(!x)return '';
+ const cls=x.ap?'ap':x.dados?'no':'nd';
+ const st=x.ap?'Aprovado':x.dados?'Não aprovado':'Sem dados confiáveis';
+ const res=(R[g.file]||{})[m.k];
+ const btn=(r,l)=>'<span class="fbtn '+r+(res===r?' on':'')+'" onclick="REC_set(\''+g.id+'\',\''+m.k+'\',\''+r+'\')">'+l+'</span>';
+ return '<div class="rec-m '+cls+'"><div class="h"><span>'+m.ic+' '+m.nome+'</span><span class="st">'+st+'</span></div>'+
+  (x.dados?'<div class="rs">'+H(x.resumo)+'</div>':'<div class="ex">'+H(x.semDados)+'</div>')+
+  (x.extra?'<div class="ex">'+H(x.extra)+'</div>':'')+
+  (x.ap?'<div class="market">Mercado: <b>'+H(x.mercado)+'</b></div>':'')+
+  (x.c&&x.c.length?'<details><summary>Critérios</summary><ul class="crit">'+x.c.map(c=>'<li class="'+(c.ok?'y':'n')+'">'+(c.ok?'✓':c.opc&&!c.has?'○':'✕')+' '+H(c.label)+(c.opc?' (opcional)':'')+' — '+H(c.why)+'</li>').join('')+'</ul></details>':'')+
+  (x.ap?'<div class="rbar" data-nopdf="1">'+btn('green','🟢 Green')+btn('red','🔴 Red')+btn('void','⚪ Anulado')+'</div>':'')+
+ '</div>';
+}
+function cardRec(g,mets,R){
+ const m=g.meta,P=periodo(m);
+ const odds=Array.isArray(m.odds)&&m.odds.every(Number.isFinite)?'<div class="odds"><span class="odd">1 <b>'+m.odds[0]+'</b></span><span class="odd">X <b>'+m.odds[1]+'</b></span><span class="odd">2 <b>'+m.odds[2]+'</b></span></div>':'';
+ const fav=g.A.fav===0?m.home:m.away;
+ return '<article class="match-card rec-card" id="'+g.id+'"><div class="mc-body">'+
+  '<div class="mc-top"><div><div class="league">'+H(m.league)+'</div><div class="clock">'+P.icon+' '+H(m.date||'')+' · '+H(m.time||'sem horário')+'</div></div>'+
+   '<span class="tag in">'+g.A.app.length+' aprovado(s)</span></div>'+
+  '<div class="versus"><div class="team">'+crest(g.crests[0],m.home)+'<div><div class="tname">'+H(m.home)+'</div><div class="side">Mandante</div></div></div>'+
+   '<div class="vs">VS</div>'+
+   '<div class="team">'+crest(g.crests[1],m.away)+'<div><div class="tname">'+H(m.away)+'</div><div class="side">Visitante</div></div></div></div>'+odds+
+  '<div class="ex" style="text-align:center;font-size:11.5px;color:var(--mut);margin-top:6px">Favorito: '+H(fav)+(ok(g.A.probFav)?' ('+g.A.probFav.toFixed(1)+'%)':'')+'</div>'+
+  mets.map(k=>blocoMetodo(g,MET.find(x=>x.k===k),R)).join('')+
+  '<details data-nopdf="1"><summary>🔬 Texto lido do PDF (calibração)</summary>'+
+   g.A.amostras.map(s=>'<div class="rec-snip"><b>'+s.n+':</b> '+H(s.txt)+'</div>').join('')+'</details>'+
+ '</div><div class="mc-foot"><div class="foot-line"><span class="wm-tag">tradervikingbr · recreativo</span>'+
+  '<button onclick="shot(\''+g.id+'\')">🖼️ Baixar imagem</button></div></div></article>';
+}
+function kpis(R){
+ return MET.map(m=>{
+  const ap=lista.filter(g=>g.A.r[m.k]&&g.A.r[m.k].ap).length,nd=lista.filter(g=>g.A.r[m.k]&&g.A.r[m.k].dados).length;
+  let G=0,Rr=0,V=0;lista.forEach(g=>{const r=(R[g.file]||{})[m.k];if(r==='green')G++;else if(r==='red')Rr++;else if(r==='void')V++});
+  return '<div class="rec-kpi"><b>'+m.ic+' '+m.nome+'</b><span><i>'+ap+'</i> aprovado(s) · <i>'+nd+'</i> com dados</span>'+
+   '<span>🟢 <i>'+G+'</i> · 🔴 <i>'+Rr+'</i> · ⚪ <i>'+V+'</i> · '+(G+Rr?'<i>'+Math.round(100*G/(G+Rr))+'%</i>':'—')+'</span></div>';
+ }).join('');
+}
+function render(){
+ if(!document.getElementById('viewRec'))return;
+ const R=resultados();
+ document.getElementById('recKpis').innerHTML=kpis(R);
+ const mf=document.getElementById('recMet').value,pf=document.getElementById('recPer').value,
+       soAp=document.getElementById('recSoAp').checked,q=norm(document.getElementById('recBusca').value);
+ const sel=lista.map(g=>{
+  let mets=MET.map(m=>m.k).filter(k=>mf==='all'||k===mf);
+  mets=mets.filter(k=>soAp?g.A.r[k].ap:g.A.r[k].dados||mf===k);
+  return{g,mets};
+ }).filter(({g,mets})=>mets.length&&(pf==='all'||periodo(g.meta).key===pf)&&(!q||norm(g.meta.home+' '+g.meta.away+' '+g.meta.league).includes(q)));
+ sel.sort((a,b)=>String(a.g.meta.time||'99:99').localeCompare(String(b.g.meta.time||'99:99')));
+ document.getElementById('recStatus').textContent=lista.length?sel.length+' de '+lista.length+' jogo(s) Elite com dados extras':'';
+ document.getElementById('recContent').innerHTML=sel.length
+  ?'<div class="grid">'+sel.map(({g,mets})=>cardRec(g,mets,R)).join('')+'</div>'
+  :'<div class="card-panel empty"><div class="ic">🎲</div><p>'+(lista.length?'Nenhum jogo corresponde aos filtros.':'Nenhum jogo Elite desta data trouxe finalizações, escanteios, cartões ou jogadores em formato confiável.<br>Rode a coleta de novo com o publicar_radar.py atualizado.')+'</p></div>';
+ badge();
+}
+window.REC_set=function(id,k,res){
+ const g=lista.find(x=>x.id===id);if(!g)return;
+ const R=resultados(),o=R[g.file]||(R[g.file]={});
+ if(o[k]===res)delete o[k];else o[k]=res;
+ salvarRes(R);render();
+};
+
+window.RECREATIVO={versao:'1.0',analisar,render,lista:()=>lista,metodos:MET.map(m=>m.k),limites:LIM,
+ testar(texto,meta){return analisar(meta||{home:'Mandante',away:'Visitante',league:'',odds:[null,null,null]},{jogos:[10,10],scored:[null,null]},null,texto)}};
+
+function iniciar(n){
+ if(montarUI()&&instalarHooks()){
+  const tp=new URLSearchParams(location.search).get('tab');
+  if(tp==='recreativo')window.setTab('recreativo');
+  return;
+ }
+ if(n>0)setTimeout(()=>iniciar(n-1),200);
+}
+if(document.readyState==='complete')iniciar(25);else window.addEventListener('load',()=>iniciar(25));
+})();
+</script>
+<!-- RECREATIVO:FIM -->
 </body>
 </html>
